@@ -5,56 +5,64 @@
 package Controladoras;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import modeloProductos.Producto;
 
 public class ControladoraAdmin {
 
     @FXML private Label lblAdmin;
-    @FXML private Label lblTotalProductos;
-    @FXML private Label lblPendientes;
+    @FXML private Button btnCerrarSesion;
+    @FXML private Button btnNuevoProducto;
+    @FXML private TextField txtBuscar;
+
+    @FXML private TableView<Producto> tablaProductos;
+    @FXML private TableColumn<Producto, Void> colImagen;
+    @FXML private TableColumn<Producto, String> colNombre;
+    @FXML private TableColumn<Producto, String> colCategoria;
+    @FXML private TableColumn<Producto, Double> colPrecio;
+    @FXML private TableColumn<Producto, Void> colAcciones;
 
     @FXML
-    private void gestionarProductos() {
-        // pendiente
+    private void irProductos() {
+       
     }
 
     @FXML
-    private void agregarProducto() {
-        // pendiente
+    private void irPedidos() {
+     
     }
 
     @FXML
-    private void editarProducto() {
-        // pendiente
+    private void irUsuarios() {
+       
     }
 
     @FXML
-    private void actualizarStock() {
-        // pendiente
+    private void irMiPerfil() {
+      
     }
 
     @FXML
-    private void eliminarProducto() {
-        // pendiente
-    }
-
-    @FXML
-    private void atenderPendiente() {
-        // pendiente
-    }
-
-    @FXML
-    private void verHistorial() {
-        // pendiente
-    }
-
-    @FXML
-    private void deshacerCambio() {
-        // pendiente
+    private void verTienda() {
+       
     }
 
     @FXML
     private void cerrarSesion() {
-        // pendiente
+    
+    }
+
+    @FXML
+    private void nuevoProducto() {
+       
+    }
+
+    @FXML
+    private void buscarProducto() {
+        
     }
 }
