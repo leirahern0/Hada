@@ -1,6 +1,10 @@
 package modeloProductos;
 
-public class Productos {
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Producto {
 
     private String nombre;
     private String codigo;
@@ -11,12 +15,15 @@ public class Productos {
     private String descripcion;
     private String categoria;   
     private boolean disponible;
+    private List<String> etiquetas;
 
-    public Productos() {
+    
+    public Producto() {
         this.disponible = true;
+        this.etiquetas = new ArrayList<>();
     }
 
-    public Productos(String nombre, String codigo, double precio, String marca, int stock, String imagen, String descripcion) {
+    public Producto(String nombre, String codigo, double precio, String marca, int stock, String imagen, String descripcion, List<String> etiquetas) {
 
         this.nombre = nombre;
         this.codigo = codigo;
@@ -26,6 +33,19 @@ public class Productos {
         this.imagen = imagen;
         this.descripcion = descripcion;
         this.disponible = true;
+        this.etiquetas = new ArrayList<>(etiquetas);
+    }
+    
+    public void agregarEtiqueta (String etiqueta){
+        etiquetas.add(etiqueta);
+    }
+    
+    public void eliminarEtiqueta (String etiqueta){
+        etiquetas.remove(etiqueta);
+    }
+
+    public List<String> getEtiquetas() {
+        return etiquetas;
     }
 
     public String getNombre() {
@@ -98,25 +118,39 @@ public class Productos {
     }
     
     public void actualizarStock(int cantidad) {
-        this.stock += cantidad;
-        if (this.stock < 0) this.stock = 0;
-        this.disponible = this.stock > 0;
+        stock += cantidad;
+        if (stock < 0) stock = 0;
+        disponible = stock > 0;
     }
 
     public String lineaArchivo() {
-        
+    
         return nombre + "|" + codigo + "|" + precio + "|" + marca + "|" +
-               stock + "|" + imagen + "|" + descripcion + "|" +
-               (categoria != null ? categoria : "") + "|" + disponible;
+           stock + "|" + imagen + "|" + descripcion + "|" +
+           (categoria != null ? categoria : "") + "|" + disponible + "|" +
+           (etiquetas != null ? String.join(",", etiquetas) : "");
+    
     }
 
-    public static Productos desdelineaArchivo(String linea) {
-        String[] p = linea.split("\\|");
-        if (p.length < 9) return null;
-        Productos prod = new Productos(p[0], p[1], Double.parseDouble(p[2]),
-                p[3], Integer.parseInt(p[4]), p[5], p[6]);
-        prod.setCategoria(p[7]);
-        prod.setDisponible(Boolean.parseBoolean(p[8]));
-        return prod;
+
+   public static Producto desdelineaArchivo(String linea) {
+    String[] p = linea.split("\\|", -1);
+    if (p.length < 10) return null;
+
+    List<String> etiquetas = new ArrayList<>();
+    if (!p[9].isEmpty()) {
+        String[] tags = p[9].split(",");
+        for (String t : tags) {
+            etiquetas.add(t);
+        }
     }
+
+    Producto prod = new Producto(p[0], p[1], Double.parseDouble(p[2]),
+            p[3], Integer.parseInt(p[4]), p[5], p[6], etiquetas);
+    prod.setCategoria(p[7]);
+    prod.setDisponible(Boolean.parseBoolean(p[8]));
+    return prod;
+}
+    
+    
 }

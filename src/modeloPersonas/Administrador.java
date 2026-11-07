@@ -1,22 +1,22 @@
 package modeloPersonas;
 
-import controladorProductos.inventario;
+import controladorProductos.Inventario;
 import java.io.*;
 import java.util.List;
 import java.util.Queue;
 import java.util.LinkedList;
 import java.util.Stack;
-import modeloProductos.Productos;
+import modeloProductos.Producto;
 
 public class Administrador extends Persona {
 
     private String codigoAdministrador;
-    private inventario inventario;               
+    private Inventario inventario;               
     private Stack<String> historialCambios;        
-    private Queue<Productos> colaPendientes;
+    private Queue<Producto> colaPendientes;
 
     public Administrador() {
-        this.inventario = new inventario();
+        this.inventario = new Inventario();
         this.historialCambios = new Stack<>();
         this.colaPendientes = new LinkedList<>();
     }
@@ -25,7 +25,7 @@ public class Administrador extends Persona {
         super(nombre, contrasena, telefono, usuario, edad, sexo);
         
         this.codigoAdministrador = codigoAdministrador;
-        this.inventario = new inventario();
+        this.inventario = new Inventario();
         this.historialCambios = new Stack<>();
         this.colaPendientes = new LinkedList<>();
     }
@@ -38,7 +38,7 @@ public class Administrador extends Persona {
         this.codigoAdministrador = codigoAdministrador;
     }
 
-    public inventario getInventario() {
+    public Inventario getInventario() {
         return inventario;
     }
 
@@ -46,11 +46,11 @@ public class Administrador extends Persona {
         return historialCambios;
     }
 
-    public Queue<Productos> getColaPendientes() {
+    public Queue<Producto> getColaPendientes() {
         return colaPendientes;
     }
     
-    public List<Productos> gestionarProductos() {
+    public List<Producto> gestionarProductos() {
         return inventario.getProductos();
     }
 
@@ -60,13 +60,13 @@ public class Administrador extends Persona {
     
     public boolean agregarNuevoProducto(String nombre, String codigo, double precio,
                                         String marca, int stock, String imagen,
-                                        String descripcion, String categoria) {
+                                        String descripcion, String categoria, List<String> etiquetas) {
 
         if (inventario.buscarPorCodigo(codigo) != null) {
             return false;
         }
 
-        Productos nuevo = new Productos(nombre, codigo, precio, marca, stock, imagen, descripcion);
+        Producto nuevo = new Producto(nombre, codigo, precio, marca, stock, imagen, descripcion, etiquetas);
         nuevo.setCategoria(categoria);
 
         inventario.agregarProducto(nuevo);
@@ -79,7 +79,7 @@ public class Administrador extends Persona {
     public boolean editarProducto(String codigo, String nuevoNombre, String nuevaDescripcion,
                                   String nuevaMarca, String nuevaCategoria, double nuevoPrecio) {
 
-        Productos p = inventario.buscarPorCodigo(codigo);
+        Producto p = inventario.buscarPorCodigo(codigo);
         if (p == null) return false;
 
         String antes = p.lineaArchivo();             
@@ -95,7 +95,7 @@ public class Administrador extends Persona {
     }
 
     public boolean modificarFoto(String codigo, String nuevaRutaImagen) {
-        Productos p = inventario.buscarPorCodigo(codigo);
+        Producto p = inventario.buscarPorCodigo(codigo);
         if (p == null) return false;
 
         String imagenAnterior = p.getImagen();
@@ -106,7 +106,7 @@ public class Administrador extends Persona {
     }
 
     public boolean actualizarStock(String codigo, int cantidad) {
-        Productos p = inventario.buscarPorCodigo(codigo);
+        Producto p = inventario.buscarPorCodigo(codigo);
         if (p == null) return false;
 
         p.actualizarStock(cantidad);
@@ -115,7 +115,7 @@ public class Administrador extends Persona {
     }
 
     public boolean eliminarProducto(String codigo) {
-        Productos p = inventario.buscarPorCodigo(codigo);
+        Producto p = inventario.buscarPorCodigo(codigo);
         if (p == null) return false;
 
         inventario.eliminarProducto(p);
@@ -123,7 +123,7 @@ public class Administrador extends Persona {
         return true;
     }
 
-    public Productos atenderSiguientePendiente() {
+    public Producto atenderSiguientePendiente() {
         return colaPendientes.poll();
     }
 
@@ -148,7 +148,7 @@ public class Administrador extends Persona {
 
     public boolean guardarCatalogoEnArchivo(String rutaArchivo) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(rutaArchivo))) {
-            for (Productos p : inventario.getProductos()) {
+            for (Producto p : inventario.getProductos()) {
                 pw.println(p.lineaArchivo());
             }
             registrarCambio("CATÁLOGO GUARDADO en " + rutaArchivo);
@@ -164,7 +164,7 @@ public class Administrador extends Persona {
             String linea;
             int cargados = 0;
             while ((linea = br.readLine()) != null) {
-                Productos p = Productos.desdelineaArchivo(linea);
+                Producto p = Producto.desdelineaArchivo(linea);
                 if (p != null) {
                     inventario.agregarProducto(p);
                     cargados++;

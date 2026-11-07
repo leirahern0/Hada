@@ -6,25 +6,40 @@ package controladorProductos;
 
 import java.util.ArrayList;
 import java.util.List;
-import modeloProductos.Productos;
+import modeloProductos.Producto;
 
 public class Catalogo {
-    private List<Productos> productos;
+    private List<Producto> productos;
 
-    public Catalogo(List<Productos> productos) {
+    public Catalogo(List<Producto> productos) {
         this.productos = productos;
     }
 
-    public Productos buscarProducto(String nombre) {
-        for (Productos p : productos) {
-            if (p.getNombre().equalsIgnoreCase(nombre)) {
-                return p;
+    public List<Producto> buscarPorEtiqueta(String busqueda) {
+    
+        List<Producto> resultado = new ArrayList<>();
+    
+        for (Producto p : productos) {
+        
+            for (String etiqueta : p.getEtiquetas()) {
+            
+                if (etiqueta.equalsIgnoreCase(busqueda)) {
+                
+                    resultado.add(p);
+                
+                    break; 
+            
+                }
+        
             }
+    
         }
-        return null; // si no lo encuentra
+    
+        return resultado;
+    
     }
 
-    public List<Productos> verCatalogo() {
+    public List<Producto> getCatalogo() {
         return productos;
     }
 }

@@ -6,56 +6,61 @@ package controladorProductos;
 
 import java.util.ArrayList;
 import java.util.List;
-import modeloProductos.Productos;
+import modeloProductos.Producto;
 
-public class inventario {
-    private List<Productos> productos;
+/**
+ *
+ * @author Usuario
+ */
+public class Inventario {
+    
+    private List<Producto> productos;
 
-    public inventario() {
+    public Inventario() {
         this.productos = new ArrayList<>();
     }
 
-    public List<Productos> getProductos() {
+    public List<Producto> getProductos() {
         return productos;
     }
 
-    public void agregarProducto(Productos producto) {
+    public void agregarProducto(Producto producto) {
         
         if (producto != null) {
             productos.add(producto);
         }
     }
 
-    public boolean eliminarProducto(Productos producto) {
+    public boolean eliminarProducto(Producto producto) {
         return productos.remove(producto);
     }
 
     public boolean eliminarPorCodigo(String codigo) {
         return productos.removeIf(p -> p.getCodigo().equalsIgnoreCase(codigo));
     }
-    public Productos buscarPorCodigo(String codigo) {
-        for (Productos p : productos) {
+    public Producto buscarPorCodigo(String codigo) {
+        for (Producto p : productos) {
             if (p.getCodigo().equalsIgnoreCase(codigo)) {
                 return p;
             }
         }
         return null;
     }
-    public Productos buscarPorNombre(String nombre) {
-        for (Productos p : productos) {
+    public Producto buscarPorNombre(String nombre) {
+        for (Producto p : productos) {
             if (p.getNombre().equalsIgnoreCase(nombre)) {
                 return p;
             }
         }
         return null;
     }
-    public void agregarUnidades(Productos producto, int cantidad) {
+    public void agregarUnidades(Producto producto, int cantidad) {
         if (producto != null && cantidad > 0) {
             producto.actualizarStock(cantidad);
         }
     }
 
-    public void eliminarUnidades(Productos producto, int cantidad) {
+    public void eliminarUnidades(Producto producto, int cantidad) {
         if (producto != null && cantidad > 0) {
             producto.actualizarStock(-cantidad);
         }
@@ -65,9 +70,9 @@ public class inventario {
         return productos.size();
     }
     
-    public List<Productos> obtenerDisponibles() {
-        List<Productos> disponibles = new ArrayList<>();
-        for (Productos p : productos) {
+    public List<Producto> obtenerDisponibles() {
+        List<Producto> disponibles = new ArrayList<>();
+        for (Producto p : productos) {
             if (p.isDisponible()) {
                 disponibles.add(p);
             }

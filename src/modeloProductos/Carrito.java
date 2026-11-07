@@ -9,48 +9,81 @@ import java.util.List;
 
 public class Carrito {
 
-    private List<Productos> productos;
+    private List<Producto> productos;
     private double precioEnvio;
 
     public Carrito() {
         productos = new ArrayList<>();
-        precioEnvio = 20000;
+        precioEnvio = 0;
     }
 
-    public List<Productos> getProductos() {
+    public List<Producto> getProductos() {
         return productos;
     }
 
-    public void agregarProducto(Productos producto) {
+    public double getPrecioEnvio() {
+        return precioEnvio;
+    }
+
+    public void setPrecioEnvio(double precioEnvio) {
+        this.precioEnvio = precioEnvio;
+    }
+    
+
+    public void agregarUnidad(Producto producto) {
         productos.add(producto);
     }
 
-    public void eliminarProducto(Productos producto) {
-        productos.remove(producto);
-    }
+    public double calcularTotalCarrito() {
 
-    public double calcularTotal() {
-
+        double subTotal = 0;
         double total = 0;
-
-        for (Productos producto : productos) {
-            total += producto.getPrecio();
+        
+        if (!productos.isEmpty()){
+            
+            for (Producto producto : productos) {
+            subTotal += producto.getPrecio();
+            }
+            
+            total = subTotal+precioEnvio;  
+        }
+        else{
+            
+            total = 0;
+            
         }
 
-        return total + precioEnvio;
+        return total;
     }
 
-    public int contarProducto(Productos producto) {
+    public int cantidadProducto(Producto producto) {
 
         int cantidad = 0;
 
-        for (Productos p : productos) {
+        for (Producto p : productos) {
 
-            if (p == producto) {
+            if (p.getCodigo() == producto.getCodigo()) {
                 cantidad++;
             }
         }
 
         return cantidad;
     }
+    
+    public void eliminarUnidad (Producto producto){
+        
+        for (int i = 0; i < productos.size(); i++) {
+            if (productos.get(i).getCodigo() == producto.getCodigo()) {
+                productos.remove(i);
+                break;
+                
+                //eliminamos el objeto o si por error se guardó uno igual pero en otro espacio de memoria
+            }
+        }
+        
+    }
+    
+    
+    
+    
 }
