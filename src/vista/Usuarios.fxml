@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="560.0" prefWidth="861.0" style="-fx-background-color: #fff4e9;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.ControladoraUsuario">
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="80.0" spacing="15.0" style="-fx-background-color: #ffc6ad;" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </padding>
+         <children>
+            <ImageView fitHeight="60.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/logo-hada.png" />
+               </image>
+            </ImageView>
+            <Label style="-fx-font-family: georgia; -fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Hada Beauty" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="lblUsuario" style="-fx-font-family: arial; -fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Hola, usuario" />
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <VBox prefWidth="220.0" spacing="12.0" style="-fx-background-color: #ffc6ad;" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
+         </padding>
+         <children>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirCatalogo" style="-fx-background-color: #ff4f9a; -fx-text-fill: #ffffff; -fx-font-family: arial; -fx-font-size: 16; -fx-font-weight: bold; -fx-background-radius: 15;" text="Catálogo" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirFavoritos" style="-fx-background-color: #ff4f9a; -fx-text-fill: #ffffff; -fx-font-family: arial; -fx-font-size: 16; -fx-font-weight: bold; -fx-background-radius: 15;" text="Favoritos" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirCarrito" style="-fx-background-color: #ff4f9a; -fx-text-fill: #ffffff; -fx-font-family: arial; -fx-font-size: 16; -fx-font-weight: bold; -fx-background-radius: 15;" text="Carrito" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirPerfil" style="-fx-background-color: #ff4f9a; -fx-text-fill: #ffffff; -fx-font-family: arial; -fx-font-size: 16; -fx-font-weight: bold; -fx-background-radius: 15;" text="Mi perfil" />
+            <Region VBox.vgrow="ALWAYS" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cerrarSesion" style="-fx-background-color: transparent; -fx-border-color: #8f294d; -fx-border-radius: 15; -fx-text-fill: #8f294d; -fx-font-family: arial; -fx-font-size: 14; -fx-font-weight: bold;" text="Cerrar sesión" />
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label style="-fx-font-family: georgia; -fx-font-size: 30; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="¡Bienvenida a Hada Beauty!" />
+            <Label style="-fx-font-family: arial; -fx-font-size: 15; -fx-text-fill: #ff4f9a;" text="Elige una opción del menú para comenzar" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

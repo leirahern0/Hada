@@ -4,17 +4,24 @@
  */
 package hada;
 
-/**
- *
- * @author Usuario
- */
-public class Hada {
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+public class Hada extends Application {
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/Admin.fxml"));
+        primaryStage.setTitle("Hada Beauty - Iniciar sesión");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(false);
+        primaryStage.show();
     }
-    
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 }

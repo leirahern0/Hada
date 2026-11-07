@@ -11,17 +11,17 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="861.0" style="-fx-background-color: #fff4e9;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26">
+<AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="861.0" style="-fx-background-color: #fff4e9;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="Controladoras.ControladoraLogin">
    <children>
       <AnchorPane layoutX="14.0" layoutY="24.0" prefHeight="519.0" prefWidth="400.0" style="-fx-background-color: #ffc6ad;">
          <children>
             <Label layoutX="16.0" layoutY="73.0" style="-fx-font-family: arial; -fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Correo electrónico" />
-            <TextField id="txtCorreo" layoutX="16.0" layoutY="99.0" prefHeight="26.0" prefWidth="288.0" promptText="tu@gmail.com" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-font-family: arial; -fx-font-size: 13; -fx-border-color: #ff806d;" />
+            <TextField fx:id="txtCorreo" layoutX="16.0" layoutY="99.0" prefHeight="26.0" prefWidth="288.0" promptText="tu@gmail.com" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-font-family: arial; -fx-font-size: 13; -fx-border-color: #ff806d;" />
             <Label layoutX="16.0" layoutY="172.0" style="-fx-font-family: arial; -fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Contraseña" />
-            <PasswordField id="txtClave" layoutX="14.0" layoutY="203.0" prefHeight="26.0" prefWidth="288.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #ff806d;" text="Contraseña" />
-            <Button layoutX="115.0" layoutY="415.0" mnemonicParsing="false" style="-fx-background-color: #ff4f9a; -fx-text-fill: ffffff; -fx-font-family: arial; -fx-font-size: 22; -fx-background-radius: 15; -fx-font-weight: bold;" text="Iniciar sesión" />
-            <Label layoutX="209.0" layoutY="260.0" style="-fx-font-family: arial; -fx-font-size: 13; -fx-text-fill: #ff4f9a;" text="¿Olvidaste tu contraseña?" />
-            <CheckBox layoutX="16.0" layoutY="259.0" mnemonicParsing="false" style="-fx-font-family: arial; -fx-font-size: 13; -fx-text-fill: #ff4f9a;" text="Recordarme" />
+            <PasswordField fx:id="txtClave" layoutX="14.0" layoutY="203.0" prefHeight="26.0" prefWidth="288.0" promptText="Contraseña" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #ff806d;" />
+            <Button fx:id="btnIngresar" layoutX="115.0" layoutY="415.0" mnemonicParsing="false" onAction="#iniciarSesion" style="-fx-background-color: #ff4f9a; -fx-text-fill: #ffffff; -fx-font-family: arial; -fx-font-size: 22; -fx-background-radius: 15; -fx-font-weight: bold;" text="Iniciar sesión" />
+            <Label layoutX="209.0" layoutY="260.0" onMouseClicked="#olvideContrasena" style="-fx-font-family: arial; -fx-font-size: 13; -fx-text-fill: #ff4f9a;" text="¿Olvidaste tu contraseña?" />
+            <CheckBox fx:id="chkRecordarme" layoutX="16.0" layoutY="259.0" mnemonicParsing="false" style="-fx-font-family: arial; -fx-font-size: 13; -fx-text-fill: #ff4f9a;" text="Recordarme" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="447.0" layoutY="24.0" prefHeight="519.0" prefWidth="400.0" style="-fx-background-color: #ffc6ad;">

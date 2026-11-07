@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="560.0" prefWidth="861.0" style="-fx-background-color: #fff4e9;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.ControladoraAdmin">
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="80.0" spacing="15.0" style="-fx-background-color: #ffc6ad;" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </padding>
+         <children>
+            <ImageView fitHeight="60.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/logo-hada.png" />
+               </image>
+            </ImageView>
+            <Label style="-fx-font-family: georgia; -fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Hada Beauty - Administración" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="lblAdmin" style="-fx-font-family: arial; -fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Hola, administrador" />
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <VBox prefWidth="240.0" spacing="10.0" style="-fx-background-color: #ffc6ad;" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
+         </padding>
+         <children>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#gestionarProductos" style="-fx-background-color: #ff4f9a; -fx-text-fill: #ffffff; -fx-font-family: arial; -fx-font-size: 15; -fx-font-weight: bold; -fx-background-radius: 15;" text="Gestionar productos" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#agregarProducto" style="-fx-background-color: #ff4f9a; -fx-text-fill: #ffffff; -fx-font-family: arial; -fx-font-size: 15; -fx-font-weight: bold; -fx-background-radius: 15;" text="Agregar producto" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#editarProducto" style="-fx-background-color: #ff4f9a; -fx-text-fill: #ffffff; -fx-font-family: arial; -fx-font-size: 15; -fx-font-weight: bold; -fx-background-radius: 15;" text="Editar producto" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#actualizarStock" style="-fx-background-color: #ff4f9a; -fx-text-fill: #ffffff; -fx-font-family: arial; -fx-font-size: 15; -fx-font-weight: bold; -fx-background-radius: 15;" text="Actualizar stock" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#eliminarProducto" style="-fx-background-color: #ff4f9a; -fx-text-fill: #ffffff; -fx-font-family: arial; -fx-font-size: 15; -fx-font-weight: bold; -fx-background-radius: 15;" text="Eliminar producto" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#atenderPendiente" style="-fx-background-color: #ff4f9a; -fx-text-fill: #ffffff; -fx-font-family: arial; -fx-font-size: 15; -fx-font-weight: bold; -fx-background-radius: 15;" text="Atender pendiente" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verHistorial" style="-fx-background-color: #ff4f9a; -fx-text-fill: #ffffff; -fx-font-family: arial; -fx-font-size: 15; -fx-font-weight: bold; -fx-background-radius: 15;" text="Ver historial" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deshacerCambio" style="-fx-background-color: #ff4f9a; -fx-text-fill: #ffffff; -fx-font-family: arial; -fx-font-size: 15; -fx-font-weight: bold; -fx-background-radius: 15;" text="Deshacer último cambio" />
+            <Region VBox.vgrow="ALWAYS" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cerrarSesion" style="-fx-background-color: transparent; -fx-border-color: #8f294d; -fx-border-radius: 15; -fx-text-fill: #8f294d; -fx-font-family: arial; -fx-font-size: 14; -fx-font-weight: bold;" text="Cerrar sesión" />
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox alignment="CENTER" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label style="-fx-font-family: georgia; -fx-font-size: 30; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Panel de administración" />
+            <HBox alignment="CENTER" spacing="30.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="120.0" prefWidth="170.0" spacing="5.0" style="-fx-background-color: #ffc6ad; -fx-background-radius: 20;">
+                     <children>
+                        <Label fx:id="lblTotalProductos" style="-fx-font-family: arial; -fx-font-size: 36; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="0" />
+                        <Label style="-fx-font-family: arial; -fx-font-size: 14; -fx-text-fill: #8f294d;" text="Productos en tienda" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="120.0" prefWidth="170.0" spacing="5.0" style="-fx-background-color: #ffc6ad; -fx-background-radius: 20;">
+                     <children>
+                        <Label fx:id="lblPendientes" style="-fx-font-family: arial; -fx-font-size: 36; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="0" />
+                        <Label style="-fx-font-family: arial; -fx-font-size: 14; -fx-text-fill: #8f294d;" text="Pendientes por atender" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
