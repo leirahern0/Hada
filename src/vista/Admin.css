@@ -1,0 +1,44 @@
+.tabla-admin {
+    -fx-background-color: #fff4e9;
+    -fx-background-radius: 20;
+    -fx-border-color: #ff806d;
+    -fx-border-radius: 20;
+    -fx-padding: 0;
+}
+
+.tabla-admin .column-header-background {
+    -fx-background-color: #fff4e9;
+    -fx-background-radius: 20 20 0 0;
+    -fx-pref-height: 60;
+}
+
+.tabla-admin .column-header,
+.tabla-admin .filler {
+    -fx-background-color: #fff4e9;
+    -fx-border-color: transparent transparent #ff806d transparent;
+}
+
+.tabla-admin .column-header .label {
+    -fx-font-family: georgia;
+    -fx-font-size: 15;
+    -fx-text-fill: #8f294d;
+    -fx-alignment: CENTER;
+}
+
+.tabla-admin .table-row-cell {
+    -fx-background-color: #fff4e9;
+    -fx-cell-size: 95;
+    -fx-border-color: transparent;
+}
+
+.tabla-admin .table-row-cell:selected {
+    -fx-background-color: #ffc6ad;
+}
+
+.tabla-admin .table-cell {
+    -fx-font-family: georgia;
+    -fx-font-size: 13;
+    -fx-text-fill: #8f294d;
+    -fx-alignment: CENTER;
+    -fx-border-color: transparent;
+}
