@@ -13,8 +13,13 @@ import javafx.stage.Stage;
 public class Hada extends Application {
 
     @Override
+
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/vista/Admin.fxml"));
+
+        Parent root = FXMLLoader.load(
+                getClass().getResource("/vista/Login.fxml")
+        );
+
         primaryStage.setTitle("Hada Beauty - Iniciar sesión");
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
