@@ -8,8 +8,8 @@ public class Administrador extends Persona {
     }
 
     public Administrador(String nombre, String contrasena, String telefono,
-            String usuario, int edad, String sexo, String codigoAdministrador) {
-        super(nombre, contrasena, telefono, usuario, edad, sexo);
+            String usuario, String codigoAdministrador) {
+        super(nombre, contrasena, telefono, usuario);
         this.codigoAdministrador = codigoAdministrador;
     }
 

@@ -6,19 +6,16 @@ public abstract class Persona {
     private String contrasena;
     private String telefono;
     private String usuario;
-    private int edad;
-    private String sexo;
 
     public Persona() {
     }
 
-    public Persona(String nombre, String contrasena, String telefono, String usuario, int edad, String sexo) {
+    public Persona(String nombre, String contrasena, String telefono, String usuario) {
         this.nombre = nombre;
         this.contrasena = contrasena;
         this.telefono = telefono;
         this.usuario = usuario;
-        this.edad = edad;
-        this.sexo = sexo;
+
     }
 
     public String getNombre() {
@@ -51,22 +48,6 @@ public abstract class Persona {
 
     public void setUsuario(String usuario) {
         this.usuario = usuario;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
     }
 
 }

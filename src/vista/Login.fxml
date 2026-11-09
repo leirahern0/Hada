@@ -9,41 +9,43 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="861.0" style="-fx-background-color: #fff4e9;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.ControladoraLogin">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="500.0" style="-fx-background-color: #fff4e9;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.ControladoraLogin">
    <children>
-      <AnchorPane layoutX="14.0" layoutY="24.0" prefHeight="519.0" prefWidth="400.0" style="-fx-background-color: #ffc6ad;">
+      <StackPane fx:id="contenedorAcceso" prefHeight="700.0" prefWidth="500.0">
          <children>
-            <Label layoutX="16.0" layoutY="73.0" style="-fx-font-family: arial; -fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Correo electrónico" />
-            <TextField fx:id="txtCorreo" layoutX="16.0" layoutY="99.0" prefHeight="26.0" prefWidth="310.0" promptText="tu@gmail.com" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-font-family: arial; -fx-font-size: 13; -fx-border-color: #ff806d;" />
-            <Label layoutX="16.0" layoutY="172.0" style="-fx-font-family: arial; -fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Contraseña" />
-            <PasswordField fx:id="txtClave" layoutX="14.0" layoutY="203.0" prefHeight="26.0" prefWidth="310.0" promptText="Contraseña" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #ff806d;" />
-            <Button fx:id="btnIngresar" layoutX="97.0" layoutY="382.0" mnemonicParsing="false" onAction="#iniciarSesion" style="-fx-background-color: #ff4f9a; -fx-text-fill: #ffffff; -fx-font-family: arial; -fx-font-size: 22; -fx-background-radius: 20; -fx-font-weight: bold;" text="Iniciar sesión">
-               <rotationAxis>
-                  <Point3D />
-               </rotationAxis></Button>
-            <Hyperlink fx:id="hyperlinkRegistro" layoutX="16.0" layoutY="281.0" onAction="#abrirRegistro" style="-fx-text-fill: #8f294d;" text="¿No tienes cuenta? Regístrate" underline="true" />
+            <AnchorPane prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: #ffc6ad;">
+               <children>
+                  <Label layoutX="16.0" layoutY="289.0" style="-fx-font-family: arial; -fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Correo electrónico" />
+                  <TextField fx:id="txtCorreo" layoutX="14.0" layoutY="316.0" prefHeight="26.0" prefWidth="450.0" promptText="tu@gmail.com" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-font-family: arial; -fx-font-size: 13; -fx-border-color: #ff806d;" />
+                  <Label layoutX="16.0" layoutY="350.0" style="-fx-font-family: arial; -fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Contraseña" />
+                  <PasswordField fx:id="txtContrasena" layoutX="16.0" layoutY="375.0" prefHeight="26.0" prefWidth="450.0" promptText="Contraseña" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #ff806d;" />
+                  <Button fx:id="btnIngresar" layoutX="79.0" layoutY="536.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="42.0" prefWidth="320.0" style="-fx-background-color: #ff4f9a; -fx-text-fill: #ffffff; -fx-font-family: arial; -fx-font-size: 25; -fx-background-radius: 20; -fx-font-weight: bold;" text="Iniciar sesión">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Button>
+                  <Hyperlink fx:id="linkRegistro" layoutX="25.0" layoutY="445.0" onAction="#abrirRegistro" style="-fx-text-fill: #8f294d;" text="¿No tienes cuenta? Regístrate" underline="true" />
+                  <ImageView fitHeight="180.0" fitWidth="230.0" layoutX="155.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/logo-hada.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="119.0" layoutY="213.0" style="-fx-font-size: 22; -fx-text-fill: #8f294d; -fx-font-family: georgia; -fx-font-weight: bold;" text="¡Qué lindo tenerte aquí!">
+                     <font>
+                        <Font name="Georgia Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="150.0" layoutY="249.0" style="-fx-font-family: verdana; -fx-font-size: 15; -fx-text-fill: ff4f9a;" text="Inicia sesión para continuar" textAlignment="CENTER">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
-      </AnchorPane>
-      <AnchorPane layoutX="447.0" layoutY="24.0" prefHeight="519.0" prefWidth="400.0" style="-fx-background-color: #ffc6ad;">
-         <children>
-            <ImageView fitHeight="180.0" fitWidth="230.0" layoutX="110.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../imagenes/logo-hada.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="65.0" layoutY="272.0" style="-fx-font-size: 22; -fx-text-fill: #8f294d; -fx-font-family: georgia; -fx-font-weight: bold;" text="¡Qué lindo tenerte aquí!">
-               <font>
-                  <Font name="Georgia Bold" size="13.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="96.0" layoutY="335.0" style="-fx-font-family: verdana; -fx-font-size: 15;" text="Inicia sesión para continuar" textAlignment="CENTER">
-               <font>
-                  <Font name="Arial" size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
+      </StackPane>
    </children>
 </AnchorPane>

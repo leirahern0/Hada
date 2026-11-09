@@ -1,39 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="859.0" style="-fx-background-color: #fff4e9;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="550.0" style="-fx-background-color: #fff4e9;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.ControladoraRegistro">
    <children>
-      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="519.0" prefWidth="400.0" style="-fx-background-color: #ffc6ad;">
+      <AnchorPane prefHeight="800.0" prefWidth="550.0" style="-fx-background-color: #ffc6ad;">
          <children>
             <Label layoutX="22.0" layoutY="24.0" style="-fx-font-size: 22; -fx-text-fill: #8f294d; -fx-font-family: georgia; -fx-font-weight: bold;" text="Crear cuenta" />
-            <Label layoutX="22.0" layoutY="76.0" style="-fx-font-family: arial; -fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Nombre completo" />
-            <TextField layoutX="12.0" layoutY="92.0" prefHeight="26.0" prefWidth="310.0" promptText="Ingresa tu nombre completo" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-font-family: arial; -fx-font-size: 13; -fx-border-color: #ff806d;" />
-            <Label layoutX="22.0" layoutY="144.0" style="-fx-font-family: arial; -fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Correo eletrónico" />
-            <TextField layoutX="13.0" layoutY="160.0" prefHeight="26.0" prefWidth="310.0" promptText="Ingresa tu correo electrónico" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-font-family: arial; -fx-font-size: 13; -fx-border-color: #ff806d;" />
-            <Label layoutX="22.0" layoutY="207.0" style="-fx-font-family: arial; -fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Contraseña" />
-            <TextField layoutX="13.0" layoutY="223.0" prefHeight="26.0" prefWidth="310.0" promptText="Crea una contraseña" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-font-family: arial; -fx-font-size: 13; -fx-border-color: #ff806d;" />
-            <Label layoutX="22.0" layoutY="271.0" style="-fx-font-family: arial; -fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Confirmar contraseña" />
-            <TextField layoutX="13.0" layoutY="287.0" prefHeight="26.0" prefWidth="310.0" promptText="Confirma tu contraseña" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-font-family: arial; -fx-font-size: 13; -fx-border-color: #ff806d;" />
-            <Button layoutX="107.0" layoutY="389.0" mnemonicParsing="false" style="-fx-background-color: ff4f9a; -fx-text-fill: ffffff; -fx-font-family: arial; -fx-font-size: 22; -fx-background-radius: 20; -fx-font-weight: bold;" text="Registrarme" />
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="436.0" layoutY="14.0" prefHeight="519.0" prefWidth="400.0" style="-fx-background-color: #ffc6ad;">
-         <children>
-            <ImageView fitHeight="180.0" fitWidth="223.0" layoutX="102.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+            <Label layoutX="22.0" layoutY="304.0" style="-fx-font-family: arial; -fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Nombre completo" />
+            <TextField fx:id="txtNombreCompleto" layoutX="22.0" layoutY="327.0" prefHeight="26.0" prefWidth="450.0" promptText="Ingresa tu nombre completo" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-font-family: arial; -fx-font-size: 13; -fx-border-color: #ff806d;" />
+            <Label layoutX="23.0" layoutY="384.0" style="-fx-font-family: arial; -fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Correo eletrónico" />
+            <TextField fx:id="txtCorreo" layoutX="22.0" layoutY="408.0" prefHeight="26.0" prefWidth="450.0" promptText="Ingresa tu correo electrónico" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-font-family: arial; -fx-font-size: 13; -fx-border-color: #ff806d;" />
+            <Label layoutX="22.0" layoutY="468.0" style="-fx-font-family: arial; -fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Contraseña" />
+            <Label layoutX="26.0" layoutY="543.0" style="-fx-font-family: arial; -fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Confirmar contraseña" />
+            <Button fx:id="btnRegistrarse" layoutX="115.0" layoutY="653.0" mnemonicParsing="false" onAction="#registrarUsuario" prefHeight="42.0" prefWidth="320.0" style="-fx-background-color: ff4f9a; -fx-text-fill: ffffff; -fx-font-family: arial; -fx-font-size: 25; -fx-background-radius: 20; -fx-font-weight: bold;" text="Registrarme" />
+            <ImageView fitHeight="180.0" fitWidth="223.0" layoutX="157.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../imagenes/logo-hada.png" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" layoutX="20.0" layoutY="290.0" style="-fx-font-family: verdana; -fx-font-size: 15;" text="Únete a nuestra comunidad y consiéntete como" wrapText="true" />
-            <Label alignment="CENTER" layoutX="72.0" layoutY="320.0" style="-fx-font-family: verdana; -fx-font-size: 15;" text="te lo mereces, porque verte linda " />
-            <Label alignment="CENTER" layoutX="125.0" layoutY="346.0" style="-fx-font-family: verdana; -fx-font-size: 15;" text="también es un plan." />
+            <Label alignment="CENTER" layoutX="86.0" layoutY="195.0" style="-fx-font-family: arial; -fx-font-size: 15; -fx-text-fill: #ff4f9a;" text="Únete a nuestra comunidad y consiéntete como" wrapText="true" />
+            <Label alignment="CENTER" layoutX="133.0" layoutY="222.0" style="-fx-font-family: arial; -fx-font-size: 15; -fx-text-fill: #ff4f9a;" text="te lo mereces, porque verte linda " />
+            <Label alignment="CENTER" layoutX="181.0" layoutY="248.0" style="-fx-font-family: arial; -fx-font-size: 15; -fx-text-fill: #ff4f9a;" text="también es un plan." />
+            <Hyperlink fx:id="linkIniciarSesion" layoutX="29.0" layoutY="614.0" onAction="#volverLogin" style="-fx-text-fill: #8f294d;" text="¿Ya tienes cuenta? Inicia sesión" underline="true" />
+            <PasswordField fx:id="txtContrasena" layoutX="20.0" layoutY="493.0" prefHeight="26.0" prefWidth="450.0" promptText="Cree una contraseña" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-font-family: arial; fx-font-size: 13; -fx-border-color: ff806d;" />
+            <PasswordField fx:id="txtConfirmarContrasena" layoutX="20.0" layoutY="568.0" prefHeight="26.0" prefWidth="450.0" promptText="Confirme su contraseña" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-font-family: arial; fx-font-size: 13; -fx-border-color: ff806d;" />
          </children>
       </AnchorPane>
    </children>

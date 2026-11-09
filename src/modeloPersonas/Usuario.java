@@ -15,8 +15,8 @@ public class Usuario extends Persona {
         this.favoritos = new Favoritos();
     }
 
-    public Usuario(String nombre, String contraseña, String telefono, String usuario, int edad, String sexo, String direccion) {
-        super(nombre, contraseña, telefono, usuario, edad, sexo);
+    public Usuario(String nombre, String contrasena, String telefono, String usuario, String direccion) {
+        super(nombre, contrasena, telefono, usuario);
         this.direccion = direccion;
         this.carrito = new Carrito();
         this.favoritos = new Favoritos();
