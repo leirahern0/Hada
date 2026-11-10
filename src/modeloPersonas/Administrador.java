@@ -20,4 +20,18 @@ public class Administrador extends Persona {
     public void setCodigoAdministrador(String codigoAdministrador) {
         this.codigoAdministrador = codigoAdministrador;
     }
+    
+    @Override
+
+    public boolean esAdministrador() {
+    
+        return true;
+
+    }
+    
+    @Override
+    public String toLinea() {
+        return getNombre() + ";" + getContraseña() + ";" + getTelefono() + ";" + getUsuario() + ";ADMIN;" 
+                + codigoAdministrador;
+    }
 }

@@ -7,61 +7,81 @@ package controladorUsuarios;
 import java.util.ArrayList;
 import modeloPersonas.Usuario;
 import java.util.List;
+import datos.UsuarioDAO;
+import modeloPersonas.Persona;
 
 /**
  *
  * @author Usuario
  */
 public class controladorUsuarios {
-
-    private List<Usuario> usuarios;
+    
+    private UsuarioDAO dao = new UsuarioDAO();
 
     public controladorUsuarios() {
-        usuarios = new ArrayList<>();
+        
     }
 
     public boolean registro(Usuario nuevo) {
-
-        for (Usuario u : usuarios) {
-
-            if (u.getUsuario().equalsIgnoreCase(nuevo.getUsuario())) {
-
+        try {
+       
+            if (dao.buscarPorUsuario(nuevo.getUsuario()) != null) {
                 return false;
-
             }
-
+          
+            dao.guardar(nuevo);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
-
-        usuarios.add(nuevo);
-
-        return true;
-
     }
-
-    public Usuario buscarUsuario(String correo) {
-
-        for (Usuario u : usuarios) {
-
-            if (u.getUsuario().equalsIgnoreCase(correo)) {
-                return u;
-            }
-        }
-
-        return null;
-    }
-
     
     public boolean InicioSesion(String correo, String clave) {
-
-        Usuario encontrado = buscarUsuario(correo);
-
-        if (encontrado != null
-                && encontrado.getContraseña().equals(clave)) {
-
-            return true;
+        try {
+            Persona encontrado = dao.buscarPorUsuario(correo);
+            if (encontrado != null && encontrado.getContraseña().equals(clave)) {
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public Usuario buscarUsuario(String correo) {
+    
+        try {
+        
+            Persona encontrado = dao.buscarPorUsuario(correo);
+        
+            if (encontrado != null && !encontrado.esAdministrador()) {
+            
+                return (Usuario) encontrado;
+        
+            }
+        
+            return null;
+    
+        } 
+    
+        catch (Exception e) {
+        
+            e.printStackTrace();
+        
+            return null;
+    
+    
         }
 
-        return false;
     }
+
+
+ 
+
+
+    
+    
 
 }

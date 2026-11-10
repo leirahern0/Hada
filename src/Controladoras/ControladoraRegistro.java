@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import datos.UsuarioDAO;
 
 public class ControladoraRegistro {
 
@@ -70,6 +71,7 @@ public class ControladoraRegistro {
         nuevo.setContraseña(contrasena);
 
         boolean registrado = gestionUsuarios.registro(nuevo);
+        
 
         if (registrado) {
 

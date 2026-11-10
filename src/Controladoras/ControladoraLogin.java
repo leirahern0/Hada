@@ -38,12 +38,6 @@ public class ControladoraLogin {
     @FXML
     private void iniciarSesion(ActionEvent event) {
 
-        mostrarMensaje(
-                "Prueba",
-                "Sesión iniciada, para continuar crea la página de inicio.",
-                Alert.AlertType.INFORMATION
-        );
-
         String correo = txtCorreo.getText().trim();
         String clave = txtClave.getText();
 

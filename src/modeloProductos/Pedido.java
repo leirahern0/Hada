@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import modeloPersonas.Usuario;
+import datos.ProductoDAO;
+import datos.UsuarioDAO;
 
 public class Pedido {
    
@@ -126,5 +128,32 @@ public class Pedido {
             suma += p.getPrecio();
         }
         this.total = suma;
+    }
+    
+     public String toLinea() {
+        
+        List<String> codigos = new ArrayList<>();
+        for (Producto p : productos) codigos.add(p.getCodigo());
+        return numeroPedido + "|" + (cliente != null ? cliente.getUsuario() : "") + "|"
+            + String.join(",", codigos) + "|" + fecha.toString() + "|" + total + "|"
+            + metodoPago + "|" + estadoPago + "|" + estadoPreparacion + "|"
+            + (direccionEntrega != null ? direccionEntrega : "");
+    }
+
+    public static Pedido desdeLinea(String linea) throws Exception {
+        String[] p = linea.split("\\|", -1);
+        Usuario cliente = (Usuario) new UsuarioDAO().buscarPorUsuario(p[1]);
+        List<Producto> prods = new ArrayList<>();
+        ProductoDAO pdao = new ProductoDAO();
+        if (!p[2].isEmpty()) for (String cod : p[2].split(",")) {
+            Producto prod = pdao.buscarPorCodigo(cod);
+            if (prod != null) prods.add(prod);
+        }
+        Pedido ped = new Pedido(p[0], cliente, prods, Double.parseDouble(p[4]), p[5]);
+        ped.setFecha(java.time.LocalDateTime.parse(p[3]));
+        ped.setEstadoPago(p[6]);
+        ped.setEstadoPreparacion(p[7]);
+        ped.setDireccionEntrega(p[8]);
+        return ped;
     }
 }

@@ -62,7 +62,7 @@ public class Carrito {
 
         for (Producto p : productos) {
 
-            if (p.getCodigo() == producto.getCodigo()) {
+            if (p.getCodigo().equals(producto.getCodigo())) {
                 cantidad++;
             }
         }
@@ -77,7 +77,7 @@ public class Carrito {
                 productos.remove(i);
                 break;
                 
-                //eliminamos el objeto o si por error se guardó uno igual pero en otro espacio de memoria
+                
             }
         }
         
