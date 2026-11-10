@@ -20,7 +20,7 @@ public class Favoritos {
     public boolean esFavorito(Producto producto) {
         
         for (Producto p : favoritos) {
-            if (p.getCodigo()== producto.getCodigo()) {
+            if (p.getCodigo().equals(producto.getCodigo())) {
                 return true;
             }
         }
@@ -34,7 +34,7 @@ public class Favoritos {
         
         for (int i = 0; i < favoritos.size(); i++) {
             
-            if (favoritos.get(i).getCodigo() == producto.getCodigo()) {
+            if (favoritos.get(i).getCodigo().equals(producto.getCodigo())) {
                 
                 favoritos.remove(i);
                 return false; 

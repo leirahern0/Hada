@@ -37,5 +37,12 @@ public class Usuario extends Persona {
     public Favoritos getFavoritos() {
         return favoritos;
     }
+    
+    @Override
+    public String toLinea() {
+       
+        return getNombre() + ";" + getContraseña() + ";" + getTelefono() + ";" 
+                + getUsuario() + ";USUARIO;" + direccion;
+    }
 
 }
