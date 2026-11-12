@@ -17,7 +17,7 @@
          <children>
             <BorderPane prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: #ffc6ad;">
                <top>
-                  <AnchorPane fx:id="apLogin" prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: #ffc6ad;" visible="false" BorderPane.alignment="CENTER">
+                  <AnchorPane fx:id="apLogin" prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: #ffc6ad;" BorderPane.alignment="CENTER">
                      <children>
                         <ImageView fitHeight="180.0" fitWidth="230.0" layoutX="160.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -29,7 +29,7 @@
                         <PasswordField fx:id="pwdClaveLogin" layoutX="24.0" layoutY="448.0" prefHeight="26.0" prefWidth="450.0" promptText="Ingresa la contraseña" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-font-family: arial; -fx-font-size: 13; -fx-border-color: #ff806d;" />
                         <TextField fx:id="txtCorreoLogin" layoutX="24.0" layoutY="338.0" prefHeight="26.0" prefWidth="450.0" promptText="tu@gmail.com" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-font-family: arial; -fx-font-size: 13; -fx-border-color: #ff806d;" />
                         <Button fx:id="btnIngresar" layoutX="91.0" layoutY="623.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="42.0" prefWidth="320.0" style="-fx-background-color: #ff4f9a; -fx-text-fill: #ffffff; -fx-font-weight: bold; -fx-background-radius: 20; -fx-font-family: arial; -fx-font-size: 25;" text="Iniciar sesión" />
-                        <Label layoutX="29.0" layoutY="322.0" style="-fx-font-family: arial; -fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Correo eletrónico" />
+                        <Label layoutX="29.0" layoutY="322.0" style="-fx-font-family: arial; -fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Correo electrónico" />
                         <Label layoutX="29.0" layoutY="432.0" style="-fx-font-family: arial; -fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Contraseña" />
                         <Hyperlink fx:id="linkRegistro" layoutX="29.0" layoutY="506.0" onAction="#abrirRegistro" style="-fx-text-fill: #8f294d;" text="¿No tienes cuenta? Regístrate" underline="true" />
                      </children>
@@ -38,7 +38,7 @@
             </BorderPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="apRegistro" prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: #ffc6ad;">
+      <AnchorPane fx:id="apRegistro" prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: #ffc6ad;" visible="false">
          <children>
             <ImageView fitHeight="180.0" fitWidth="223.0" layoutX="160.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
                <image>

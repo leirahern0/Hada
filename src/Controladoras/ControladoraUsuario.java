@@ -4,35 +4,48 @@
  */
 package Controladoras;
 
+import modeloPersonas.Usuario;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 public class ControladoraUsuario {
 
-    @FXML private Label lblUsuario;
+    @FXML
+    private Label lblUsuario;
+
+    private Usuario usuarioActual;
+
+    public void setUsuario(Usuario usuario) {
+
+        this.usuarioActual = usuario;
+
+        if (usuarioActual != null) {
+            lblUsuario.setText("Hola, " + usuarioActual.getNombre());
+        }
+    }
 
     @FXML
     private void abrirCatalogo() {
-        // pendiente
+        // Pendiente de conectar
     }
 
     @FXML
     private void abrirFavoritos() {
-        // pendiente
+        // Pendiente de conectar
     }
 
     @FXML
     private void abrirCarrito() {
-        // pendiente
+        // Pendiente de conectar
     }
 
     @FXML
     private void abrirPerfil() {
-        // pendiente
+        // Pendiente de conectar
     }
 
     @FXML
     private void cerrarSesion() {
-        // pendiente
+        // Pendiente de conectar
     }
 }

@@ -4,64 +4,58 @@
  */
 package controladorUsuarios;
 
-import java.util.ArrayList;
+import datos.UsuarioDAO;
+import modeloPersonas.Persona;
 import modeloPersonas.Usuario;
-import java.util.List;
 
-/**
- *
- * @author Usuario
- */
 public class controladorUsuarios {
 
-    private List<Usuario> usuarios;
+    private final UsuarioDAO usuarioDAO;
 
     public controladorUsuarios() {
-        usuarios = new ArrayList<>();
+        usuarioDAO = new UsuarioDAO();
     }
 
     public boolean registro(Usuario nuevo) {
 
-        for (Usuario u : usuarios) {
+        try {
 
-            if (u.getUsuario().equalsIgnoreCase(nuevo.getUsuario())) {
-
+            if (usuarioDAO.buscarPorUsuario(nuevo.getUsuario()) != null) {
                 return false;
-
             }
 
+            usuarioDAO.guardar(nuevo);
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
-
-        usuarios.add(nuevo);
-
-        return true;
-
     }
 
     public Usuario buscarUsuario(String correo) {
 
-        for (Usuario u : usuarios) {
+        try {
 
-            if (u.getUsuario().equalsIgnoreCase(correo)) {
-                return u;
+            Persona persona = usuarioDAO.buscarPorUsuario(correo);
+
+            if (persona instanceof Usuario) {
+                return (Usuario) persona;
             }
-        }
 
-        return null;
+            return null;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    
     public boolean InicioSesion(String correo, String clave) {
 
         Usuario encontrado = buscarUsuario(correo);
 
-        if (encontrado != null
-                && encontrado.getContraseña().equals(clave)) {
-
-            return true;
-        }
-
-        return false;
+        return encontrado != null
+                && encontrado.getContraseña().equals(clave);
     }
-
 }

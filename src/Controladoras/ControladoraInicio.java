@@ -17,10 +17,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import Controladoras.ControladoraUsuario;
+import javafx.application.Platform;
 
 public class ControladoraInicio {
 
- 
     @FXML
     private TextField txtCorreoLogin;
 
@@ -59,6 +60,7 @@ public class ControladoraInicio {
 
         apRegistro.setVisible(false);
         apRegistro.setManaged(false);
+        Platform.runLater(() -> txtCorreoLogin.requestFocus());
     }
 
     @FXML
@@ -179,7 +181,6 @@ public class ControladoraInicio {
         String correo = txtCorreoLogin.getText().trim();
         String clave = pwdClaveLogin.getText();
 
-        // Validar campos vacios
         if (correo.isEmpty() || clave.isEmpty()) {
 
             mostrarMensaje(
@@ -258,7 +259,40 @@ public class ControladoraInicio {
                 Alert.AlertType.INFORMATION
         );
 
-        abrirPantalla("Usuarios.fxml", event);
+        abrirPantallaUsuario(usuario, event);
+    }
+
+    private void abrirPantallaUsuario(Usuario usuario, ActionEvent event) {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/vista/Usuarios.fxml")
+            );
+
+            Parent root = loader.load();
+
+            ControladoraUsuario controlador = loader.getController();
+
+            controlador.setUsuario(usuario);
+
+            Node componente = (Node) event.getSource();
+
+            Stage escenario = (Stage) componente.getScene().getWindow();
+
+            escenario.setScene(new Scene(root));
+            escenario.show();
+
+        } catch (IOException | NullPointerException e) {
+
+            e.printStackTrace();
+
+            mostrarMensaje(
+                    "Error",
+                    "No se pudo abrir la ventana de usuarios.",
+                    Alert.AlertType.ERROR
+            );
+        }
     }
 
     private void abrirPantalla(String archivo, ActionEvent event) {

@@ -53,7 +53,7 @@ public abstract class Persona {
     public abstract String toLinea();
 
     public static Persona desdeLinea(String linea) {
-        String[] p = linea.split(";");
+        String[] p = linea.split(";", -1);
         String tipo = p[4];
         if (tipo.equals("ADMIN")) {
             return new Administrador(p[0], p[1], p[2], p[3], p[5]);
