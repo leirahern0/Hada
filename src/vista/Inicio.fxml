@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane fx:id="contenedorAcceso" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.ControladoraInicio">
+   <children>
+      <AnchorPane prefHeight="800.0" prefWidth="500.0">
+         <children>
+            <BorderPane prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: #ffc6ad;">
+               <top>
+                  <AnchorPane fx:id="apLogin" prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: #ffc6ad;" BorderPane.alignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="180.0" fitWidth="230.0" layoutX="160.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/logo-hada.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="114.0" layoutY="215.0" style="-fx-font-size: 22; -fx-text-fill: #8f294d; -fx-font-family: Georgia; -fx-font-weight: bold;" text="¡Qué lindo tenerte aquí!" />
+                        <Label layoutX="161.0" layoutY="263.0" style="-fx-font-family: verd arialana; -fx-text-fill: ff4f9a; -fx-font-size: 15;" text="Inicia sesión para continuar" />
+                        <PasswordField fx:id="pwdClaveLogin" layoutX="24.0" layoutY="448.0" prefHeight="26.0" prefWidth="450.0" promptText="Ingresa la contraseña" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-font-family: arial; -fx-font-size: 13; -fx-border-color: #ff806d;" />
+                        <TextField fx:id="txtCorreoLogin" layoutX="24.0" layoutY="338.0" prefHeight="26.0" prefWidth="450.0" promptText="tu@gmail.com" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-font-family: arial; -fx-font-size: 13; -fx-border-color: #ff806d;" />
+                        <Button fx:id="btnIngresar" layoutX="91.0" layoutY="623.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="42.0" prefWidth="320.0" style="-fx-background-color: #ff4f9a; -fx-text-fill: #ffffff; -fx-font-weight: bold; -fx-background-radius: 20; -fx-font-family: arial; -fx-font-size: 25;" text="Iniciar sesión" />
+                        <Label layoutX="29.0" layoutY="322.0" style="-fx-font-family: arial; -fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Correo electrónico" />
+                        <Label layoutX="29.0" layoutY="432.0" style="-fx-font-family: arial; -fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Contraseña" />
+                        <Hyperlink fx:id="linkRegistro" layoutX="29.0" layoutY="506.0" onAction="#abrirRegistro" style="-fx-text-fill: #8f294d;" text="¿No tienes cuenta? Regístrate" underline="true" />
+                     </children>
+                  </AnchorPane>
+               </top>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="apRegistro" prefHeight="800.0" prefWidth="500.0" style="-fx-background-color: #ffc6ad;" visible="false">
+         <children>
+            <ImageView fitHeight="180.0" fitWidth="223.0" layoutX="160.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/logo-hada.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="29.0" layoutY="37.0" style="-fx-font-size: 22; -fx-text-fill: #8f294d; -fx-font-family: georgia; -fx-font-weight: bold;" text="Crear cuenta" />
+            <Label layoutX="91.0" layoutY="205.0" style="-fx-font-family: arial; -fx-text-fill: #ff4f9a; -fx-font-size: 15;" text="Únete a nuestra comunidad y consiéntete como" />
+            <Label layoutX="138.0" layoutY="230.0" style="-fx-font-family: arial; -fx-text-fill: #ff4f9a; -fx-font-size: 15;" text="te lo mereces, porque verte linda " />
+            <Label layoutX="186.0" layoutY="256.0" style="-fx-font-family: arial; -fx-text-fill: #ff4f9a; -fx-font-size: 15;" text="también es un plan." />
+            <Label layoutX="29.0" layoutY="320.0" style="-fx-font-family: arial; -fx-text-fill: #8f294d; -fx-font-size: 13; -fx-font-weight: bold;" text="Nombre completo" />
+            <TextField fx:id="txtNombreRegistro" layoutX="26.0" layoutY="336.0" prefHeight="26.0" prefWidth="450.0" promptText="Ingrese su nombre completo" style="-fx-border-color: #ff806d; -fx-background-radius: 15; -fx-border-radius: 15; -fx-font-family: arial; -fx-font-size: 13;" />
+            <Label layoutX="29.0" layoutY="392.0" style="-fx-font-family: arial; -fx-text-fill: #8f294d; -fx-font-size: 13; -fx-font-weight: bold;" text="Correo electrónico" />
+            <TextField fx:id="txtCorreoRegistro" layoutX="26.0" layoutY="408.0" prefHeight="26.0" prefWidth="450.0" promptText="Ingrese su correo electrónico" style="-fx-border-color: #ff806d; -fx-background-radius: 15; -fx-border-radius: 15; -fx-font-family: arial; -fx-font-size: 13;" />
+            <Label layoutX="33.0" layoutY="458.0" style="-fx-font-family: arial; -fx-text-fill: #8f294d; -fx-font-size: 13; -fx-font-weight: bold;" text="Contraseña" />
+            <Label layoutX="23.0" layoutY="532.0" style="-fx-font-family: arial; -fx-text-fill: #8f294d; -fx-font-size: 13; -fx-font-weight: bold;" text="Confirmar contraseña" />
+            <PasswordField fx:id="pwdClaveRegistro" layoutX="26.0" layoutY="474.0" prefHeight="26.0" prefWidth="450.0" promptText="Ingrese la contraseña" style="-fx-border-color: #ff806d; -fx-border-radius: 15; -fx-background-radius: 15; -fx-font-family: arial; -fx-font-size: 13;" />
+            <PasswordField fx:id="pwdConfirmarClaveR" layoutX="24.0" layoutY="548.0" prefHeight="26.0" prefWidth="450.0" promptText="Confirme su contraseña" style="-fx-border-color: #ff806d; -fx-border-radius: 15; -fx-background-radius: 15; -fx-font-family: arial; -fx-font-size: 13;" />
+            <Hyperlink fx:id="linkIniciarSesion" layoutX="29.0" layoutY="593.0" onAction="#abrirInicio" style="-fx-text-fill: #8f294d;" text="¿Ya tienes cuenta? Inicia sesión" underline="true" />
+            <Button fx:id="btnRegistrarse" layoutX="89.0" layoutY="648.0" mnemonicParsing="false" onAction="#registrarUsuario" prefHeight="42.0" prefWidth="320.0" style="-fx-background-color: ff4f9a; -fx-text-fill: ffffff; -fx-font-weight: bold; fx-font-family: arial; -fx-background-radius: 20; -fx-font-size: 25;" text="Registrarme" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

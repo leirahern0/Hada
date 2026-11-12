@@ -151,6 +151,8 @@ public class Inventario {
     public String deshacerRegistro() {
         return historialCambios.isEmpty() ? null : historialCambios.pop();
     }
+    
+    //------------------Archivos de texto---------------//
 
     public boolean guardarEnArchivo(String rutaArchivo) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(rutaArchivo))) {
