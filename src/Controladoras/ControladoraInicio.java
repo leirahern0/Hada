@@ -22,6 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import Controladoras.ControladoraUsuario;
 import javafx.application.Platform;
+import modeloPersonas.Administrador;
 
 public class ControladoraInicio {
 
@@ -52,10 +53,6 @@ public class ControladoraInicio {
     private final UsuarioDAO UsuarioDAO = new UsuarioDAO();
     
     private final controladorUsuarios gestionUsuarios = new controladorUsuarios();
-
-    private final String ADMIN_CORREO = "admin@hadabeauty.com";
-
-    private final String ADMIN_CLAVE = "Admin123";
 
     @FXML
     public void initialize() {
@@ -95,6 +92,7 @@ public class ControladoraInicio {
         String correo = txtCorreoRegistro.getText().trim();
         String clave = pwdClaveRegistro.getText();
         String confirmarClave = pwdConfirmarClaveR.getText();
+        
 
         if (nombre.isEmpty() || correo.isEmpty()
                 || clave.isEmpty() || confirmarClave.isEmpty()) {
@@ -126,17 +124,6 @@ public class ControladoraInicio {
             mostrarMensaje(
                     "Contraseñas diferentes",
                     "Las contraseñas no coinciden.",
-                    Alert.AlertType.WARNING
-            );
-
-            return;
-        }
-
-        if (correo.equalsIgnoreCase(ADMIN_CORREO)) {
-
-            mostrarMensaje(
-                    "Correo no disponible",
-                    "Este correo esta reservado para el administrador.",
                     Alert.AlertType.WARNING
             );
 
@@ -183,8 +170,11 @@ public class ControladoraInicio {
     @FXML
     private void iniciarSesion(ActionEvent event) {
 
-        String correo = txtCorreoLogin.getText().trim();
+    String correo = txtCorreoLogin.getText().trim();
     String clave = pwdClaveLogin.getText().trim();
+    Administrador admin = new Administrador();
+    String correoAdmin = admin.getUsuario();
+    String contraseñaAdmin = admin.getContraseña();
 
     if (correo.isEmpty() || clave.isEmpty()) {
         mostrarMensaje("Campos incompletos", "Debes ingresar tu correo y contraseña.", Alert.AlertType.WARNING);
@@ -196,8 +186,8 @@ public class ControladoraInicio {
         return;
     }
 
-    if (correo.equalsIgnoreCase(ADMIN_CORREO)) {
-        if (clave.equals(ADMIN_CLAVE)) {
+    if (correo.equalsIgnoreCase(correoAdmin)) {
+        if (clave.equals(contraseñaAdmin)) {
             mostrarMensaje("Bienvenida", "Inicio de sesion como administradora.", Alert.AlertType.INFORMATION);
             abrirPantalla("Admin.fxml", event);
         } else {

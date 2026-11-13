@@ -6,6 +6,7 @@ package datos;
 
 import modeloProductos.Producto;
 import java.util.*;
+import controladorProductos.Catalogo;
 
 public class ProductoDAO {
     private String ruta = "datos/productos.txt";
@@ -45,4 +46,6 @@ public class ProductoDAO {
         for (Producto p : listar()) if (p.getCodigo().equals(codigo)) return p;
         return null;
     }
+    
+    
 }

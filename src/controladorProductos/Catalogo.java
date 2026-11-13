@@ -15,7 +15,7 @@ public class Catalogo {
         this.productos = productos;
     }
 
-    public List<Producto> buscarPorEtiqueta(String busqueda) {
+    public final List<Producto> buscarPorEtiqueta(String busqueda) {
     
         List<Producto> resultado = new ArrayList<>();
     

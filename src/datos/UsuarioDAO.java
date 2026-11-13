@@ -41,4 +41,5 @@ public class UsuarioDAO {
         for (Usuario p : listar()) if (p.getUsuario().equals(usuario)) return p;
         return null;
     }
+   
 }
