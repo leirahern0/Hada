@@ -49,8 +49,13 @@ public class Usuario extends Persona {
     @Override
     public String toLinea() {
        
-        return getNombre() + ";" + getContraseña() + ";" + getTelefono() + ";" 
-                + getUsuario() + ";USUARIO;" + direccion;
+        return getNombre() + "|" + getContraseña() + "|" + getTelefono() + "|" 
+                + getUsuario() + "|USUARIO|" + direccion;
     }
+    
+    public static Usuario desdeLinea(String linea) {
+    String[] p = linea.split("\\|", -1);
+    return new Usuario(p[0], p[1], p[2], p[3], p[5]);
+}
 
 }

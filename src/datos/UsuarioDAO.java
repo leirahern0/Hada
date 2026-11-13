@@ -4,36 +4,41 @@
  */
 package datos;
 
-import modeloPersonas.Persona;
+import modeloPersonas.Usuario;
 import java.util.*;
 
 public class UsuarioDAO {
     private String ruta = "datos/usuarios.txt";
 
-    public List<Persona> listar() throws Exception {
-        List<Persona> lista = new ArrayList<>();
-        for (String l : ArchivoUtil.leer(ruta)) if (!l.isBlank()) lista.add(Persona.desdeLinea(l));
+    public UsuarioDAO() {
+    }
+
+    public List<Usuario> listar() throws Exception {
+        List<Usuario> lista = new ArrayList<>();
+        for (String l : ArchivoUtil.leer(ruta)) if (!l.isBlank()) lista.add(Usuario.desdeLinea(l));
         return lista;
     }
-    public void guardar(Persona p) throws Exception { ArchivoUtil.agregar(ruta, p.toLinea()); }
+    public void guardar(Usuario e) throws Exception { 
+        ArchivoUtil.agregar(ruta, e.toLinea()); 
+    }
 
     public void eliminar(String usuario) throws Exception {
-        List<Persona> lista = listar();
+        List<Usuario> lista = listar();
         lista.removeIf(p -> p.getUsuario().equals(usuario));
         guardarTodos(lista);
     }
-    public void editar(Persona nuevo) throws Exception {
-        List<Persona> lista = listar();
+    public void editar(Usuario nuevo) throws Exception {
+        List<Usuario> lista = listar();
         for (int i = 0; i < lista.size(); i++) if (lista.get(i).getUsuario().equals(nuevo.getUsuario())) lista.set(i, nuevo);
         guardarTodos(lista);
     }
-    private void guardarTodos(List<Persona> lista) throws Exception {
+    private void guardarTodos(List<Usuario> lista) throws Exception {
         List<String> lineas = new ArrayList<>();
-        for (Persona p : lista) lineas.add(p.toLinea());
+        for (Usuario p : lista) lineas.add(p.toLinea());
         ArchivoUtil.reescribir(ruta, lineas);
     }
-    public Persona buscarPorUsuario(String usuario) throws Exception {
-        for (Persona p : listar()) if (p.getUsuario().equals(usuario)) return p;
+    public Usuario buscarPorCorreo(String usuario) throws Exception {
+        for (Usuario p : listar()) if (p.getUsuario().equals(usuario)) return p;
         return null;
     }
 }

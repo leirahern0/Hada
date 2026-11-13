@@ -5,6 +5,9 @@ import modeloPersonas.Usuario;
 
 import java.io.IOException;
 import java.util.regex.Pattern;
+import datos.UsuarioDAO;
+import modeloPersonas.Usuario;
+import modeloPersonas.Persona;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,7 +48,9 @@ public class ControladoraInicio {
 
     @FXML
     private AnchorPane apRegistro;
-
+    
+    private final UsuarioDAO UsuarioDAO = new UsuarioDAO();
+    
     private final controladorUsuarios gestionUsuarios = new controladorUsuarios();
 
     private final String ADMIN_CORREO = "admin@hadabeauty.com";
@@ -179,87 +184,50 @@ public class ControladoraInicio {
     private void iniciarSesion(ActionEvent event) {
 
         String correo = txtCorreoLogin.getText().trim();
-        String clave = pwdClaveLogin.getText();
+    String clave = pwdClaveLogin.getText().trim();
 
-        if (correo.isEmpty() || clave.isEmpty()) {
+    if (correo.isEmpty() || clave.isEmpty()) {
+        mostrarMensaje("Campos incompletos", "Debes ingresar tu correo y contraseña.", Alert.AlertType.WARNING);
+        return;
+    }
 
-            mostrarMensaje(
-                    "Campos incompletos",
-                    "Debes ingresar tu correo y contraseña.",
-                    Alert.AlertType.WARNING
-            );
+    if (!Pattern.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$", correo)) {
+        mostrarMensaje("Correo invalido", "Ingresa un correo electronico valido.", Alert.AlertType.WARNING);
+        return;
+    }
 
-            return;
+    if (correo.equalsIgnoreCase(ADMIN_CORREO)) {
+        if (clave.equals(ADMIN_CLAVE)) {
+            mostrarMensaje("Bienvenida", "Inicio de sesion como administradora.", Alert.AlertType.INFORMATION);
+            abrirPantalla("Admin.fxml", event);
+        } else {
+            mostrarMensaje("Contraseña incorrecta", "La contraseña del administrador es incorrecta.", Alert.AlertType.ERROR);
         }
+        return;
+    }
 
-        if (!Pattern.matches(
-                "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$",
-                correo)) {
 
-            mostrarMensaje(
-                    "Correo invalido",
-                    "Ingresa un correo electronico valido.",
-                    Alert.AlertType.WARNING
-            );
-
-            return;
-        }
-
-        if (correo.equalsIgnoreCase(ADMIN_CORREO)) {
-
-            if (clave.equals(ADMIN_CLAVE)) {
-
-                mostrarMensaje(
-                        "Bienvenida",
-                        "Inicio de sesion como administradora.",
-                        Alert.AlertType.INFORMATION
-                );
-
-                abrirPantalla("Admin.fxml", event);
-
-            } else {
-
-                mostrarMensaje(
-                        "Contraseña incorrecta",
-                        "La contraseña del administrador es incorrecta.",
-                        Alert.AlertType.ERROR
-                );
-            }
-
-            return;
-        }
-
-        Usuario usuario = gestionUsuarios.buscarUsuario(correo);
+    try {
+        Usuario usuario = UsuarioDAO.buscarPorCorreo(correo);
 
         if (usuario == null) {
-
-            mostrarMensaje(
-                    "Usuario no registrado",
-                    "No existe una cuenta con este correo.",
-                    Alert.AlertType.WARNING
-            );
-
+            mostrarMensaje("Usuario no registrado", "No existe una cuenta con este correo.", Alert.AlertType.WARNING);
             return;
         }
 
-        if (!gestionUsuarios.InicioSesion(correo, clave)) {
-
-            mostrarMensaje(
-                    "Contraseña incorrecta",
-                    "La contraseña ingresada no es correcta.",
-                    Alert.AlertType.ERROR
-            );
-
+        if (!usuario.getContraseña().equals(clave)) {
+            mostrarMensaje("Contraseña incorrecta", "La contraseña ingresada no es correcta.", Alert.AlertType.ERROR);
             return;
         }
 
-        mostrarMensaje(
-                "Bienvenida a Hada Beauty",
-                "Has iniciado sesion correctamente.",
-                Alert.AlertType.INFORMATION
-        );
-
+        mostrarMensaje("Bienvenida a Hada Beauty", "Has iniciado sesion correctamente.", Alert.AlertType.INFORMATION);
         abrirPantallaUsuario(usuario, event);
+
+    } catch (Exception e) {
+        // Si el archivo no existe o está dañado, caes aquí
+        mostrarMensaje("Error", "No se pudo leer los usuarios. Intenta de nuevo.", Alert.AlertType.ERROR);
+        e.printStackTrace();
+    }
     }
 
     private void abrirPantallaUsuario(Usuario usuario, ActionEvent event) {

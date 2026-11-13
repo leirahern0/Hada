@@ -1,6 +1,3 @@
 
 
-Paula;paula;null;paula;USUARIO;null
-
-vale;123;;vale@com.as;USUARIO;
-
+Paula Idarraga|paula||paula123@gmail.com|USUARIO|

@@ -123,7 +123,7 @@ public class Producto {
         disponible = stock > 0;
     }
 
-    public String lineaArchivo() {
+    public String toLinea() {
     
         return nombre + "|" + codigo + "|" + precio + "|" + marca + "|" +
            stock + "|" + imagen + "|" + descripcion + "|" +
@@ -133,7 +133,7 @@ public class Producto {
     }
 
 
-   public static Producto desdelineaArchivo(String linea) {
+   public static Producto desdelinea(String linea) {
     String[] p = linea.split("\\|", -1);
     if (p.length < 10) return null;
 

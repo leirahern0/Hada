@@ -18,7 +18,7 @@ public class controladorUsuarios {
 
     public boolean registro(Usuario nuevo) {
         try {
-            if (usuarioDAO.buscarPorUsuario(nuevo.getUsuario()) != null) {
+            if (usuarioDAO.buscarPorCorreo(nuevo.getUsuario()) != null) {
                 return false;
             }
 
@@ -33,7 +33,7 @@ public class controladorUsuarios {
 
     public Usuario buscarUsuario(String correo) {
         try {
-            Persona persona = usuarioDAO.buscarPorUsuario(correo);
+            Persona persona = usuarioDAO.buscarPorCorreo(correo);
 
             if (persona instanceof Usuario && !persona.esAdministrador()) {
                 return (Usuario) persona;

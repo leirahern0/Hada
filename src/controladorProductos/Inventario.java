@@ -157,7 +157,7 @@ public class Inventario {
     public boolean guardarEnArchivo(String rutaArchivo) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(rutaArchivo))) {
             for (Producto p : productos) {
-                pw.println(p.lineaArchivo());
+                pw.println(p.toLinea());
             }
             registrarCambio("CATÁLOGO GUARDADO en " + rutaArchivo);
             return true;
@@ -171,7 +171,7 @@ public class Inventario {
             String linea;
             int cargados = 0;
             while ((linea = br.readLine()) != null) {
-                Producto p = Producto.desdelineaArchivo(linea);
+                Producto p = Producto.desdelinea(linea);
                 if (p != null) {
                     productos.add(p);
                     cargados++;

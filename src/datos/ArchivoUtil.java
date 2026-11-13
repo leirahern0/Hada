@@ -12,6 +12,7 @@ import java.util.*;
  */
 
 public class ArchivoUtil {
+    
     public static List<String> leer(String ruta) throws Exception {
         Path p = Paths.get(ruta);
         if (!Files.exists(p)) return new ArrayList<>();

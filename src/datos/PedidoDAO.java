@@ -8,13 +8,20 @@ import modeloProductos.Pedido;
 import java.util.*;
 
 public class PedidoDAO {
+    
     private String ruta = "datos/pedidos.txt";
+
+    public PedidoDAO() {
+    }
+    
     public List<Pedido> listar() throws Exception {
         List<Pedido> lista = new ArrayList<>();
         for (String l : ArchivoUtil.leer(ruta)) if (!l.isBlank()) lista.add(Pedido.desdeLinea(l));
         return lista;
     }
-    public void guardar(Pedido p) throws Exception { ArchivoUtil.agregar(ruta, p.toLinea()); }
+    public void guardar(Pedido p) throws Exception { 
+        ArchivoUtil.agregar(ruta, p.toLinea()); }
+    
     public void eliminar(String numero) throws Exception {
         List<Pedido> lista = listar();
         lista.removeIf(p -> p.getNumeroPedido().equals(numero));

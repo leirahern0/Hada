@@ -142,7 +142,7 @@ public class Pedido {
 
     public static Pedido desdeLinea(String linea) throws Exception {
         String[] p = linea.split("\\|", -1);
-        Usuario cliente = (Usuario) new UsuarioDAO().buscarPorUsuario(p[1]);
+        Usuario cliente = (Usuario) new UsuarioDAO().buscarPorCorreo(p[1]);
         List<Producto> prods = new ArrayList<>();
         ProductoDAO pdao = new ProductoDAO();
         if (!p[2].isEmpty()) for (String cod : p[2].split(",")) {
