@@ -18,7 +18,7 @@ public class controladorUsuarios {
 
     public boolean registro(Usuario nuevo) {
         try {
-            if (usuarioDAO.buscarPorCorreo(nuevo.getUsuario()) != null) {
+            if (usuarioDAO.buscarPorCorreo(nuevo.getCorreo()) != null) {
                 return false;
             }
 

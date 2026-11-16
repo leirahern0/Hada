@@ -16,6 +16,7 @@ public class Producto {
     private String categoria;   
     private boolean disponible;
     private List<String> etiquetas;
+    private String color;
 
     
     public Producto() {
@@ -60,6 +61,16 @@ public class Producto {
         return codigo;
     }
 
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+    
+    
+
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
@@ -82,10 +93,6 @@ public class Producto {
 
     public int getStock() {
         return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
     }
 
     public String getImagen() {

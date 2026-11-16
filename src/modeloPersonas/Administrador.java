@@ -31,7 +31,7 @@ public class Administrador extends Persona {
     
     @Override
     public String toLinea() {
-        return getNombre() + "|" + getContraseña() + "|" + getTelefono() + "|" + getUsuario() + "|ADMIN|" 
+        return getNombre() + "|" + getContraseña() + "|" + getTelefono() + "|" + getCorreo() + "|ADMIN|" 
                 + codigoAdministrador;
     }
     

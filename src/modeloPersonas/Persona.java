@@ -5,16 +5,16 @@ public abstract class Persona {
     private String nombre;
     private String contrasena;
     private String telefono;
-    private String usuario;
+    private String correo;
 
     public Persona() {
     }
 
-    public Persona(String nombre, String contrasena, String telefono, String usuario) {
+    public Persona(String nombre, String contrasena, String telefono, String correo) {
         this.nombre = nombre;
         this.contrasena = contrasena;
         this.telefono = telefono;
-        this.usuario = usuario;
+        this.correo = correo;
 
     }
 
@@ -42,17 +42,15 @@ public abstract class Persona {
         this.telefono = telefono;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setCorreo(String usuario) {
+        this.correo = usuario;
     }
-    
-    public abstract boolean esAdministrador();
     
     public abstract String toLinea();
 
-    
+    public abstract boolean esAdministrador ();
 }

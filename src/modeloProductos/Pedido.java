@@ -75,10 +75,6 @@ public class Pedido {
         return total;
     }
 
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
     public String getMetodoPago() {
         return metodoPago;
     }
@@ -134,7 +130,7 @@ public class Pedido {
         
         List<String> codigos = new ArrayList<>();
         for (Producto p : productos) codigos.add(p.getCodigo());
-        return numeroPedido + "|" + (cliente != null ? cliente.getUsuario() : "") + "|"
+        return numeroPedido + "|" + (cliente != null ? cliente.getCorreo() : "") + "|"
             + String.join(",", codigos) + "|" + fecha.toString() + "|" + total + "|"
             + metodoPago + "|" + estadoPago + "|" + estadoPreparacion + "|"
             + (direccionEntrega != null ? direccionEntrega : "");

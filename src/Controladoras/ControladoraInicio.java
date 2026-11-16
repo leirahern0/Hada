@@ -173,7 +173,7 @@ public class ControladoraInicio {
     String correo = txtCorreoLogin.getText().trim();
     String clave = pwdClaveLogin.getText().trim();
     Administrador admin = new Administrador();
-    String correoAdmin = admin.getUsuario();
+    String correoAdmin = admin.getCorreo();
     String contraseñaAdmin = admin.getContraseña();
 
     if (correo.isEmpty() || clave.isEmpty()) {

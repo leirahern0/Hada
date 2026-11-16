@@ -21,7 +21,7 @@ public class CarritoDAO {
         for (String l : ArchivoUtil.leer(ruta)) {
             if (l.isBlank()) continue;
             String[] p = l.split("\\|");
-            if (p[0].equals(usuario.getUsuario())) {
+            if (p[0].equals(usuario.getCorreo())) {
                 Producto prod = pdao.buscarPorCodigo(p[1]);
                 if (prod != null) carrito.agregarUnidad(prod);
             }
@@ -33,10 +33,10 @@ public class CarritoDAO {
     public void guardar(Usuario usuario, Carrito carrito) throws Exception {
         List<String> lineas = new ArrayList<>();
         for (String l : ArchivoUtil.leer(ruta)) {
-            if (!l.isBlank() && !l.split("\\|")[0].equals(usuario.getUsuario())) lineas.add(l);
+            if (!l.isBlank() && !l.split("\\|")[0].equals(usuario.getCorreo())) lineas.add(l);
         }
         for (Producto p : carrito.getProductos()) {
-            lineas.add(usuario.getUsuario() + "|" + p.getCodigo());
+            lineas.add(usuario.getCorreo() + "|" + p.getCodigo());
         }
         ArchivoUtil.reescribir(ruta, lineas);
     }

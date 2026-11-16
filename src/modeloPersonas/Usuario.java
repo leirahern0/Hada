@@ -50,7 +50,7 @@ public class Usuario extends Persona {
     public String toLinea() {
        
         return getNombre() + "|" + getContraseña() + "|" + getTelefono() + "|" 
-                + getUsuario() + "|USUARIO|" + direccion;
+                + getCorreo() + "|USUARIO|" + direccion;
     }
     
     public static Usuario desdeLinea(String linea) {

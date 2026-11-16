@@ -24,12 +24,12 @@ public class UsuarioDAO {
 
     public void eliminar(String usuario) throws Exception {
         List<Usuario> lista = listar();
-        lista.removeIf(p -> p.getUsuario().equals(usuario));
+        lista.removeIf(p -> p.getCorreo().equals(usuario));
         guardarTodos(lista);
     }
     public void editar(Usuario nuevo) throws Exception {
         List<Usuario> lista = listar();
-        for (int i = 0; i < lista.size(); i++) if (lista.get(i).getUsuario().equals(nuevo.getUsuario())) lista.set(i, nuevo);
+        for (int i = 0; i < lista.size(); i++) if (lista.get(i).getCorreo().equals(nuevo.getCorreo())) lista.set(i, nuevo);
         guardarTodos(lista);
     }
     private void guardarTodos(List<Usuario> lista) throws Exception {
@@ -38,7 +38,7 @@ public class UsuarioDAO {
         ArchivoUtil.reescribir(ruta, lineas);
     }
     public Usuario buscarPorCorreo(String usuario) throws Exception {
-        for (Usuario p : listar()) if (p.getUsuario().equals(usuario)) return p;
+        for (Usuario p : listar()) if (p.getCorreo().equals(usuario)) return p;
         return null;
     }
    
