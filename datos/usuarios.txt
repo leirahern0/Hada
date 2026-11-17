@@ -2,3 +2,5 @@
 Administradora|admin123|3025676829|admin123@hada.com|ADMIN|6724568950
 Paula Idarraga|paula||paula123@gmail.com|USUARIO|
 paula Idarraga|paulala||paulala123@gmail.com|USUARIO|
+valeria|123||vale@gmail.com|USUARIO|
+valeria|123||vale@26.com|USUARIO|
