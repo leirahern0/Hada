@@ -94,8 +94,7 @@ public class ControladoraInicio {
         String confirmarClave = pwdConfirmarClaveR.getText();
         
 
-        if (nombre.isEmpty() || correo.isEmpty()
-                || clave.isEmpty() || confirmarClave.isEmpty()) {
+        if (nombre.isEmpty() || correo.isEmpty() || clave.isEmpty() || confirmarClave.isEmpty()) {
 
             mostrarMensaje(
                     "Campos incompletos",

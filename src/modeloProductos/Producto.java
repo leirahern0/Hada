@@ -1,6 +1,5 @@
 package modeloProductos;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,12 +12,12 @@ public class Producto {
     private int stock;
     private String imagen;
     private String descripcion;
-    private String categoria;   
+    private String categoria;
     private boolean disponible;
     private List<String> etiquetas;
+    private double precioOferta;
     private String color;
 
-    
     public Producto() {
         this.disponible = true;
         this.etiquetas = new ArrayList<>();
@@ -36,12 +35,12 @@ public class Producto {
         this.disponible = true;
         this.etiquetas = new ArrayList<>(etiquetas);
     }
-    
-    public void agregarEtiqueta (String etiqueta){
+
+    public void agregarEtiqueta(String etiqueta) {
         etiquetas.add(etiqueta);
     }
-    
-    public void eliminarEtiqueta (String etiqueta){
+
+    public void eliminarEtiqueta(String etiqueta) {
         etiquetas.remove(etiqueta);
     }
 
@@ -61,6 +60,14 @@ public class Producto {
         return codigo;
     }
 
+    public double getPrecioOferta() {
+        return precioOferta;
+    }
+
+    public void setPrecioOferta(double precioOferta) {
+        this.precioOferta = precioOferta;
+    }
+
     public String getColor() {
         return color;
     }
@@ -68,8 +75,6 @@ public class Producto {
     public void setColor(String color) {
         this.color = color;
     }
-    
-    
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
@@ -110,54 +115,62 @@ public class Producto {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public String getCategoria() { 
-        return categoria; 
-    }
-    public void setCategoria(String categoria) { 
-        this.categoria = categoria; 
+
+    public String getCategoria() {
+        return categoria;
     }
 
-    public boolean isDisponible() { 
-        return disponible; 
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
-    public void setDisponible(boolean disponible) { 
-        this.disponible = disponible; 
+
+    public boolean isDisponible() {
+        return disponible;
     }
-    
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
     public void actualizarStock(int cantidad) {
         stock += cantidad;
-        if (stock < 0) stock = 0;
+        if (stock < 0) {
+            stock = 0;
+        }
         disponible = stock > 0;
     }
 
     public String toLinea() {
-    
-        return nombre + "|" + codigo + "|" + precio + "|" + marca + "|" +
-           stock + "|" + imagen + "|" + descripcion + "|" +
-           (categoria != null ? categoria : "") + "|" + disponible + "|" +
-           (etiquetas != null ? String.join(",", etiquetas) : "");
-    
+
+        return nombre + "|" + codigo + "|" + precio + "|" + marca + "|"
+                + stock + "|" + imagen + "|" + descripcion + "|"
+                + (categoria != null ? categoria : "") + "|" + disponible + "|"
+                + (etiquetas != null ? String.join(",", etiquetas) : "") + "|"
+                + precioOferta + "|" + (color != null ? color : "");
+
     }
 
-
-   public static Producto desdelinea(String linea) {
-    String[] p = linea.split("\\|", -1);
-    if (p.length < 10) return null;
-
-    List<String> etiquetas = new ArrayList<>();
-    if (!p[9].isEmpty()) {
-        String[] tags = p[9].split(",");
-        for (String t : tags) {
-            etiquetas.add(t);
+    public static Producto desdelinea(String linea) {
+        String[] p = linea.split("\\|", -1);
+        if (p.length < 12) {
+            return null;
         }
+
+        List<String> etiquetas = new ArrayList<>();
+        if (!p[9].isEmpty()) {
+            String[] tags = p[9].split(",");
+            for (String t : tags) {
+                etiquetas.add(t);
+            }
+        }
+
+        Producto prod = new Producto(p[0], p[1], Double.parseDouble(p[2]),
+                p[3], Integer.parseInt(p[4]), p[5], p[6], etiquetas);
+        prod.setCategoria(p[7]);
+        prod.setDisponible(Boolean.parseBoolean(p[8]));
+        prod.setPrecioOferta(Double.parseDouble(p[10]));
+        prod.setColor(p[11]);
+        return prod;
     }
 
-    Producto prod = new Producto(p[0], p[1], Double.parseDouble(p[2]),
-            p[3], Integer.parseInt(p[4]), p[5], p[6], etiquetas);
-    prod.setCategoria(p[7]);
-    prod.setDisponible(Boolean.parseBoolean(p[8]));
-    return prod;
-}
-    
-    
 }

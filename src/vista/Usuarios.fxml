@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #fff4e9;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #fff4e9;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.ControladoraUsuario">
    <top>
       <StackPane BorderPane.alignment="CENTER">
          <children>
@@ -95,7 +95,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #FF806D;">
                      <children>
-                        <ImageView fitHeight="300.0" fitWidth="755.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="234.0" fitWidth="726.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../imagenes/Banner.png" />
                            </image>
@@ -111,7 +111,7 @@
       </StackPane>
    </top>
    <left>
-      <HBox prefHeight="190.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="190.0" prefWidth="900.0" spacing="80.0" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane fx:id="contenedorVistas" prefHeight="376.0" prefWidth="900.0">
                <children>
@@ -148,7 +148,7 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Button layoutX="497.0" layoutY="112.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;">
+                        <Button layoutX="530.0" layoutY="80.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;">
                            <graphic>
                               <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -156,7 +156,7 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Button layoutX="734.0" layoutY="112.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;">
+                        <Button layoutX="734.0" layoutY="80.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;">
                            <graphic>
                               <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
