@@ -11,17 +11,13 @@ import javafx.scene.control.Label;
 public class ControladoraUsuario {
 
     @FXML
-    private Label lblUsuario;
 
     private Usuario usuarioActual;
 
     public void setUsuario(Usuario usuario) {
-
+    
         this.usuarioActual = usuario;
 
-        if (usuarioActual != null) {
-            lblUsuario.setText("Hola, " + usuarioActual.getNombre());
-        }
     }
 
     @FXML
