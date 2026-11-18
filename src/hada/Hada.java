@@ -17,7 +17,7 @@ public class Hada extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         Parent root = FXMLLoader.load(
-                getClass().getResource("/vista/Inicio.fxml")
+                getClass().getResource("/vista/admin.fxml")
         );
 
         primaryStage.setTitle("Hada Beauty - Iniciar sesión");
