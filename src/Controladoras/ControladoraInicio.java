@@ -253,6 +253,8 @@ public class ControladoraInicio {
             );
         }
     }
+    
+    //abrir pantalla usuario esta de más
 
     private void abrirPantalla(String archivo, ActionEvent event) {
 
