@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1"
+<VBox xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="Controladoras.ControladoraGestionProductos" spacing="14"
       style="-fx-background-color: #fff4e9;" prefWidth="865" prefHeight="665">
     <padding><Insets top="20" right="25" bottom="18" left="25"/></padding>

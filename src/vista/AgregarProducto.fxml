@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/26"
+<ScrollPane xmlns="http://javafx.com/javafx/25"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="Controladoras.ControladoraNuevoProducto"
             fitToWidth="true"
@@ -162,7 +162,7 @@
                                   style="-fx-control-inner-background: #fff8f1; -fx-background-radius: 4; -fx-border-color: #f1d5ca; -fx-border-radius: 4; -fx-font-family: Arial; -fx-font-size: 8;"/>
                     </VBox>
 
-                    <!-- URL de la imagen -->
+                   
                     <VBox spacing="4.0"
                           GridPane.columnIndex="1"
                           GridPane.rowIndex="3">
