@@ -30,6 +30,13 @@ public class ControladoraAdmin {
     private void irProductos() {
        
     }
+    
+     @FXML
+    private void irInicio() {
+     
+    }
+    
+    
 
     @FXML
     private void irPedidos() {

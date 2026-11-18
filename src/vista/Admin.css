@@ -42,3 +42,17 @@
     -fx-alignment: CENTER;
     -fx-border-color: transparent;
 }
+
+.encabezado-productos {
+    -fx-background-color: #fff4e9;
+    -fx-background-radius: 10;
+    -fx-padding: 10 14;
+}
+
+.encabezado-productos .label {
+    -fx-font-family: Georgia;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #8f294d;
+    -fx-alignment: CENTER;
+}

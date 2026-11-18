@@ -3,141 +3,60 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #fff4e9;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.ControladoraAdmin">
+<BorderPane prefHeight="720.0" prefWidth="1080.0"
+            style="-fx-background-color: #fff4e9;"
+            stylesheets="@Admin.css"
+            xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controladoras.ControladoraAdmin">
 
-  
-   <left>
-      <VBox prefWidth="215.0" spacing="6.0" style="-fx-background-color: #ffffff; -fx-background-radius: 0 20 20 0;">
-         <padding>
-            <Insets bottom="20.0" left="18.0" right="18.0" top="22.0" />
-         </padding>
-         <children>
-            <Label style="-fx-font-family: georgia; -fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="lada beauty" />
-            <Label style="-fx-font-family: arial; -fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #ff806d;" text="ADMINISTRACIÓN" />
-            <Separator>
-               <VBox.margin>
-                  <Insets bottom="8.0" top="8.0" />
-               </VBox.margin>
-            </Separator>
+    <!-- Barra lateral fija, basada en la vista de referencia -->
+    <left>
+        <VBox prefWidth="220.0" spacing="6.0" style="-fx-background-color: #ffdec9;">
+            <padding>
+                <Insets bottom="16.0" left="14.0" right="14.0" top="18.0"/>
+            </padding>
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="8.0">
+                    <children>
+                        <Label text="✦" style="-fx-font-size: 22.0; -fx-text-fill: #8f294d;"/>
+                        <VBox spacing="0.0">
+                            <Label text="Hada Beauty" style="-fx-font-family: Georgia; -fx-font-size: 17.0; -fx-font-weight: bold; -fx-text-fill: #8f294d;"/>
+                            <Label text="Panel de administración" style="-fx-font-family: Arial; -fx-font-size: 10.0; -fx-text-fill: #ff806d;"/>
+                        </VBox>
+                    </children>
+                </HBox>
+                <Separator style="-fx-background-color: #ffc6ad;"/>
+                <Button text="🏠  Inicio" onAction="#irInicio" maxWidth="Infinity" alignment="CENTER_LEFT" style="-fx-background-color: transparent; -fx-font-family: Arial; -fx-font-size: 12.0; -fx-text-fill: #8f294d; -fx-padding: 10 12; -fx-cursor: hand;"/>
+                <Button text="📦  Productos" onAction="#irProductos" maxWidth="Infinity" alignment="CENTER_LEFT" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-font-family: Arial; -fx-font-size: 12.0; -fx-font-weight: bold; -fx-text-fill: #8f294d; -fx-padding: 10 12; -fx-cursor: hand;"/>
+                <Button text="🛒  Pedidos" onAction="#irPedidos" maxWidth="Infinity" alignment="CENTER_LEFT" style="-fx-background-color: transparent; -fx-font-family: Arial; -fx-font-size: 12.0; -fx-text-fill: #8f294d; -fx-padding: 10 12; -fx-cursor: hand;"/>
+                <Button text="👥  Usuarios" onAction="#irUsuarios" maxWidth="Infinity" alignment="CENTER_LEFT" style="-fx-background-color: transparent; -fx-font-family: Arial; -fx-font-size: 12.0; -fx-text-fill: #8f294d; -fx-padding: 10 12; -fx-cursor: hand;"/>
+                <Button text="👤  Mi perfil" onAction="#irMiPerfil" maxWidth="Infinity" alignment="CENTER_LEFT" style="-fx-background-color: transparent; -fx-font-family: Arial; -fx-font-size: 12.0; -fx-text-fill: #8f294d; -fx-padding: 10 12; -fx-cursor: hand;"/>
+                <Region VBox.vgrow="ALWAYS"/>
+                <Separator style="-fx-background-color: #ffc6ad;"/>
+                <HBox alignment="CENTER_LEFT" spacing="8.0" style="-fx-background-color: #fff4e9; -fx-background-radius: 10; -fx-padding: 8;">
+                    <children>
+                        <Label text="👤" style="-fx-font-size: 18.0;"/>
+                        <VBox spacing="0.0">
+                            <Label text="Admin" style="-fx-font-family: Arial; -fx-font-size: 11.0; -fx-font-weight: bold; -fx-text-fill: #8f294d;"/>
+                            <Label text="Administradora" style="-fx-font-family: Arial; -fx-font-size: 9.0; -fx-text-fill: #ff806d;"/>
+                        </VBox>
+                    </children>
+                </HBox>
+                <Button text="↪  Cerrar sesión" onAction="#cerrarSesion" maxWidth="Infinity" alignment="CENTER_LEFT" style="-fx-background-color: transparent; -fx-font-family: Arial; -fx-font-size: 11.0; -fx-text-fill: #8f294d; -fx-cursor: hand;"/>
+            </children>
+        </VBox>
+    </left>
 
-            <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#irProductos" style="-fx-background-color: #ffc6ad; -fx-background-radius: 10; -fx-font-family: arial; -fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #8f294d; -fx-alignment: CENTER_LEFT; -fx-padding: 10 12; -fx-cursor: hand;" text="▣   Productos" />
-            <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#irPedidos" style="-fx-background-color: transparent; -fx-font-family: arial; -fx-font-size: 13; -fx-text-fill: #8f294d; -fx-alignment: CENTER_LEFT; -fx-padding: 10 12; -fx-cursor: hand;" text="🛍   Pedidos" />
-            <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#irUsuarios" style="-fx-background-color: transparent; -fx-font-family: arial; -fx-font-size: 13; -fx-text-fill: #8f294d; -fx-alignment: CENTER_LEFT; -fx-padding: 10 12; -fx-cursor: hand;" text="👥   Usuarios" />
-            <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#irMiPerfil" style="-fx-background-color: transparent; -fx-font-family: arial; -fx-font-size: 13; -fx-text-fill: #8f294d; -fx-alignment: CENTER_LEFT; -fx-padding: 10 12; -fx-cursor: hand;" text="👤   Mi perfil" />
-
-            <Region VBox.vgrow="ALWAYS" />
-
-            <Button mnemonicParsing="false" onAction="#verTienda" style="-fx-background-color: transparent; -fx-font-family: arial; -fx-font-size: 12; -fx-text-fill: #8f294d; -fx-cursor: hand;" text="Ir a la Tienda ↗" />
-            <HBox alignment="CENTER_LEFT" spacing="10.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="36.0" prefWidth="36.0" style="-fx-background-color: #ffc6ad; -fx-background-radius: 50; -fx-text-fill: #8f294d; -fx-font-size: 14; -fx-font-weight: bold;" text="A" />
-                  <VBox spacing="1.0">
-                     <children>
-                        <Label fx:id="lblAdmin" style="-fx-font-family: arial; -fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Administrador" />
-                        <Label style="-fx-font-family: arial; -fx-font-size: 10; -fx-text-fill: #ff806d;" text="admin@lada.com" />
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-   </left>
-
-   
-   <top>
-      <HBox alignment="CENTER_LEFT" prefHeight="55.0" spacing="15.0" style="-fx-background-color: #ffffff; -fx-border-color: #ffc6ad; -fx-border-width: 0 0 1 0;">
-         <padding>
-            <Insets left="25.0" right="25.0" />
-         </padding>
-         <children>
-            <Label style="-fx-font-family: arial; -fx-font-size: 12; -fx-text-fill: #8f294d;" text="Panel de administración" />
-            <Region HBox.hgrow="ALWAYS" />
-            <Label style="-fx-font-family: arial; -fx-font-size: 13; -fx-text-fill: #8f294d;" text="👤  Administrador" />
-            <Button fx:id="btnCerrarSesion" mnemonicParsing="false" onAction="#cerrarSesion" style="-fx-background-color: transparent; -fx-font-family: arial; -fx-font-size: 13; -fx-text-fill: #8f294d; -fx-cursor: hand;" text="Cerrar sesión" />
-         </children>
-      </HBox>
-   </top>
-
-   
-   <center>
-      <VBox spacing="14.0">
-         <padding>
-            <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
-         </padding>
-         <children>
-
-            <HBox alignment="CENTER_LEFT">
-               <children>
-                  <VBox spacing="2.0">
-                     <children>
-                        <Label style="-fx-font-family: georgia; -fx-font-size: 26; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Gestionar productos" />
-                        <Label style="-fx-font-family: arial; -fx-font-size: 12; -fx-text-fill: #ff806d;" text="Administra el catálogo de tu tienda" />
-                     </children>
-                  </VBox>
-                  <Region HBox.hgrow="ALWAYS" />
-                  <Button fx:id="btnNuevoProducto" mnemonicParsing="false" onAction="#nuevoProducto" style="-fx-background-color: #ff4f9a; -fx-background-radius: 10; -fx-font-family: arial; -fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-padding: 10 16; -fx-cursor: hand;" text="＋  Nuevo producto" />
-               </children>
-            </HBox>
-
-            
-            <VBox spacing="12.0" style="-fx-background-color: #ffffff; -fx-background-radius: 16; -fx-border-color: #ffc6ad; -fx-border-radius: 16;" VBox.vgrow="ALWAYS">
-               <padding>
-                  <Insets bottom="14.0" left="16.0" right="16.0" top="16.0" />
-               </padding>
-               <children>
-
-                  <TextField fx:id="txtBuscar" onKeyReleased="#buscarProducto" prefHeight="42.0" promptText="🔍   Buscar producto..." style="-fx-background-color: #fff4e9; -fx-background-radius: 10; -fx-border-color: #ffc6ad; -fx-border-radius: 10; -fx-font-family: arial; -fx-font-size: 13; -fx-text-fill: #8f294d; -fx-prompt-text-fill: #ff806d;" />
-
-                  <HBox spacing="8.0">
-                     <children>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #ffc6ad; -fx-background-radius: 20; -fx-font-family: arial; -fx-font-size: 11; -fx-text-fill: #8f294d; -fx-padding: 6 12; -fx-cursor: hand;" text="Todos: 0" />
-                        <Button mnemonicParsing="false" style="-fx-background-color: #fff4e9; -fx-background-radius: 20; -fx-font-family: arial; -fx-font-size: 11; -fx-text-fill: #8f294d; -fx-padding: 6 12; -fx-cursor: hand;" text="Rostro: 0" />
-                        <Button mnemonicParsing="false" style="-fx-background-color: #fff4e9; -fx-background-radius: 20; -fx-font-family: arial; -fx-font-size: 11; -fx-text-fill: #8f294d; -fx-padding: 6 12; -fx-cursor: hand;" text="Labios: 0" />
-                        <Button mnemonicParsing="false" style="-fx-background-color: #fff4e9; -fx-background-radius: 20; -fx-font-family: arial; -fx-font-size: 11; -fx-text-fill: #8f294d; -fx-padding: 6 12; -fx-cursor: hand;" text="Ojos: 0" />
-                     </children>
-                  </HBox>
-
-                  
-                  <GridPane style="-fx-background-color: #fff4e9; -fx-background-radius: 10; -fx-padding: 10 14;">
-                     <columnConstraints>
-                        <ColumnConstraints percentWidth="14" />
-                        <ColumnConstraints percentWidth="34" />
-                        <ColumnConstraints percentWidth="18" />
-                        <ColumnConstraints percentWidth="16" />
-                        <ColumnConstraints percentWidth="18" />
-                     </columnConstraints>
-                     <children>
-                        <Label text="Imagen" GridPane.columnIndex="0" style="-fx-font-family: georgia; -fx-font-size: 11; -fx-font-weight: bold; -fx-text-fill: #8f294d;" />
-                        <Label text="Nombre del producto" GridPane.columnIndex="1" style="-fx-font-family: georgia; -fx-font-size: 11; -fx-font-weight: bold; -fx-text-fill: #8f294d;" />
-                        <Label text="Categoría" GridPane.columnIndex="2" style="-fx-font-family: georgia; -fx-font-size: 11; -fx-font-weight: bold; -fx-text-fill: #8f294d;" />
-                        <Label text="Precio" GridPane.columnIndex="3" style="-fx-font-family: georgia; -fx-font-size: 11; -fx-font-weight: bold; -fx-text-fill: #8f294d;" />
-                        <Label text="Acciones" GridPane.columnIndex="4" style="-fx-font-family: georgia; -fx-font-size: 11; -fx-font-weight: bold; -fx-text-fill: #8f294d;" />
-                     </children>
-                  </GridPane>
-
-                  
-                  <ScrollPane fitToWidth="true" fitToHeight="false" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;">
-                     <content>
-                        <VBox fx:id="contenedorProductos" spacing="8.0" />
-                     </content>
-                  </ScrollPane>
-
-                  <Label fx:id="lblContador" style="-fx-font-family: arial; -fx-font-size: 11; -fx-text-fill: #ff806d;" text="Mostrando 0 de 0 productos" />
-
-               </children>
-            </VBox>
-
-         </children>
-      </VBox>
-   </center>
+    <!-- Todas las vistas variables se cargan aquí; la barra lateral permanece fija -->
+    <center>
+        <StackPane fx:id="contenedorVistas" style="-fx-background-color: #fff4e9;"/>
+    </center>
 </BorderPane>
