@@ -4,27 +4,40 @@
  */
 package Controladoras;
 
+import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 import modeloProductos.Producto;
 
 public class ControladoraAdmin {
 
     @FXML private Label lblAdmin;
     @FXML private Button btnCerrarSesion;
-    @FXML private Button btnNuevoProducto;
-    @FXML private TextField txtBuscar;
-
-    @FXML private TableView<Producto> tablaProductos;
-    @FXML private TableColumn<Producto, Void> colImagen;
-    @FXML private TableColumn<Producto, String> colNombre;
-    @FXML private TableColumn<Producto, String> colCategoria;
-    @FXML private TableColumn<Producto, Double> colPrecio;
-    @FXML private TableColumn<Producto, Void> colAcciones;
+    @FXML private StackPane contenedorVistas;
+    
+    
+    private void cargarVista(String nombreFxml) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/" + nombreFxml));
+            Node vista = loader.load();
+            contenedorVistas.getChildren().clear(); 
+            contenedorVistas.getChildren().add(vista); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    void initialize (){
+        cargarVista("GestionProductos.fxml");
+    }
 
     @FXML
     private void irProductos() {

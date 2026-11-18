@@ -218,6 +218,8 @@ public class ControladoraInicio {
         e.printStackTrace();
     }
     }
+    
+    
 
     private void abrirPantallaUsuario(Usuario usuario, ActionEvent event) {
 
