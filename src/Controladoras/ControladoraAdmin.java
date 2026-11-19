@@ -18,71 +18,113 @@ import modeloProductos.Producto;
 
 public class ControladoraAdmin {
 
-    @FXML private Label lblAdmin;
-    @FXML private Button btnCerrarSesion;
-    @FXML private StackPane contenedorVistas;
-    
-    
-    private void cargarVista(String nombreFxml) {
+    @FXML
+    private Label lblAdmin;
+    @FXML
+    private Button btnCerrarSesion;
+    @FXML
+    private StackPane contenedorVistas;
+
+    private Object cargarVista(String nombreFxml) {
+
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/" + nombreFxml));
+
+            var recurso = getClass().getResource("/vista/" + nombreFxml);
+
+            if (recurso == null) {
+                throw new IOException(
+                        "No se encontró el archivo: /vista/" + nombreFxml
+                );
+            }
+
+            FXMLLoader loader = new FXMLLoader(recurso);
+
             Node vista = loader.load();
-            contenedorVistas.getChildren().clear(); 
-            contenedorVistas.getChildren().add(vista); 
-        } catch (IOException e) {
+
+            contenedorVistas.getChildren().clear();
+            contenedorVistas.getChildren().add(vista);
+
+            return loader.getController();
+
+        } catch (Exception e) {
+
             e.printStackTrace();
+
+            javafx.scene.control.Alert alerta
+                    = new javafx.scene.control.Alert(
+                            javafx.scene.control.Alert.AlertType.ERROR
+                    );
+
+            alerta.setTitle("Error al abrir la ventana");
+            alerta.setHeaderText("No se pudo cargar " + nombreFxml);
+            alerta.setContentText(e.getMessage());
+            alerta.showAndWait();
+
+            return null;
         }
     }
-    
+
     @FXML
-    void initialize (){
-        cargarVista("GestionProductos.fxml");
+    void initialize() {
+        mostrarProductos();
+    }
+
+    public void mostrarProductos() {
+        Object controlador = cargarVista("GestionProductos.fxml");
+        if (controlador instanceof ControladoraGestionProductos gestion) {
+            gestion.setAdmin(this);
+        }
+    }
+
+    public void mostrarNuevoProducto() {
+        Object controlador = cargarVista("AgregarProducto.fxml");
+        if (controlador instanceof ControladoraNuevoProducto nuevo) {
+            nuevo.setAdmin(this);
+        }
     }
 
     @FXML
     private void irProductos() {
-       
-    }
-    
-     @FXML
-    private void irInicio() {
-     
-    }
-    
-    
-
-    @FXML
-    private void irPedidos() {
-     
-    }
-
-    @FXML
-    private void irUsuarios() {
-       
-    }
-
-    @FXML
-    private void irMiPerfil() {
-      
-    }
-
-    @FXML
-    private void verTienda() {
-       
-    }
-
-    @FXML
-    private void cerrarSesion() {
-    
+        mostrarProductos();
     }
 
     @FXML
     private void nuevoProducto() {
-       
+        mostrarNuevoProducto();
+    }
+
+    @FXML
+    private void irInicio() {
+
+    }
+
+    @FXML
+    private void irPedidos() {
+
+    }
+
+    @FXML
+    private void irUsuarios() {
+
+    }
+
+    @FXML
+    private void irMiPerfil() {
+
+    }
+
+    @FXML
+    private void verTienda() {
+
+    }
+
+    @FXML
+    private void cerrarSesion() {
+
     }
 
     @FXML
     private void buscarProducto() {
-        
+
     }
 }

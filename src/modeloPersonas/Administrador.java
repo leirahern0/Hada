@@ -4,8 +4,9 @@ public class Administrador extends Persona {
 
     private String codigoAdministrador;
 
-    public Administrador() {
-    }
+    public Administrador() {super("Administradora", "admin123", "", "admin123@hada.com");
+    this.codigoAdministrador = "";
+}
 
     public Administrador(String nombre, String contrasena, String telefono,
             String usuario, String codigoAdministrador) {
