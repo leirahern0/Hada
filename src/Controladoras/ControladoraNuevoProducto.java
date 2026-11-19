@@ -28,9 +28,9 @@ import modeloProductos.Producto;
 
 public class ControladoraNuevoProducto {
 
-    private ControladoraAdmin admin;
+    private ControladoraVentana admin;
 
-    public void setAdmin(ControladoraAdmin admin) {
+    public void setAdmin(ControladoraVentana admin) {
         this.admin = admin;
     }
 
@@ -229,6 +229,7 @@ public class ControladoraNuevoProducto {
 
         if (fotoElegida != null) {
             String nombreFoto = "prod_" + System.currentTimeMillis() + ".jpg";
+            //dejamos el metodo currentTimeMillis o creamos un método que no dé números aleatorios
             File carpeta = new File("imagenes/productos");
             if (!carpeta.exists()) {
                 carpeta.mkdirs();

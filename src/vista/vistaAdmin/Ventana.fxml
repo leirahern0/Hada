@@ -15,7 +15,7 @@
             stylesheets="@Admin.css"
             xmlns="http://javafx.com/javafx/25"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="Controladoras.ControladoraAdmin">
+            fx:controller="Controladoras.ControladoraVentana">
 
     <!-- Barra lateral fija, basada en la vista de referencia -->
     <left>

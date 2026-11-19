@@ -37,7 +37,7 @@ public class ControladoraGestionProductos {
     @FXML
     private Button btnFiltroTodos, btnFiltroRostro, btnFiltroLabios, btnFiltroOjos, btnFiltroBrochas;
 
-    private ControladoraAdmin admin;
+    private ControladoraVentana admin;
 
     @FXML
     private void initialize() {
@@ -188,7 +188,7 @@ public class ControladoraGestionProductos {
         );
     }
 
-    public void setAdmin(ControladoraAdmin admin) {
+    public void setAdmin(ControladoraVentana admin) {
         this.admin = admin;
     }
 

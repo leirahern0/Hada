@@ -16,7 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import modeloProductos.Producto;
 
-public class ControladoraAdmin {
+public class ControladoraVentana {
 
     @FXML
     private Label lblAdmin;

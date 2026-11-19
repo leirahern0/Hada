@@ -8,14 +8,14 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.text.Font?>
 
 <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: #fff4e9; -fx-background: #fff4e9; -fx-border-color: transparent;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.ControladoraNuevoProducto">
 
@@ -56,26 +56,13 @@
 
                     
                     <!-- Foto -->
-                    <VBox spacing="6.0"
-                          GridPane.columnIndex="1"
-                          GridPane.rowIndex="0"
-                          GridPane.rowSpan="3">
+                    <VBox spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.rowSpan="3">
 
-                        <Label style="-fx-font-family: Arial; -fx-font-size: 8; -fx-font-weight: bold; -fx-text-fill: #713249;"
-                               text="Foto del producto" />
+                        <Label style="-fx-font-family: Arial; -fx-font-size: 8; -fx-font-weight: bold; -fx-text-fill: #713249;" text="Foto del producto" />
 
-                        <ImageView fx:id="vistaImagen"
-                                   fitWidth="130.0"
-                                   fitHeight="110.0"
-                                   preserveRatio="true" />
+                        <ImageView fx:id="vistaImagen" fitHeight="110.0" fitWidth="130.0" preserveRatio="true" />
 
-                        <Button fx:id="btnSeleccionarFoto"
-                                maxWidth="Infinity"
-                                onAction="#elegirFotoVistaImagen"
-                                prefHeight="40.0"
-                                style="-fx-background-color: #fff8f1; -fx-background-radius: 5; -fx-border-color: #efcfc4; -fx-border-style: dashed; -fx-border-radius: 5; -fx-text-fill: #936877; -fx-font-family: Arial; -fx-font-size: 8;"
-                                text="Seleccionar fotografía"
-                                wrapText="true" />
+                        <Button fx:id="btnSeleccionarFoto" maxWidth="Infinity" onAction="#elegirFotoVistaImagen" prefHeight="40.0" style="-fx-background-color: #fff8f1; -fx-background-radius: 5; -fx-border-color: #efcfc4; -fx-border-style: dashed; -fx-border-radius: 5; -fx-text-fill: #936877; -fx-font-family: Arial; -fx-font-size: 8;" text="Seleccionar fotografía" wrapText="true" />
                     </VBox>
                     
                     <!-- Código y marca -->
@@ -114,18 +101,11 @@
 
                     
                     <!-- Descripción -->
-                    <VBox spacing="4.0"
-                          GridPane.columnIndex="0"
-                          GridPane.rowIndex="3">
+                    <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
 
-                        <Label style="-fx-font-family: Arial; -fx-font-size: 8; -fx-font-weight: bold; -fx-text-fill: #713249;"
-                               text="Descripción" />
+                        <Label style="-fx-font-family: Arial; -fx-font-size: 8; -fx-font-weight: bold; -fx-text-fill: #713249;" text="Descripción" />
 
-                        <TextArea fx:id="txtDescripcion"
-                                  prefHeight="62.0"
-                                  promptText="Describe las características del producto"
-                                  style="-fx-control-inner-background: #fff8f1; -fx-background-radius: 4; -fx-border-color: #f1d5ca; -fx-border-radius: 4; -fx-font-family: Arial; -fx-font-size: 8;"
-                                  wrapText="true" />
+                        <TextArea fx:id="txtDescripcion" prefHeight="62.0" promptText="Describe las características del producto" style="-fx-control-inner-background: #fff8f1; -fx-background-radius: 4; -fx-border-color: #f1d5ca; -fx-border-radius: 4; -fx-font-family: Arial; -fx-font-size: 8;" wrapText="true" />
                     </VBox>
 
                    
@@ -148,14 +128,15 @@
                     <VBox spacing="4.0" GridPane.rowIndex="4">
                         <Label style="-fx-font-family: Arial; -fx-font-size: 8; -fx-font-weight: bold; -fx-text-fill: #713249;" text="Etiquetas" />
                         <TextField fx:id="txtEtiqueta" prefHeight="29.0" promptText="Escribe las etiquetas del producto" style="-fx-background-color: #fff8f1; -fx-background-radius: 4; -fx-border-color: #f1d5ca; -fx-border-radius: 4; -fx-padding: 6 8; -fx-font-family: Arial; -fx-font-size: 8;" />
-                        <ScrollPane hbarPolicy="AS_NEEDED" vbarPolicy="NEVER"
-                                    prefHeight="32.0" fitToHeight="true"
-                                    style="-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;">
-                            <HBox fx:id="contenedorEtiquetas" spacing="6.0" alignment="CENTER_LEFT"/>
+                        <ScrollPane fitToHeight="true" hbarPolicy="AS_NEEDED" prefHeight="32.0" style="-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;" vbarPolicy="NEVER">
+                            <HBox fx:id="contenedorEtiquetas" alignment="CENTER_LEFT" spacing="6.0" />
                         </ScrollPane>
                         <Label style="-fx-font-family: Arial; -fx-font-size: 7; -fx-text-fill: #9b717b;" text="Separa las etiquetas con comas." />
                     </VBox>
-                    <Button fx:id="btnAgregarEt" onAction="#agregarEtiqueta" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #f3469a; -fx-background-radius: 5; -fx-border-radius: 5; -fx-text-fill: white; -fx-font-family: Arial; -fx-font-size: 8; -fx-cursor: hand;" text="Agregar" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                    <Button fx:id="btnAgregarEt" onAction="#agregarEtiqueta" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #f3469a; -fx-background-radius: 5; -fx-border-radius: 5; -fx-text-fill: white; -fx-font-family: Arial; -fx-font-size: 8; -fx-cursor: hand;" text="Agregar" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <font>
+                     <Font size="24.0" />
+                  </font></Button>
                     <rowConstraints>
                         <RowConstraints />
                         <RowConstraints />

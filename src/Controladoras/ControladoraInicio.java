@@ -188,7 +188,7 @@ public class ControladoraInicio {
     if (correo.equalsIgnoreCase(correoAdmin)) {
         if (clave.equals(contraseñaAdmin)) {
             mostrarMensaje("Bienvenida", "Inicio de sesion como administradora.", Alert.AlertType.INFORMATION);
-            abrirPantalla("Admin.fxml", event);
+            abrirPantalla("vista/vistaAdmin","Ventana.fxml", event);
         } else {
             mostrarMensaje("Contraseña incorrecta", "La contraseña del administrador es incorrecta.", Alert.AlertType.ERROR);
         }
@@ -256,12 +256,12 @@ public class ControladoraInicio {
     
     //abrir pantalla usuario esta de más
 
-    private void abrirPantalla(String archivo, ActionEvent event) {
+    private void abrirPantalla(String paquete,String archivo, ActionEvent event) {
 
         try {
 
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/vista/" + archivo)
+                    getClass().getResource("/"+paquete+"/" + archivo)
             );
 
             Parent root = loader.load();
