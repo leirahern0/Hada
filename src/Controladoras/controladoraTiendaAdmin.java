@@ -5,10 +5,25 @@
  */
 package Controladoras;
 
+import javafx.fxml.FXML;
+
 /**
  *
  * @author Usuario
  */
 public class controladoraTiendaAdmin {
+    
+    
+    @FXML void initialize (){
+        
+    }
+    
+    @FXML void cargarProductos (){
+        
+    }
+    
+    @FXML Hbox crearRecuadroProducto (){
+        
+    }
     
 }

@@ -1,11 +1,183 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1">
-    
-</AnchorPane>
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #fff4e9;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.ControladoraUsuario">
+   <center>
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+         <content>
+            <StackPane>
+               <children>
+                  <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="900.0" prefWidth="900.0">
+                     <children>
+                        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="54.0" prefWidth="900.0" style="-fx-border-color: #C5C5C5; -fx-background-color: #fff4e9;">
+                           <children>
+                              <ImageView fitHeight="70.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../imagenes/LogoHada.png" />
+                                 </image>
+                              </ImageView>
+                              <Region prefHeight="70.0" prefWidth="47.0" style="-fx-background-color: #fff4e9;" />
+                              <HBox prefHeight="60.0" prefWidth="400.0">
+                                 <children>
+                                    <TextField prefHeight="30.0" prefWidth="400.0" promptText="Buscar productos" style="-fx-border-color: #FF4F9A; -fx-background-color: #FFF0E1; -fx-border-radius: 30;">
+                                       <HBox.margin>
+                                          <Insets top="20.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" style="-fx-background-color: #FFC6AD; -fx-background-radius: 50; -fx-border-color: #FFC6AD; -fx-border-radius: 50; -fx-border-width: 1;">
+                                 <HBox.margin>
+                                    <Insets left="5.0" top="20.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../imagenes/search.png" />
+                                       </image>
+                                       <effect>
+                                          <ColorAdjust />
+                                       </effect>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Region prefHeight="70.0" prefWidth="76.0" />
+                              <Button mnemonicParsing="false" style="-fx-background-color: transparent;">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../imagenes/heart.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets top="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button layoutX="723.0" layoutY="31.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../imagenes/circle-user.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets top="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button layoutX="759.0" layoutY="31.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../imagenes/shopping-cart.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets top="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #FF806D;">
+                           <children>
+                              <ImageView fitHeight="234.0" fitWidth="726.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../imagenes/Banner.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="100.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="190.0" prefWidth="900.0" spacing="80.0">
+                           <children>
+                              <AnchorPane fx:id="contenedorVistas" prefHeight="376.0" prefWidth="900.0">
+                                 <children>
+                                    <AnchorPane prefHeight="378.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <ScrollPane prefHeight="376.0" prefWidth="900.0">
+                                            <content>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                                            </content>
+                                          </ScrollPane>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="378.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <AnchorPane prefHeight="378.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <AnchorPane prefHeight="378.0" prefWidth="900.0" style="-fx-background-color: #fff4e9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Label layoutX="335.0" layoutY="23.0" style="-fx-font-family: georgia; -fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #8F294D;" text="Explora nuestros productos" />
+                                          <Line endX="100.0" layoutX="675.0" layoutY="41.0" startX="-100.0" stroke="#8f294d" />
+                                          <Line endX="100.0" layoutX="224.0" layoutY="42.0" startX="-100.0" stroke="#8f294d" />
+                                          <Button layoutX="98.0" layoutY="80.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;">
+                                             <graphic>
+                                                <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../imagenes/Labios.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button layoutX="300.0" layoutY="80.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;">
+                                             <graphic>
+                                                <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../imagenes/Rostro.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button layoutX="530.0" layoutY="80.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;">
+                                             <graphic>
+                                                <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../imagenes/Ojos.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button layoutX="734.0" layoutY="80.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;">
+                                             <graphic>
+                                                <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../imagenes/Brochas.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Label layoutX="116.0" layoutY="156.0" style="-fx-text-fill: #8f294d; -fx-font-weight: bold; -fx-font-size: 12; -fx-font-family: arial;" text="Labios" />
+                                          <Label layoutX="320.0" layoutY="156.0" style="-fx-text-fill: #8f294d; -fx-font-weight: bold; -fx-font-size: 12; -fx-font-family: arial;" text="Rostro" />
+                                          <Label layoutX="556.0" layoutY="156.0" style="-fx-text-fill: #8f294d; -fx-font-weight: bold; -fx-font-size: 12; -fx-font-family: arial;" text="Ojos" />
+                                          <Label layoutX="720.0" layoutY="156.0" style="-fx-text-fill: #8f294d; -fx-font-weight: bold; -fx-font-size: 12; -fx-font-family: arial;" text="Brochas y accesorios" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </StackPane>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>
