@@ -1,14 +1,12 @@
 package Controladoras;
 
-import controladorUsuarios.controladorUsuarios;
-import modeloPersonas.Usuario;
-
-import java.io.IOException;
-import java.util.regex.Pattern;
 import datos.UsuarioDAO;
 import modeloPersonas.Usuario;
-import modeloPersonas.Persona;
-
+import modeloPersonas.Administrador;
+import controladorUsuarios.controladorUsuarios;
+import java.io.IOException;
+import java.util.regex.Pattern;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,8 +19,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import Controladoras.ControladoraUsuario;
-import javafx.application.Platform;
-import modeloPersonas.Administrador;
 
 public class ControladoraInicio {
 
@@ -49,10 +45,11 @@ public class ControladoraInicio {
 
     @FXML
     private AnchorPane apRegistro;
-    
-    private final UsuarioDAO UsuarioDAO = new UsuarioDAO();
-    
-    private final controladorUsuarios gestionUsuarios = new controladorUsuarios();
+
+    private final UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+    private final controladorUsuarios gestionUsuarios
+            = new controladorUsuarios();
 
     @FXML
     public void initialize() {
@@ -62,6 +59,7 @@ public class ControladoraInicio {
 
         apRegistro.setVisible(false);
         apRegistro.setManaged(false);
+
         Platform.runLater(() -> txtCorreoLogin.requestFocus());
     }
 
@@ -92,16 +90,15 @@ public class ControladoraInicio {
         String correo = txtCorreoRegistro.getText().trim();
         String clave = pwdClaveRegistro.getText();
         String confirmarClave = pwdConfirmarClaveR.getText();
-        
 
-        if (nombre.isEmpty() || correo.isEmpty() || clave.isEmpty() || confirmarClave.isEmpty()) {
+        if (nombre.isEmpty() || correo.isEmpty()
+                || clave.isEmpty() || confirmarClave.isEmpty()) {
 
             mostrarMensaje(
                     "Campos incompletos",
                     "Debes completar todos los campos.",
                     Alert.AlertType.WARNING
             );
-
             return;
         }
 
@@ -110,11 +107,10 @@ public class ControladoraInicio {
                 correo)) {
 
             mostrarMensaje(
-                    "Correo invalido",
-                    "Ingresa una direccion de correo valida.",
+                    "Correo inválido",
+                    "Ingresa una dirección de correo válida.",
                     Alert.AlertType.WARNING
             );
-
             return;
         }
 
@@ -125,7 +121,6 @@ public class ControladoraInicio {
                     "Las contraseñas no coinciden.",
                     Alert.AlertType.WARNING
             );
-
             return;
         }
 
@@ -146,7 +141,6 @@ public class ControladoraInicio {
                     "Ya existe una cuenta con este correo.",
                     Alert.AlertType.WARNING
             );
-
             return;
         }
 
@@ -169,118 +163,143 @@ public class ControladoraInicio {
     @FXML
     private void iniciarSesion(ActionEvent event) {
 
-    String correo = txtCorreoLogin.getText().trim();
-    String clave = pwdClaveLogin.getText().trim();
-    Administrador admin = new Administrador();
-    String correoAdmin = admin.getCorreo();
-    String contraseñaAdmin = admin.getContraseña();
+        String correo = txtCorreoLogin.getText().trim();
+        String clave = pwdClaveLogin.getText();
 
-    if (correo.isEmpty() || clave.isEmpty()) {
-        mostrarMensaje("Campos incompletos", "Debes ingresar tu correo y contraseña.", Alert.AlertType.WARNING);
-        return;
-    }
+        if (correo.isEmpty() || clave.isEmpty()) {
 
-    if (!Pattern.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$", correo)) {
-        mostrarMensaje("Correo invalido", "Ingresa un correo electronico valido.", Alert.AlertType.WARNING);
-        return;
-    }
-
-    if (correo.equalsIgnoreCase(correoAdmin)) {
-        if (clave.equals(contraseñaAdmin)) {
-            mostrarMensaje("Bienvenida", "Inicio de sesion como administradora.", Alert.AlertType.INFORMATION);
-            abrirPantalla("vista/vistaAdmin","Ventana.fxml", event);
-        } else {
-            mostrarMensaje("Contraseña incorrecta", "La contraseña del administrador es incorrecta.", Alert.AlertType.ERROR);
-        }
-        return;
-    }
-
-
-    try {
-        Usuario usuario = UsuarioDAO.buscarPorCorreo(correo);
-
-        if (usuario == null) {
-            mostrarMensaje("Usuario no registrado", "No existe una cuenta con este correo.", Alert.AlertType.WARNING);
+            mostrarMensaje(
+                    "Campos incompletos",
+                    "Debes ingresar tu correo y contraseña.",
+                    Alert.AlertType.WARNING
+            );
             return;
         }
 
-        if (!usuario.getContraseña().equals(clave)) {
-            mostrarMensaje("Contraseña incorrecta", "La contraseña ingresada no es correcta.", Alert.AlertType.ERROR);
+        // VALIDAR FORMATO DEL CORREO
+        if (!Pattern.matches(
+                "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$",
+                correo)) {
+
+            mostrarMensaje(
+                    "Correo inválido",
+                    "Ingresa un correo electrónico válido.",
+                    Alert.AlertType.WARNING
+            );
             return;
         }
 
-        mostrarMensaje("Bienvenida a Hada Beauty", "Has iniciado sesion correctamente.", Alert.AlertType.INFORMATION);
-        abrirPantallaUsuario(usuario, event);
+        // COMPROBAR SI ES ADMINISTRADOR
+        Administrador admin = new Administrador();
 
-    } catch (Exception e) {
-        // Si el archivo no existe o está dañado, caes aquí
-        mostrarMensaje("Error", "No se pudo leer los usuarios. Intenta de nuevo.", Alert.AlertType.ERROR);
-        e.printStackTrace();
-    }
-    }
-    
-    
+        if (correo.equalsIgnoreCase(admin.getCorreo())) {
 
-    private void abrirPantallaUsuario(Usuario usuario, ActionEvent event) {
+            if (clave.equals(admin.getContraseña())) {
+
+                mostrarMensaje(
+                        "Bienvenida",
+                        "Inicio de sesión como administradora.",
+                        Alert.AlertType.INFORMATION
+                );
+
+                abrirPantalla(
+                        "/vista/vistaAdmin/Ventana.fxml",
+                        event, null
+                );
+
+            } else {
+
+                mostrarMensaje(
+                        "Contraseña incorrecta",
+                        "La contraseña del administrador es incorrecta.",
+                        Alert.AlertType.ERROR
+                );
+            }
+
+            return;
+        }
 
         try {
 
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/vista/Usuarios.fxml")
+            Usuario usuario = usuarioDAO.buscarPorCorreo(correo);
+
+            if (usuario == null) {
+
+                mostrarMensaje(
+                        "Usuario no registrado",
+                        "No existe una cuenta con este correo. Debes registrarte.",
+                        Alert.AlertType.WARNING
+                );
+                return;
+            }
+
+            if (!usuario.getContraseña().equals(clave)) {
+
+                mostrarMensaje(
+                        "Contraseña incorrecta",
+                        "La contraseña ingresada no es correcta.",
+                        Alert.AlertType.ERROR
+                );
+                return;
+            }
+
+            mostrarMensaje(
+                    "Bienvenida a Hada Beauty",
+                    "Has iniciado sesión correctamente.",
+                    Alert.AlertType.INFORMATION
             );
 
-            Parent root = loader.load();
+            abrirPantalla("/vista/vistaUsuarios/Usuarios.fxml", event, usuario);
 
-            ControladoraUsuario controlador = loader.getController();
-
-            controlador.setUsuario(usuario);
-
-            Node componente = (Node) event.getSource();
-
-            Stage escenario = (Stage) componente.getScene().getWindow();
-
-            escenario.setScene(new Scene(root));
-            escenario.show();
-
-        } catch (IOException | NullPointerException e) {
+        } catch (Exception e) {
 
             e.printStackTrace();
 
             mostrarMensaje(
                     "Error",
-                    "No se pudo abrir la ventana de usuarios.",
+                    "No se pudo consultar la información de los usuarios.",
                     Alert.AlertType.ERROR
             );
         }
     }
-    
-    //abrir pantalla usuario esta de más
 
-    private void abrirPantalla(String paquete,String archivo, ActionEvent event) {
+    private void abrirPantalla(
+            String rutaFXML,
+            ActionEvent event,
+            Usuario usuario) {
 
         try {
 
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/"+paquete+"/" + archivo)
+                    getClass().getResource(rutaFXML)
             );
 
             Parent root = loader.load();
 
+            // Enviar el usuario a su ventana
+            if (usuario != null) {
+
+                ControladoraUsuario controlador = loader.getController();
+
+                controlador.setUsuario(usuario);
+            }
+
+            // Obtener la ventana actual
             Node componente = (Node) event.getSource();
 
-            Stage escenario
-                    = (Stage) componente.getScene().getWindow();
+            Stage escenario = (Stage) componente.getScene().getWindow();
 
+            // Cambiar la vista
             escenario.setScene(new Scene(root));
             escenario.show();
 
-        } catch (IOException | NullPointerException e) {
+        } catch (Exception e) {
 
             e.printStackTrace();
 
             mostrarMensaje(
                     "Error",
-                    "No se pudo abrir la ventana: " + archivo,
+                    "No se pudo abrir la ventana. Revisa la consola para conocer el motivo.",
                     Alert.AlertType.ERROR
             );
         }

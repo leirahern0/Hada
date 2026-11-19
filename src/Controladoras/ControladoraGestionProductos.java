@@ -92,6 +92,7 @@ public class ControladoraGestionProductos {
         }
     }
 
+//EL MÉTODO RECORRE LA LISTA DE LOS PRODUCTOS Y CONSTRUYE UNA FILA VISUAL PARA CADA OBJETO TIPO PRODUCTO.  
     private void mostrarProductos(List<Producto> productos) {
 
         contenedorProductos.getChildren().clear();
