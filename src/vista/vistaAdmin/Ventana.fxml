@@ -12,7 +12,7 @@
 
 <BorderPane prefHeight="720.0" prefWidth="1080.0"
             style="-fx-background-color: #fff4e9;"
-            stylesheets="@Admin.css"
+            stylesheets="@../Admin.css"
             xmlns="http://javafx.com/javafx/25"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="Controladoras.ControladoraVentana">
@@ -39,6 +39,7 @@
                 <Button text="🛒  Pedidos" onAction="#irPedidos" maxWidth="Infinity" alignment="CENTER_LEFT" style="-fx-background-color: transparent; -fx-font-family: Arial; -fx-font-size: 12.0; -fx-text-fill: #8f294d; -fx-padding: 10 12; -fx-cursor: hand;"/>
                 <Button text="👥  Usuarios" onAction="#irUsuarios" maxWidth="Infinity" alignment="CENTER_LEFT" style="-fx-background-color: transparent; -fx-font-family: Arial; -fx-font-size: 12.0; -fx-text-fill: #8f294d; -fx-padding: 10 12; -fx-cursor: hand;"/>
                 <Button text="👤  Mi perfil" onAction="#irMiPerfil" maxWidth="Infinity" alignment="CENTER_LEFT" style="-fx-background-color: transparent; -fx-font-family: Arial; -fx-font-size: 12.0; -fx-text-fill: #8f294d; -fx-padding: 10 12; -fx-cursor: hand;"/>
+                <Button text="🏪  Ver tienda" onAction="#verTienda" maxWidth="Infinity" alignment="CENTER_LEFT" style="-fx-background-color: transparent; -fx-font-family: Arial; -fx-font-size: 12.0; -fx-text-fill: #8f294d; -fx-padding: 10 12; -fx-cursor: hand;"/>
                 <Region VBox.vgrow="ALWAYS"/>
                 <Separator style="-fx-background-color: #ffc6ad;"/>
                 <HBox alignment="CENTER_LEFT" spacing="8.0" style="-fx-background-color: #fff4e9; -fx-background-radius: 10; -fx-padding: 8;">

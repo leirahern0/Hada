@@ -70,18 +70,25 @@ public class ControladoraVentana {
     }
 
     public void mostrarProductos() {
-        Object controlador = cargarVista("GestionProductos.fxml");
+        Object controlador = cargarVista("vistaAdmin/GestionProductos.fxml");
         if (controlador instanceof ControladoraGestionProductos gestion) {
             gestion.setAdmin(this);
         }
     }
 
     public void mostrarNuevoProducto() {
-        Object controlador = cargarVista("AgregarProducto.fxml");
+        Object controlador = cargarVista("vistaAdmin/AgregarProducto.fxml");
         if (controlador instanceof ControladoraNuevoProducto nuevo) {
             nuevo.setAdmin(this);
         }
     }
+    
+    public void mostrarTienda() {
+    Object controlador = cargarVista("vistaAdmin/tiendaAdmin.fxml");
+    if (controlador instanceof controladoraTiendaAdmin tienda) {
+        tienda.setAdmin(this);
+    }
+}
 
     @FXML
     private void irProductos() {
@@ -115,7 +122,7 @@ public class ControladoraVentana {
 
     @FXML
     private void verTienda() {
-
+    mostrarTienda();
     }
 
     @FXML
