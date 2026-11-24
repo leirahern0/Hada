@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<!-- PLANTILLA COMPACTA PARA VENTANA 900x700 - SOLO CENTER -->
+
+<VBox maxHeight="540.0" maxWidth="540.0" prefHeight="549.0" prefWidth="860.0" spacing="10.0" style="-fx-background-color: #FFF4E9;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.ControladoraVistaProducto">
+   <padding><Insets bottom="12.0" left="20.0" right="20.0" top="12.0" /></padding>
+   <children>
+
+      <!-- MIGAS -->
+      <HBox spacing="6.0">
+         <children>
+            <Label fx:id="lblRutaProducto" style="-fx-font-weight: bold;" text="&lt; Volver" textFill="#F93A8A">
+               <font><Font size="11.0" /></font>
+            </Label>
+         </children>
+      </HBox>
+
+      <!-- PRODUCTO -->
+      <GridPane hgap="20.0">
+         <columnConstraints>
+            <ColumnConstraints percentWidth="48.0" />
+            <ColumnConstraints percentWidth="52.0" />
+         </columnConstraints>
+         <children>
+
+            <!-- IZQUIERDA -->
+            <VBox spacing="10.0" GridPane.columnIndex="0">
+               <children>
+                  <HBox alignment="CENTER" style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #F2C4C4; -fx-border-radius: 14; -fx-padding: 12;">
+                     <children>
+                        <ImageView id="imgvImagenGrande" fx:id="imgProducto" fitHeight="290.0" fitWidth="330.0" preserveRatio="true" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" spacing="10.0">
+                     <children>
+                        <ImageView id="imgvImagenPequeña1" fx:id="imgMini1" fitHeight="80.0" fitWidth="100.0" preserveRatio="true" />
+                        <ImageView id="imgvImagenPequeña2" fx:id="imgMini2" fitHeight="80.0" fitWidth="100.0" preserveRatio="true" />
+                        <ImageView id="imgvImagenPequeña3" fx:id="imgMini3" fitHeight="80.0" fitWidth="100.0" preserveRatio="true" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+
+            <!-- DERECHA -->
+            <VBox spacing="9.0" GridPane.columnIndex="1">
+               <children>
+                  <Label id="lblCategoriaGrande" fx:id="lblCategoria" style="-fx-font-weight: bold;" text="Rostro" textFill="#F93A8A">
+                     <font><Font size="11.0" /></font>
+                  </Label>
+                  <Label id="lblNombre" fx:id="lblNombre" text="Base de maquillaje Fit me" textFill="#6B1A3A" wrapText="true">
+                     <font><Font name="System Bold" size="22.0" /></font>
+                  </Label>
+
+                  <HBox alignment="CENTER_LEFT" spacing="8.0">
+                     <children>
+                        <Label id="lblPrecio" fx:id="lblPrecio" text="\$42.900" textFill="#F93A8A">
+                           <font><Font name="System Bold" size="22.0" /></font>
+                        </Label>
+                     </children>
+                  </HBox>
+
+                  <!-- CANTIDAD -->
+                  <HBox alignment="CENTER" maxWidth="280.0" spacing="8.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: #F2C4C4; -fx-border-radius: 20; -fx-padding: 5 12 5 12;">
+                     <children>
+                        <Label style="-fx-font-weight: bold;" text="Cantidad" textFill="#6B1A3A">
+                           <font><Font size="12.0" /></font>
+                        </Label>
+                        <Button fx:id="btnMenos" onAction="#restarCantidad" style="-fx-background-color: transparent; -fx-text-fill: #6B1A3A; -fx-font-weight: bold; -fx-font-size: 14;" text="−" />
+                        <Label id="lblcantidad" fx:id="lblCantidad" style="-fx-font-weight: bold;" text="1" textFill="#6B1A3A">
+                           <font><Font size="13.0" /></font>
+                        </Label>
+                        <Button fx:id="btnMas" onAction="#sumarCantidad" style="-fx-background-color: transparent; -fx-text-fill: #6B1A3A; -fx-font-weight: bold; -fx-font-size: 14;" text="+" />
+                     </children>
+                  </HBox>
+
+                  <Button fx:id="btnCarrito" maxWidth="Infinity" onAction="#agregarCarrito" prefHeight="38.0" style="-fx-background-color: #F93A8A; -fx-text-fill: white; -fx-background-radius: 20; -fx-font-weight: bold; -fx-font-size: 13;" text="Agregar al carrito 🛒" />
+
+                  <!-- 3 TARJETAS -->
+                  <HBox spacing="8.0">
+                     <children>
+                        <VBox prefWidth="128.0" spacing="2.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #F2C4C4; -fx-border-radius: 10; -fx-padding: 7;">
+                           <children>
+                              <Label text="Marca" textFill="#6B5A53"><font><Font size="10.0" /></font></Label>
+                              <Label id="lblMarca" fx:id="lblMarca" style="-fx-font-weight: bold;" text="Hada Beauty" textFill="#6B1A3A"><font><Font size="11.0" /></font></Label>
+                           </children>
+                        </VBox>
+                        <VBox prefWidth="128.0" spacing="2.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #F2C4C4; -fx-border-radius: 10; -fx-padding: 7;">
+                           <children>
+                              <Label text="Categoría" textFill="#6B5A53"><font><Font size="10.0" /></font></Label>
+                              <Label id="lblCategoria" fx:id="lblCategoriaCard" style="-fx-font-weight: bold;" text="Rostro" textFill="#6B1A3A"><font><Font size="11.0" /></font></Label>
+                           </children>
+                        </VBox>
+                        <VBox prefWidth="128.0" spacing="2.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #F2C4C4; -fx-border-radius: 10; -fx-padding: 7;">
+                           <children>
+                              <Label text="Estado" textFill="#6B5A53"><font><Font size="10.0" /></font></Label>
+                              <Label fx:id="lblEstado" style="-fx-font-weight: bold;" styleClass="lblEstadoStock" text="En stock" textFill="#6B1A3A"><font><Font size="11.0" /></font></Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+
+                  <!-- DESCRIPCION -->
+                  <VBox spacing="5.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #F2C4C4; -fx-border-radius: 10; -fx-padding: 10;">
+                     <children>
+                        <Label style="-fx-font-weight: bold;" text="Descripción" textFill="#6B1A3A">
+                           <font><Font size="13.0" /></font>
+                        </Label>
+                        <Label id="lblDescripcion" fx:id="lblDescripcion" text="Esta base ofrece cobertura natural, un acabado suave y una fórmula ligera que se adapta a la piel. Ayuda a uniformizar el tono y a mantener un aspecto fresco todo el día." textFill="#6B5A53" wrapText="true">
+                           <font><Font size="11.0" /></font>
+                        </Label>
+                     </children>
+                  </VBox>
+
+               </children>
+            </VBox>
+         </children>
+         <rowConstraints>
+            <RowConstraints />
+         </rowConstraints>
+      </GridPane>
+   </children>
+</VBox>
