@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background: #fff4e9; -fx-background-color: #fff4e9; -fx-border-color: transparent;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.ControladoraMiPerfil">
+   <content>
+      <StackPane alignment="TOP_CENTER" style="-fx-background-color: #fff4e9;">
+         <children>
+            <HBox maxWidth="900.0" prefWidth="900.0" spacing="24.0">
+               <padding>
+                  <Insets bottom="28.0" left="24.0" right="24.0" top="24.0" />
+               </padding>
+               <children>
+
+                  <VBox alignment="TOP_CENTER" minWidth="230.0" prefWidth="230.0" maxWidth="230.0" spacing="14.0" style="-fx-background-color: #ffc6ad; -fx-background-radius: 16; -fx-padding: 18 16 18 16;">
+                     <children>
+                        <Button fx:id="btnVolverInicio" maxWidth="Infinity" mnemonicParsing="false" onAction="#volverInicio" style="-fx-background-color: #ff4f9a; -fx-background-radius: 20; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12; -fx-padding: 8 16 8 16; -fx-cursor: hand;" text="Volver al inicio" />
+
+                        <StackPane style="-fx-padding: 14 0 0 0;">
+                           <children>
+                              <Circle fill="#8f294d" radius="46.0" stroke="#fff4e9" strokeWidth="4.0" />
+                              <Label fx:id="lblIniciales" style="-fx-font-family: Georgia; -fx-font-size: 30; -fx-text-fill: white;" text="HB" />
+                           </children>
+                        </StackPane>
+
+                        <VBox alignment="TOP_CENTER" spacing="2.0">
+                           <children>
+                              <Label fx:id="lblNombreLateral" style="-fx-font-family: Georgia; -fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Nombre del usuario" textAlignment="CENTER" wrapText="true" />
+                              <Label fx:id="lblCorreoLateral" style="-fx-font-size: 10; -fx-text-fill: #8f294d;" text="correo@ejemplo.com" textAlignment="CENTER" wrapText="true" />
+                           </children>
+                        </VBox>
+
+                        <!-- Pestaña activa -->
+                        <HBox alignment="CENTER_LEFT" maxWidth="Infinity" spacing="10.0" style="-fx-background-color: #f9b4a8; -fx-background-radius: 12; -fx-border-color: #ff806d; -fx-border-radius: 12; -fx-padding: 10 12 10 12;">
+                           <children>
+                              <StackPane minHeight="30.0" minWidth="30.0" style="-fx-background-color: #ffdec9; -fx-background-radius: 20;">
+                                 <children>
+                                    <Label style="-fx-font-size: 14; -fx-text-fill: #8f294d;" text="👤" />
+                                 </children>
+                              </StackPane>
+                              <Label style="-fx-font-family: Georgia; -fx-font-size: 14; -fx-text-fill: #8f294d;" text="Mi perfil" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+
+                  <VBox spacing="16.0" HBox.hgrow="ALWAYS">
+                     <children>
+
+                        <VBox spacing="2.0">
+                           <children>
+                              <Label style="-fx-font-family: Georgia; -fx-font-size: 34; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Mi perfil" />
+                              <Label style="-fx-font-size: 12; -fx-text-fill: #8f294d;" text="Gestiona tu información y disfruta de una mejor experiencia de compra." />
+                           </children>
+                        </VBox>
+
+                        <VBox style="-fx-background-color: #fae3de; -fx-background-radius: 14; -fx-border-color: #f2d9df; -fx-border-radius: 14;">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-background-color: #ffc6ad; -fx-background-radius: 14 14 0 0; -fx-padding: 12 16 12 16;">
+                                 <children>
+                                    <StackPane minHeight="34.0" minWidth="34.0" style="-fx-background-color: #ffdec9; -fx-background-radius: 20;">
+                                       <children>
+                                          <Label style="-fx-font-size: 15; -fx-text-fill: #ff4f9a;" text="👤" />
+                                       </children>
+                                    </StackPane>
+                                    <Label style="-fx-font-family: Georgia; -fx-font-size: 17; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Información personal" />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Button fx:id="btnEditarPerfil" mnemonicParsing="false" onAction="#editarPerfil" style="-fx-background-color: #f3e3e6; -fx-background-radius: 14; -fx-text-fill: #8f294d; -fx-font-size: 11; -fx-padding: 5 16 5 16; -fx-cursor: hand;" text="✎  Editar" />
+                                 </children>
+                              </HBox>
+
+                              <HBox alignment="CENTER_LEFT" spacing="14.0" style="-fx-border-color: transparent transparent #d9b8b0 transparent; -fx-padding: 12 16 12 16;">
+                                 <children>
+                                    <Label minWidth="26.0" style="-fx-font-size: 16; -fx-text-fill: #ff4f9a;" text="👤" />
+                                    <VBox spacing="2.0">
+                                       <children>
+                                          <Label style="-fx-font-size: 10; -fx-text-fill: #9b717b;" text="Nombre completo" />
+                                          <Label fx:id="lblNombre" style="-fx-font-size: 13; -fx-text-fill: #8f294d; -fx-font-weight: bold;" text="—" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+
+                              <HBox alignment="CENTER_LEFT" spacing="14.0" style="-fx-border-color: transparent transparent #d9b8b0 transparent; -fx-padding: 12 16 12 16;">
+                                 <children>
+                                    <Label minWidth="26.0" style="-fx-font-size: 16; -fx-text-fill: #ff4f9a;" text="✉" />
+                                    <VBox spacing="2.0">
+                                       <children>
+                                          <Label style="-fx-font-size: 10; -fx-text-fill: #9b717b;" text="Correo electrónico" />
+                                          <Label fx:id="lblCorreo" style="-fx-font-size: 13; -fx-text-fill: #8f294d; -fx-font-weight: bold;" text="—" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+
+                              <HBox alignment="CENTER_LEFT" spacing="14.0" style="-fx-border-color: transparent transparent #d9b8b0 transparent; -fx-padding: 12 16 12 16;">
+                                 <children>
+                                    <Label minWidth="26.0" style="-fx-font-size: 16; -fx-text-fill: #ff4f9a;" text="📞" />
+                                    <VBox spacing="2.0">
+                                       <children>
+                                          <Label style="-fx-font-size: 10; -fx-text-fill: #9b717b;" text="Teléfono" />
+                                          <Label fx:id="lblTelefono" style="-fx-font-size: 13; -fx-text-fill: #8f294d; -fx-font-weight: bold;" text="—" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+
+                              <HBox alignment="CENTER_LEFT" spacing="14.0" style="-fx-padding: 12 16 12 16;">
+                                 <children>
+                                    <Label minWidth="26.0" style="-fx-font-size: 16; -fx-text-fill: #ff4f9a;" text="📍" />
+                                    <VBox spacing="2.0">
+                                       <children>
+                                          <Label style="-fx-font-size: 10; -fx-text-fill: #9b717b;" text="Dirección" />
+                                          <Label fx:id="lblDireccion" style="-fx-font-size: 13; -fx-text-fill: #8f294d; -fx-font-weight: bold;" text="—" wrapText="true" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+
+                        <HBox alignment="BOTTOM_LEFT" spacing="16.0">
+                           <children>
+                              <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" onMouseClicked="#irMisPedidos" spacing="12.0" style="-fx-background-color: #ffc6ad; -fx-background-radius: 14; -fx-padding: 12 16 12 16; -fx-cursor: hand;">
+                                       <children>
+                                          <StackPane minHeight="40.0" minWidth="40.0" style="-fx-background-color: #ff806d; -fx-background-radius: 20;">
+                                             <children>
+                                                <Label style="-fx-font-size: 18; -fx-text-fill: white;" text="🛍" />
+                                             </children>
+                                          </StackPane>
+                                          <VBox spacing="2.0">
+                                             <children>
+                                                <Label style="-fx-font-family: Georgia; -fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Mis pedidos" />
+                                                <Label style="-fx-font-size: 11; -fx-text-fill: #8f294d;" text="Revisa el estado de tus compras." />
+                                             </children>
+                                          </VBox>
+                                          <Region HBox.hgrow="ALWAYS" />
+                                          <Label style="-fx-font-size: 20; -fx-text-fill: #ff4f9a;" text="›" />
+                                       </children>
+                                    </HBox>
+
+                                    <HBox alignment="CENTER_LEFT" onMouseClicked="#irFavoritos" spacing="12.0" style="-fx-background-color: #ffc6ad; -fx-background-radius: 14; -fx-padding: 12 16 12 16; -fx-cursor: hand;">
+                                       <children>
+                                          <StackPane minHeight="40.0" minWidth="40.0" style="-fx-background-color: #ff806d; -fx-background-radius: 20;">
+                                             <children>
+                                                <Label style="-fx-font-size: 18; -fx-text-fill: white;" text="♡" />
+                                             </children>
+                                          </StackPane>
+                                          <VBox spacing="2.0">
+                                             <children>
+                                                <Label style="-fx-font-family: Georgia; -fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Mis favoritos" />
+                                                <Label style="-fx-font-size: 11; -fx-text-fill: #8f294d;" text="Aquí encontrarás tus productos guardados." />
+                                             </children>
+                                          </VBox>
+                                          <Region HBox.hgrow="ALWAYS" />
+                                          <Label style="-fx-font-size: 20; -fx-text-fill: #ff4f9a;" text="›" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+
+                              <Button fx:id="btnCerrarSesion" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="40.0" style="-fx-background-color: #ff4f9a; -fx-background-radius: 20; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12; -fx-padding: 8 26 8 26; -fx-cursor: hand;" text="Cerrar sesión  ↪" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </StackPane>
+   </content>
+</ScrollPane>

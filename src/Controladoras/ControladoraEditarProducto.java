@@ -1,28 +1,27 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controladoras;
 
 import javafx.fxml.FXML;
 
 public class ControladoraEditarProducto {
-    
-    @FXML void volver (){
-        
+
+    @FXML
+    void volver() {
+
     }
-    
-    @FXML void cambiarFotoVistaImagen (){
-        
+
+    @FXML
+    void cambiarFotoVistaImagen() {
+
     }
-    
-    @FXML void etiquetas (){
-        
+
+    @FXML
+    void etiquetas() {
+
     }
-    
-    @FXML void guardarCambios (){
-        
+
+    @FXML
+    void guardarCambios() {
+
     }
-    
-    
+
 }

@@ -1,4 +1,3 @@
-
 package modeloProductos;
 
 import java.time.LocalDateTime;
@@ -23,7 +22,7 @@ public class Pedido {
     public Pedido() {
         this.productos = new ArrayList<>();
         this.fecha = LocalDateTime.now();
-        this.estadoPago = "Pendiente";
+        this.estadoPago = "En espera de pago";
         this.estadoPreparacion = "En espera de empaque";
     }
 
@@ -35,7 +34,7 @@ public class Pedido {
         this.fecha = LocalDateTime.now();
         this.total = total;
         this.metodoPago = metodoPago;
-        this.estadoPago = "Pagado";
+        this.estadoPago = "En espera de pago";
         this.estadoPreparacion = "En espera de empaque";
     }
 

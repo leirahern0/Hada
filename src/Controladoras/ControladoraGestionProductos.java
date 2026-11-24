@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controladoras;
 
 import javafx.geometry.Insets;
@@ -46,7 +42,7 @@ public class ControladoraGestionProductos {
         seleccionarFiltro(btnFiltroTodos);
     }
 
-//PERMITE CAMBIAR DE COLOR LOS BOTONES DE FILTRO DEPENDIENDO DE CUAL ESTÁ SELECCIONADO
+    // Permite cambiar de color los botones de filtro dependiendo de cual sea seleccionado
     private void seleccionarFiltro(Button botonSeleccionado) {
 
         Button[] botones = {
@@ -80,7 +76,7 @@ public class ControladoraGestionProductos {
         }
     }
 
-    // ESTE MÉTODO LIMPIA LAS FILAS ANTERIORES PARA EVITAR DUPLICADOS, RECORRE LOS PRODUCTOS QUE RECUUPERA DEL ARCHIVO TXT, COLOCA LA INFORMACIÓN DEL PRODUCTO POR COLUMNA Y ACTUALIZA EL CONTADOR. <3
+    // Limpia las filas anteriores para evitar duplicados, recorre los productos que recupera del archivo txt, coloca la informacion del producto por columna y actualiza el contador
     private void cargarProductos() {
 
         try {
@@ -92,7 +88,7 @@ public class ControladoraGestionProductos {
         }
     }
 
-//EL MÉTODO RECORRE LA LISTA DE LOS PRODUCTOS Y CONSTRUYE UNA FILA VISUAL PARA CADA OBJETO TIPO PRODUCTO.  
+    // Recorre la lista de los productos y construye una fila visual para cada objeto tipo producto
     private void mostrarProductos(List<Producto> productos) {
 
         contenedorProductos.getChildren().clear();
@@ -259,8 +255,8 @@ public class ControladoraGestionProductos {
     public void agregarProducto(String nombre, String descripcion, String categoria, String precio, String urlImagen) {
 
     }
-//PERMITE BUSCAR LOS PRODUCTOS POR NOMBRE, CÓDIGO 
 
+    // Permite buscar los productos por nombre, código
     @FXML
     public void buscarProducto(KeyEvent event) {
 
@@ -293,7 +289,7 @@ public class ControladoraGestionProductos {
         mostrarProductos(encontrados);
     }
 
-    //FALTA AGREGAR LOS BOTONES DE ACCIONES: EDITAR O ELIMINAR PRODUCTO DE LA TABLA 
+    // Falta agregar los botones de acciones: editar o eliminar producto de la tabla
     private void mostrarError(String mensaje) {
 
         javafx.scene.control.Alert alerta

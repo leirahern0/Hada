@@ -17,23 +17,146 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import modeloPersonas.Usuario;
 import javafx.fxml.FXML;
+import datos.CarritoDAO;
+import datos.FavoritosDAO;
+import modeloProductos.Carrito;
+import modeloProductos.Favoritos;
+import javafx.animation.PauseTransition;
+import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
+import javafx.scene.control.TextField;
 
-public class ControladoraUsuario {
+public class ControladoraUsuario implements ConUsuario {
 
     private Usuario usuarioActual;
 
+    @Override
     public void setUsuario(Usuario usuario) {
 
         this.usuarioActual = usuario;
 
+        try {
+            favoritos = favoritosDAO.cargar(usuario);
+            carrito = carritoDAO.cargar(usuario);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Redibuja las tarjetas para que los corazones salgan rellenos donde corresponda
+        if (listaProductos != null) {
+            if (Navegador.textoBusqueda != null) {
+                String t = Navegador.textoBusqueda;
+                Navegador.textoBusqueda = null;
+                txtBuscar.setText(t);
+                filtrarPorTexto(t);
+            } else {
+                mostrarProductos(listaProductos);
+            }
+        }
     }
 
-    private ProductoDAO productoDAO = new ProductoDAO();
+    @FXML
+    private void buscarProducto() {
+        filtrarPorTexto(txtBuscar.getText());
+    }
 
+    private void filtrarPorTexto(String texto) {
+        if (texto == null || texto.isBlank()) {
+            mostrarProductos(listaProductos);
+            return;
+        }
+        String t = texto.trim().toLowerCase();
+        List<Producto> resultado = new ArrayList<>();
+        for (Producto p : listaProductos) {
+            String todo = (p.getNombre() + " " + p.getMarca() + " " + p.getDescripcion() + " "
+                    + p.getCategoria() + " " + String.join(" ", p.getEtiquetas())).toLowerCase();
+            if (todo.contains(t)) {
+                resultado.add(p);
+            }
+        }
+        mostrarProductos(resultado);
+        if (resultado.isEmpty()) {
+            Navegador.alerta("Hada Beauty", "No encontramos productos con \"" + texto + "\".",
+                    Alert.AlertType.INFORMATION);
+        }
+    }
+
+    private final FavoritosDAO favoritosDAO = new FavoritosDAO();
+    private final CarritoDAO carritoDAO = new CarritoDAO();
+    private Favoritos favoritos = new Favoritos();
+    private Carrito carrito = new Carrito();
+    private ProductoDAO productoDAO = new ProductoDAO();
     private List<Producto> listaProductos;
+
+    private Button crearCorazon(Producto producto) {
+
+        Button corazon = new Button();
+        actualizarCorazon(corazon, favoritos.esFavorito(producto));
+        StackPane.setAlignment(corazon, Pos.TOP_RIGHT);
+
+        corazon.setOnAction(e -> {
+            if (usuarioActual == null) {
+                return;
+            }
+            boolean esFavorito = favoritos.corazonFavoritos(producto);
+            actualizarCorazon(corazon, esFavorito);
+            try {
+                favoritosDAO.guardar(usuarioActual, favoritos);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        return corazon;
+    }
+
+    private void actualizarCorazon(Button boton, boolean relleno) {
+        boton.setText(relleno ? "♥" : "♡");
+        boton.setStyle("-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 0 2 0 2;"
+                + "-fx-font-size: 22; -fx-text-fill: " + (relleno ? "#8f294d" : "#ff4f9a") + ";");
+    }
+
+    private Button crearBotonCarrito(Producto producto) {
+
+        Button boton = new Button("Agregar al carrito");
+        boton.setMaxWidth(Double.MAX_VALUE);
+        boton.setStyle("-fx-background-color: #8f294d; -fx-text-fill: white;"
+                + "-fx-background-radius: 20; -fx-font-size: 11; -fx-cursor: hand;");
+
+        boton.setOnAction(e -> {
+            if (usuarioActual == null) {
+                return;
+            }
+            if (producto.getStock() <= 0 || !producto.isDisponible()) {
+                Navegador.alerta("Producto agotado", "Este producto no está disponible.", Alert.AlertType.INFORMATION);
+                return;
+            }
+            if (carrito.cantidadProducto(producto) >= producto.getStock()) {
+                Navegador.alerta("Stock insuficiente",
+                        "Solo hay " + producto.getStock() + " unidades disponibles.", Alert.AlertType.INFORMATION);
+                return;
+            }
+
+            carrito.agregarUnidad(producto);
+            try {
+                carritoDAO.guardar(usuarioActual, carrito);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            boton.setText("✓ Agregado");
+            PauseTransition pausa = new PauseTransition(Duration.seconds(1.2));
+            pausa.setOnFinished(ev -> boton.setText("Agregar al carrito"));
+            pausa.play();
+        });
+
+        return boton;
+    }
 
     @FXML
     private FlowPane contenedorProductos;
+
+    @FXML
+    private TextField txtBuscar;
 
     @FXML
     private void initialize() {
@@ -67,7 +190,7 @@ public class ControladoraUsuario {
         }
     }
 
-    //ESTE MÉTODO LIMPIA EL CONTENEDOR Y RECORRE LA LISTA PARA CONSTRUIR LA TARJETA DE CADA PRODUCTO.
+    // Limpia el contenedor y recorre la lista para construir la tarjeta o el cuadrículo de cada producto
     private void mostrarProductos(List<Producto> productos) {
 
         contenedorProductos.getChildren().clear();
@@ -80,7 +203,7 @@ public class ControladoraUsuario {
         }
     }
 
-// ESTE MÉTODO CONSTRUYE LA TARJETA DE CADA PRODUCTO USANDO LOS DATOS DEL MISMO.
+    // Construye la tarjeta de cada producto usando sus datos propios
     private VBox crearTarjetaProducto(Producto producto) {
 
         VBox tarjeta = new VBox(7);
@@ -99,7 +222,7 @@ public class ControladoraUsuario {
                 + "-fx-padding: 10;"
         );
 
-        // IMAGEN DEL PRODUCTO
+        // Imagen del producto
         ImageView imagen = new ImageView();
 
         imagen.setFitWidth(115);
@@ -118,7 +241,7 @@ public class ControladoraUsuario {
             );
         }
 
-        // NOMBRE
+        // Nombre
         Label nombre = new Label(producto.getNombre());
 
         nombre.setWrapText(true);
@@ -131,7 +254,7 @@ public class ControladoraUsuario {
                 + "-fx-font-size: 12;"
         );
 
-        // DESCRIPCIÓN
+        // Descripción
         Label descripcion = new Label(
                 producto.getDescripcion()
         );
@@ -145,7 +268,7 @@ public class ControladoraUsuario {
                 + "-fx-font-size: 10;"
         );
 
-        // PRECIO
+        // Precio
         NumberFormat formato = NumberFormat.getInstance(
                 Locale.forLanguageTag("es-CO")
         );
@@ -162,7 +285,7 @@ public class ControladoraUsuario {
                 + "-fx-font-size: 14;"
         );
 
-        // BOTÓN VER PRODUCTO
+        // Botón de ¨Ver Producto¨
         Button btnVerProducto = new Button("Ver producto");
 
         btnVerProducto.setMaxWidth(Double.MAX_VALUE);
@@ -175,15 +298,21 @@ public class ControladoraUsuario {
                 + "-fx-cursor: hand;"
         );
 
+        btnVerProducto.setOnAction(e
+                -> Navegador.irAProducto(producto, contenedorProductos, usuarioActual, Navegador.INICIO));
+
         // AGREGAR LOS ELEMENTOS A LA TARJETA
+        // La imagen y el corazón van juntos: el corazón queda arriba a la derecha
+        StackPane zonaImagen = new StackPane(imagen, crearCorazon(producto));
+
         tarjeta.getChildren().addAll(
-                imagen,
+                zonaImagen,
                 nombre,
                 descripcion,
                 precio,
+                crearBotonCarrito(producto),
                 btnVerProducto
         );
-
         return tarjeta;
     }
 
@@ -207,7 +336,7 @@ public class ControladoraUsuario {
         filtrarPorCategoria("Brochas y accesorios");
     }
 
-    //RECORRE LA LISTA DE PRODUCTOS Y COMPARA LA CATEGORÍA CON LA CATEGORÍA SELECCIONADA.
+    // Recorre la lista de productos y compara la categoría con la categoría seleccionada
     private void filtrarPorCategoria(String categoria) {
 
         List<Producto> productosFiltrados = new ArrayList<>();
@@ -237,21 +366,23 @@ public class ControladoraUsuario {
 
     @FXML
     private void abrirFavoritos() {
-        // Pendiente de conectar
+        Navegador.ir(Navegador.FAVORITOS, contenedorProductos, usuarioActual);
     }
 
     @FXML
     private void abrirCarrito() {
-        // Pendiente de conectar
+        Navegador.ir(Navegador.CARRITO, contenedorProductos, usuarioActual);
+
     }
 
     @FXML
     private void abrirPerfil() {
-        // Pendiente de conectar
+        Navegador.ir(Navegador.PERFIL, contenedorProductos, usuarioActual);
     }
 
     @FXML
     private void cerrarSesion() {
-        // Pendiente de conectar
+
+        Navegador.cerrarSesion(contenedorProductos);
     }
 }

@@ -1,9 +1,5 @@
 package modeloProductos;
 
-/**
- *
- * @author pc
- */
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +24,6 @@ public class Carrito {
     public void setPrecioEnvio(double precioEnvio) {
         this.precioEnvio = precioEnvio;
     }
-    
 
     public void agregarUnidad(Producto producto) {
         productos.add(producto);
@@ -38,19 +33,18 @@ public class Carrito {
 
         double subTotal = 0;
         double total = 0;
-        
-        if (!productos.isEmpty()){
-            
+
+        if (!productos.isEmpty()) {
+
             for (Producto producto : productos) {
-            subTotal += producto.getPrecio();
+                subTotal += producto.getPrecio();
             }
-            
-            total = subTotal+precioEnvio;  
-        }
-        else{
-            
+
+            total = subTotal + precioEnvio;
+        } else {
+
             total = 0;
-            
+
         }
 
         return total;
@@ -69,21 +63,30 @@ public class Carrito {
 
         return cantidad;
     }
-    
-    public void eliminarUnidad (Producto producto){
-        
+
+    public void eliminarUnidad(Producto producto) {
+
         for (int i = 0; i < productos.size(); i++) {
-            if (productos.get(i).getCodigo() == producto.getCodigo()) {
+            if (productos.get(i).getCodigo().equals(producto.getCodigo())) {
                 productos.remove(i);
                 break;
-                
-                
             }
         }
-        
+
     }
-    
-    
-    
-    
+
+    public void vaciar() {
+        productos.clear();
+    }
+
+    public double calcularSubtotal() {
+        double subTotal = 0;
+        for (Producto producto : productos) {
+            subTotal += producto.getPrecio();
+        }
+        return subTotal;
+
+    }
+
+
 }

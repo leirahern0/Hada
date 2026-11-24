@@ -189,7 +189,7 @@ public class ControladoraInicio {
             return;
         }
 
-        // COMPROBAR SI ES ADMINISTRADOR
+        // Comprueba si es administrador
         Administrador admin = new Administrador();
 
         if (correo.equalsIgnoreCase(admin.getCorreo())) {

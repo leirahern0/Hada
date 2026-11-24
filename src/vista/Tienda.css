@@ -1,0 +1,68 @@
+.campo {
+    -fx-background-color: white;
+    -fx-border-color: #ff4f9a;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-font-size: 13;
+}
+.etiqueta {
+    -fx-text-fill: #8f294d;
+    -fx-font-weight: bold;
+    -fx-font-size: 13;
+}
+.titulo {
+    -fx-font-family: Georgia;
+    -fx-font-weight: bold;
+    -fx-text-fill: #8f294d;
+    -fx-font-size: 26;
+}
+.subtitulo {
+    -fx-font-family: Georgia;
+    -fx-text-fill: #8f294d;
+    -fx-font-size: 13;
+}
+.seccion {
+    -fx-font-family: Georgia;
+    -fx-font-weight: bold;
+    -fx-text-fill: #8f294d;
+    -fx-font-size: 18;
+}
+.tarjeta {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-border-color: #ffc6ad;
+    -fx-border-radius: 16;
+    -fx-padding: 18;
+}
+.celda-encabezado {
+    -fx-font-family: Georgia;
+    -fx-font-weight: bold;
+    -fx-text-fill: #8f294d;
+    -fx-font-size: 13;
+}
+.btn-rosa {
+    -fx-background-color: #ff4f9a;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14;
+    -fx-background-radius: 20;
+    -fx-cursor: hand;
+    -fx-padding: 9 26 9 26;
+}
+.btn-contorno {
+    -fx-background-color: white;
+    -fx-text-fill: #ff4f9a;
+    -fx-font-weight: bold;
+    -fx-font-size: 14;
+    -fx-background-radius: 20;
+    -fx-border-color: #ff4f9a;
+    -fx-border-radius: 20;
+    -fx-cursor: hand;
+    -fx-padding: 9 26 9 26;
+}
+.btn-enlace {
+    -fx-background-color: transparent;
+    -fx-text-fill: #8f294d;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}

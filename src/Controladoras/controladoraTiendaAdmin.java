@@ -1,8 +1,3 @@
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controladoras;
 
 import datos.ProductoDAO;
@@ -21,13 +16,12 @@ import javafx.scene.layout.VBox;
 import modeloProductos.Producto;
 
 public class controladoraTiendaAdmin {
-    
-    
- private ProductoDAO productoDAO = new ProductoDAO();
+
+    private ProductoDAO productoDAO = new ProductoDAO();
     private ControladoraVentana admin;
-    
-private List<Producto> listaProductos;
-private String categoriaActual = null; 
+
+    private List<Producto> listaProductos;
+    private String categoriaActual = null;
 
     @FXML
     private FlowPane contenedorProductos;
@@ -43,58 +37,66 @@ private String categoriaActual = null;
 
     // evita que se repitan los productos y crea un recuadro por producto
     void cargarProductos() {
-       try {
-        listaProductos = productoDAO.listar();
-        mostrarProductos(listaProductos);
-    } catch (Exception e) {
-        javafx.scene.control.Alert alerta
-                = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
-        alerta.setTitle("Hada Beauty");
-        alerta.setHeaderText(null);
-        alerta.setContentText("No se pudieron cargar los productos: " + e.getMessage());
-        alerta.showAndWait();
-    }
-    }
-    private void mostrarProductos(List<Producto> productos) {
-    contenedorProductos.getChildren().clear();
-    for (Producto producto : productos) {
-        contenedorProductos.getChildren().add(crearRecuadroProducto(producto));
-    }
-}
-    
-@FXML private void filtroLabios(){ 
-    filtrarPorCategoria("Labios"); 
-}
-@FXML private void filtroRostro(){ 
-    filtrarPorCategoria("Rostro"); 
-}
-@FXML private void filtroOjos(){ 
-    filtrarPorCategoria("Ojos"); 
-}
-@FXML private void filtroBrochas(){ 
-    filtrarPorCategoria("Brochas y accesorios"); 
-}
-
-private void filtrarPorCategoria(String categoria) {
-
-    //Si se oprime 2 veces la misma categoría se muestran nuevamente todos los productos
-    if (categoria.equalsIgnoreCase(categoriaActual)) {
-        categoriaActual = null;
-        mostrarProductos(listaProductos);
-        return;
-    }
-
-    categoriaActual = categoria;
-
-    List<Producto> filtrados = new java.util.ArrayList<>();
-    for (Producto producto : listaProductos) {
-        if (producto.getCategoria() != null
-                && producto.getCategoria().equalsIgnoreCase(categoria)) {
-            filtrados.add(producto);
+        try {
+            listaProductos = productoDAO.listar();
+            mostrarProductos(listaProductos);
+        } catch (Exception e) {
+            javafx.scene.control.Alert alerta
+                    = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
+            alerta.setTitle("Hada Beauty");
+            alerta.setHeaderText(null);
+            alerta.setContentText("No se pudieron cargar los productos: " + e.getMessage());
+            alerta.showAndWait();
         }
     }
-    mostrarProductos(filtrados);
-}
+
+    private void mostrarProductos(List<Producto> productos) {
+        contenedorProductos.getChildren().clear();
+        for (Producto producto : productos) {
+            contenedorProductos.getChildren().add(crearRecuadroProducto(producto));
+        }
+    }
+
+    @FXML
+    private void filtroLabios() {
+        filtrarPorCategoria("Labios");
+    }
+
+    @FXML
+    private void filtroRostro() {
+        filtrarPorCategoria("Rostro");
+    }
+
+    @FXML
+    private void filtroOjos() {
+        filtrarPorCategoria("Ojos");
+    }
+
+    @FXML
+    private void filtroBrochas() {
+        filtrarPorCategoria("Brochas y accesorios");
+    }
+
+    private void filtrarPorCategoria(String categoria) {
+
+        //Si se oprime 2 veces la misma categoría se muestran nuevamente todos los productos
+        if (categoria.equalsIgnoreCase(categoriaActual)) {
+            categoriaActual = null;
+            mostrarProductos(listaProductos);
+            return;
+        }
+
+        categoriaActual = categoria;
+
+        List<Producto> filtrados = new java.util.ArrayList<>();
+        for (Producto producto : listaProductos) {
+            if (producto.getCategoria() != null
+                    && producto.getCategoria().equalsIgnoreCase(categoria)) {
+                filtrados.add(producto);
+            }
+        }
+        mostrarProductos(filtrados);
+    }
 
     VBox crearRecuadroProducto(Producto producto) {
 
@@ -109,8 +111,8 @@ private void filtrarPorCategoria(String categoria) {
                 + "-fx-border-radius: 8;"
                 + "-fx-background-radius: 8;"
                 + "-fx-padding: 12;");
-        
-    // imagen ( misma ruta utilizada en GestionProductos)
+
+        // imagen ( misma ruta utilizada en GestionProductos)
         ImageView imagen = new ImageView();
         imagen.setFitWidth(110);
         imagen.setFitHeight(110);
@@ -138,7 +140,6 @@ private void filtrarPorCategoria(String categoria) {
         btnVer.setMaxWidth(Double.MAX_VALUE);
         btnVer.setStyle("-fx-background-color: #ff4f9a; -fx-text-fill: white;"
                 + "-fx-background-radius: 20; -fx-cursor: hand;");
-        
 
         recuadro.getChildren().addAll(imagen, nombre, descripcion, precio, btnVer);
         return recuadro;
@@ -149,5 +150,5 @@ private void filtrarPorCategoria(String categoria) {
         formato.setMaximumFractionDigits(0);
         return formato.format(precio);
     }
-    
+
 }

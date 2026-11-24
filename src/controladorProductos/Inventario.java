@@ -1,4 +1,3 @@
-
 package controladorProductos;
 
 import java.io.*;
@@ -34,19 +33,18 @@ public class Inventario {
         return colaPendientes;
     }
 
-   
     public boolean agregarProducto(Producto producto) {
-    
+
         if (producto == null || buscarPorCodigo(producto.getCodigo()) != null) {
-        
+
             return false; // Rechaza nulos o códigos repetidos
-    
+
         }
-    
+
         productos.add(producto);
-    
+
         registrarCambio("AGREGADO: " + producto.getCodigo());
-    
+
         return true;
 
     }
@@ -161,7 +159,7 @@ public class Inventario {
     public String deshacerRegistro() {
         return historialCambios.isEmpty() ? null : historialCambios.pop();
     }
-    
+
     public boolean guardarEnArchivo(String rutaArchivo) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(rutaArchivo))) {
             for (Producto p : productos) {

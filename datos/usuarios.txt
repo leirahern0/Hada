@@ -1,8 +1,8 @@
-
-Administradora|admin123|3025676829|admin123@hada.com|ADMIN|6724568950
+Administradora|admin123|3025676829|admin123@hada.com|USUARIO|6724568950
 Paula Idarraga|paula||paula123@gmail.com|USUARIO|
 paula Idarraga|paulala||paulala123@gmail.com|USUARIO|
 valeria|123||vale@gmail.com|USUARIO|
 valeria|123||vale@26.com|USUARIO|
-Leira Alejandra Hernandez julio|leira140108||leirahern0@gmail.com|USUARIO|
+Leira Alejandra Hernandez julio|leira140108|3046551043|leirahern0@gmail.com|USUARIO|barrio san francisco
 skye lopez|1724||skye21@hotmail.com|USUARIO|
+leira alejandra hernandez julio|leira140108||leirhern0@gmail.com|USUARIO|

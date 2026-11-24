@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" stylesheets="@../Tienda.css" style="-fx-background: #fff4e9; -fx-background-color: #fff4e9; -fx-border-color: transparent;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.ControladoraCarrito">
+    <content>
+        <StackPane alignment="TOP_CENTER" style="-fx-background-color: #fff4e9;">
+            <children>
+                <VBox fx:id="raiz" maxWidth="900.0" prefWidth="900.0">
+                    <children>
+                        <VBox spacing="12.0" styleClass="tarjeta">
+                            <VBox.margin>
+                                <Insets bottom="28.0" left="24.0" right="24.0" top="24.0" />
+                            </VBox.margin>
+                            <children>
+                                <Label alignment="CENTER" maxWidth="Infinity" styleClass="seccion" text="RESUMEN DE COMPRA" />
+
+                                <VBox fx:id="contenedorItems" spacing="8.0" />
+
+                                <Label fx:id="lblVacio" managed="false" styleClass="subtitulo" text="Tu carrito está vacío." visible="false" />
+
+                                <Button fx:id="btnVaciar" onAction="#vaciarCarrito" styleClass="btn-enlace" text="🗑  vaciar todo el carrito" />
+
+                                <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                                    <children>
+                                        <Label styleClass="etiqueta" text="Total:" />
+                                        <Label fx:id="lblTotal" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #ff4f9a;" text="\$ 0" />
+                                    </children>
+                                </HBox>
+
+                                <Button fx:id="btnContinuar" maxWidth="Infinity" onAction="#continuarPago" styleClass="btn-rosa" text="Continuar al pago" />
+                                <Button maxWidth="Infinity" onAction="#seguirComprando" styleClass="btn-contorno" text="Seguir comprando" />
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </children>
+        </StackPane>
+    </content>
+</ScrollPane>
