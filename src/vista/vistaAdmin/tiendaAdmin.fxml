@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
@@ -25,27 +24,24 @@
                <children>
                   <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="900.0" prefWidth="900.0">
                      <children>
-                        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="54.0" prefWidth="900.0" style="-fx-border-color: #C5C5C5; -fx-background-color: #fff4e9;">
+
+                        
+                        <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="54.0" prefWidth="900.0" spacing="10" style="-fx-border-color: #C5C5C5; -fx-background-color: #fff4e9; -fx-padding: 0 20 0 10;">
                            <children>
+                              
                               <ImageView fitHeight="70.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../imagenes/LogoHada.png" />
                                  </image>
                               </ImageView>
-                              <Region prefHeight="70.0" prefWidth="47.0" style="-fx-background-color: #fff4e9;" />
-                              <HBox prefHeight="60.0" prefWidth="400.0">
-                                 <children>
-                                    <TextField prefHeight="30.0" prefWidth="400.0" promptText="Buscar productos" style="-fx-border-color: #FF4F9A; -fx-background-color: #FFF0E1; -fx-border-radius: 30;">
-                                       <HBox.margin>
-                                          <Insets top="20.0" />
-                                       </HBox.margin>
-                                    </TextField>
-                                 </children>
-                              </HBox>
-                              <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" style="-fx-background-color: #FFC6AD; -fx-background-radius: 50; -fx-border-color: #FFC6AD; -fx-border-radius: 50; -fx-border-width: 1;">
+                             
+                              <TextField fx:id="txtBuscar" prefHeight="30.0" prefWidth="541.0" promptText="Buscar productos" style="-fx-border-color: #FF4F9A; -fx-background-color: #FFF0E1; -fx-border-radius: 30;" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
-                                    <Insets left="5.0" top="20.0" />
+                                    <Insets top="0.0" />
                                  </HBox.margin>
+                              </TextField>
+                              
+                              <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#buscarProducto" style="-fx-background-color: #FFC6AD; -fx-background-radius: 50; -fx-border-color: #FFC6AD; -fx-border-radius: 50; -fx-border-width: 1;">
                                  <graphic>
                                     <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -57,20 +53,8 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Region prefHeight="70.0" prefWidth="76.0" />
-                              <Button mnemonicParsing="false" style="-fx-background-color: transparent;">
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../imagenes/heart.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets top="20.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <Button layoutX="723.0" layoutY="31.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+                             
+                              <Button fx:id="btnAdmin" onAction="#abrirPerfilAdmin" mnemonicParsing="false" style="-fx-background-color: transparent;">
                                  <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -78,24 +62,11 @@
                                        </image>
                                     </ImageView>
                                  </graphic>
-                                 <HBox.margin>
-                                    <Insets top="20.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <Button layoutX="759.0" layoutY="31.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../imagenes/shopping-cart.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets top="20.0" />
-                                 </HBox.margin>
                               </Button>
                            </children>
                         </HBox>
+
+                        
                         <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #FF806D;">
                            <children>
                               <ImageView fitHeight="234.0" fitWidth="726.0" pickOnBounds="true" preserveRatio="true">
@@ -117,7 +88,7 @@
                                           <Label layoutX="335.0" layoutY="23.0" style="-fx-font-family: georgia; -fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #8F294D;" text="Explora nuestros productos" />
                                           <Line endX="100.0" layoutX="675.0" layoutY="41.0" startX="-100.0" stroke="#8f294d" />
                                           <Line endX="100.0" layoutX="224.0" layoutY="42.0" startX="-100.0" stroke="#8f294d" />
-                                          <Button onAction="#filtroLabios" layoutX="98.0" layoutY="80.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;">
+                                          <Button layoutX="98.0" layoutY="80.0" mnemonicParsing="false" onAction="#filtroLabios" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;">
                                              <graphic>
                                                 <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -126,7 +97,7 @@
                                                 </ImageView>
                                              </graphic>
                                           </Button>
-                                          <Button onAction="#filtroRostro" layoutX="300.0" layoutY="80.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;">
+                                          <Button layoutX="300.0" layoutY="80.0" mnemonicParsing="false" onAction="#filtroRostro" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;">
                                              <graphic>
                                                 <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -135,7 +106,7 @@
                                                 </ImageView>
                                              </graphic>
                                           </Button>
-                                          <Button onAction="#filtroOjos" layoutX="530.0" layoutY="80.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;">
+                                          <Button layoutX="530.0" layoutY="80.0" mnemonicParsing="false" onAction="#filtroOjos" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;">
                                              <graphic>
                                                 <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -144,7 +115,7 @@
                                                 </ImageView>
                                              </graphic>
                                           </Button>
-                                          <Button onAction="#filtroBrochas" layoutX="734.0" layoutY="80.0" mnemonicParsing="false" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;">
+                                          <Button layoutX="734.0" layoutY="80.0" mnemonicParsing="false" onAction="#filtroBrochas" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;">
                                              <graphic>
                                                 <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -163,7 +134,7 @@
                               </AnchorPane>
                            </children>
                         </HBox>
-                        <FlowPane fx:id="contenedorProductos" hgap="20.0" vgap="20.0" prefWrapLength="900.0">
+                        <FlowPane fx:id="contenedorProductos" hgap="20.0" prefWrapLength="900.0" vgap="20.0">
                            <padding>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </padding>

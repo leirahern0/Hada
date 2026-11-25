@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefWidth="850" spacing="0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.ControladoraFichaProducto">
+    <padding><Insets bottom="0" left="30" right="30" top="22" /></padding>
+
+    <!-- HEADER -->
+    <HBox alignment="TOP_LEFT">
+        <VBox spacing="4">
+            <Label style="-fx-font-family: Georgia; -fx-font-size: 26; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Ficha de producto" />
+            <Label fx:id="lblTituloProducto" style="-fx-font-size: 13; -fx-text-fill: #6b4a52;" text="Base de Fit Me" />
+            <Label style="-fx-font-size: 12; -fx-text-fill: #9b717b;" text="Consulta la información completa del producto." />
+        </VBox>
+        <Region HBox.hgrow="ALWAYS" />
+        <Label style="-fx-background-color: #FBE3E8; -fx-text-fill: #8f294d; -fx-background-radius: 8; -fx-padding: 7 22; -fx-font-size: 12;" text="Solo lectura" />
+    </HBox>
+
+    <Region prefHeight="16" />
+    <Region prefHeight="1" style="-fx-background-color: #EDEDED;" />
+    <Region prefHeight="18" />
+
+   
+    <HBox spacing="35">
+        <!-- IZQUIERDA -->
+        <VBox spacing="14" HBox.hgrow="ALWAYS">
+            <Label style="-fx-font-size: 15; -fx-font-weight: bold;" text="Información general" />
+            <GridPane hgap="16" vgap="8">
+                <columnConstraints><ColumnConstraints percentWidth="50" /><ColumnConstraints percentWidth="50" /></columnConstraints>
+                <Label text="Nombre" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label text="Código" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Label fx:id="lblNombre" style="-fx-background-color: #FFF7F7; -fx-background-radius: 8; -fx-padding: 10; -fx-max-width: Infinity;" text="Sin registrar" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Label fx:id="lblCodigo" style="-fx-background-color: #FFF7F7; -fx-background-radius: 8; -fx-padding: 10; -fx-max-width: Infinity; -fx-text-fill: #8a8a8a;" text="Sin registrar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label text="Marca" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <Label text="Categoría" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Label fx:id="lblMarca" style="-fx-background-color: #FFF7F7; -fx-background-radius: 8; -fx-padding: 10; -fx-max-width: Infinity; -fx-text-fill: #8a8a8a;" text="Sin registrar" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <Label fx:id="lblCategoria" style="-fx-background-color: #FFF7F7; -fx-background-radius: 8; -fx-padding: 10; -fx-max-width: Infinity;" text="Sin registrar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            </GridPane>
+            <Label text="Descripción" />
+            <Label fx:id="lblDescripcion" wrapText="true" style="-fx-background-color: #FFF7F7; -fx-background-radius: 8; -fx-padding: 10; -fx-min-height: 70;" text="Sin registrar" />
+            <Label style="-fx-font-size: 15; -fx-font-weight: bold;" text="Precio e inventario" />
+            <GridPane hgap="16" vgap="8">
+                <columnConstraints><ColumnConstraints percentWidth="50" /><ColumnConstraints percentWidth="50" /></columnConstraints>
+                <Label text="Precio" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label text="Precio de oferta" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Label fx:id="lblPrecio" style="-fx-background-color: #FFF7F7; -fx-background-radius: 8; -fx-padding: 10; -fx-max-width: Infinity;" text="Sin registrar" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Label fx:id="lblPrecioOferta" style="-fx-background-color: #FFF7F7; -fx-background-radius: 8; -fx-padding: 10; -fx-max-width: Infinity; -fx-text-fill: #8a8a8a;" text="Sin registrar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label text="Stock" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <Label text="Disponible" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Label fx:id="lblStock" style="-fx-background-color: #FFF7F7; -fx-background-radius: 8; -fx-padding: 10; -fx-max-width: Infinity; -fx-text-fill: #8a8a8a;" text="Sin registrar" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <Label fx:id="lblDisponible" style="-fx-background-color: #FFF7F7; -fx-background-radius: 8; -fx-padding: 10; -fx-max-width: Infinity; -fx-text-fill: #8a8a8a;" text="Sin registrar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            </GridPane>
+        </VBox>
+
+        
+        <VBox spacing="14" prefWidth="280">
+            <Label style="-fx-font-size: 15; -fx-font-weight: bold;" text="Imagen y atributos" />
+            <VBox alignment="CENTER" spacing="6" style="-fx-background-color: #FFF7F7; -fx-border-color: #F0E0E0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 16;">
+                <ImageView fx:id="imgProducto" fitWidth="110" fitHeight="110" preserveRatio="true" />
+                <Label style="-fx-text-fill: #8a8a8a; -fx-font-size: 11;" text="Imagen actual" />
+            </VBox>
+            <Label text="Imagen · URL o ruta" />
+            <Label fx:id="lblImagenUrl" wrapText="true" style="-fx-background-color: #FFF7F7; -fx-background-radius: 8; -fx-padding: 10; -fx-max-width: Infinity; -fx-text-fill: #8a8a8a;" text="Sin registrar" />
+            <Label text="Color" />
+            <Label fx:id="lblColor" style="-fx-background-color: #FFF7F7; -fx-background-radius: 8; -fx-padding: 10; -fx-max-width: Infinity; -fx-text-fill: #8a8a8a;" text="Sin registrar" />
+            <Label text="Etiquetas" />
+            <Label fx:id="lblEtiquetas" wrapText="true" style="-fx-background-color: #FFF7F7; -fx-background-radius: 8; -fx-padding: 10; -fx-min-height: 48; -fx-max-width: Infinity; -fx-text-fill: #8a8a8a;" text="Sin registrar" />
+        </VBox>
+    </HBox>
+
+    <Region prefHeight="18" />
+    <Region prefHeight="1" style="-fx-background-color: #EDEDED;" />
+
+   
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <padding><Insets bottom="16" top="16" /></padding>
+        <Label style="-fx-font-size: 11; -fx-text-fill: #9b717b;" text="Los datos pendientes se muestran como «Sin registrar»." />
+        <Region HBox.hgrow="ALWAYS" />
+<Button fx:id="btnCerrar" onAction="#cerrar" style="-fx-background-color: #8f294d; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 10 48; -fx-font-weight: bold; -fx-cursor: hand;" text="Cerrar" />    </HBox>
+</VBox>

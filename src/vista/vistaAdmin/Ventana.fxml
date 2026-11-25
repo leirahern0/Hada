@@ -34,7 +34,7 @@
                     </children>
                 </HBox>
                 <Separator style="-fx-background-color: #ffc6ad;"/>
-                <Button text="🏠  Inicio" onAction="#irInicio" maxWidth="Infinity" alignment="CENTER_LEFT" style="-fx-background-color: transparent; -fx-font-family: Arial; -fx-font-size: 12.0; -fx-text-fill: #8f294d; -fx-padding: 10 12; -fx-cursor: hand;"/>
+               
                 <Button text="📦  Productos" onAction="#irProductos" maxWidth="Infinity" alignment="CENTER_LEFT" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-font-family: Arial; -fx-font-size: 12.0; -fx-font-weight: bold; -fx-text-fill: #8f294d; -fx-padding: 10 12; -fx-cursor: hand;"/>
                 <Button text="🛒  Pedidos" onAction="#irPedidos" maxWidth="Infinity" alignment="CENTER_LEFT" style="-fx-background-color: transparent; -fx-font-family: Arial; -fx-font-size: 12.0; -fx-text-fill: #8f294d; -fx-padding: 10 12; -fx-cursor: hand;"/>
                 <Button text="👥  Usuarios" onAction="#irUsuarios" maxWidth="Infinity" alignment="CENTER_LEFT" style="-fx-background-color: transparent; -fx-font-family: Arial; -fx-font-size: 12.0; -fx-text-fill: #8f294d; -fx-padding: 10 12; -fx-cursor: hand;"/>

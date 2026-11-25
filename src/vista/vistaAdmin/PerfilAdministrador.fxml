@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true" style="-fx-background-color: #FFF4E9;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.ControladoraPerfilAdministrador">
+<VBox spacing="0" style="-fx-background-color: #FFF4E9; -fx-padding: 20 24 20 24;">
+
+    <Label style="-fx-font-size: 11px; -fx-text-fill: #8A7A72;" text="Administración / Mi perfil" />
+    <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Mi perfil de administrador" />
+    <Label style="-fx-font-size: 12px; -fx-text-fill: #8A7A72; -fx-padding: 0 0 18 0;" text="Gestiona tu información personal y los accesos de tu cuenta administrativa." />
+
+    <!-- INFORMACIÓN PERSONAL -->
+    <VBox style="-fx-background-color: #FDE8E8; -fx-background-radius: 12;">
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color: #FFC6AD; -fx-background-radius: 12 12 0 0; -fx-padding: 14 18;">
+            <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Información personal" HBox.hgrow="ALWAYS" />
+            <Button fx:id="btnEditarPerfil" onAction="#editarPerfil" style="-fx-background-color: #FFF4E9; -fx-background-radius: 20; -fx-text-fill: #8f294d; -fx-font-size: 11px; -fx-padding: 6 18; -fx-cursor: hand;" text="Editar perfil" />
+        </HBox>
+
+        <VBox spacing="0" style="-fx-padding: 8 18 18 18;">
+            <VBox spacing="2" style="-fx-border-color: transparent transparent #E8D5D5 transparent; -fx-padding: 10 0;">
+                <Label style="-fx-font-size: 10px; -fx-text-fill: #8A7A72;" text="Nombre completo" />
+                <TextField fx:id="txtNombre" editable="false" style="-fx-background-color: transparent; -fx-text-fill: #8f294d; -fx-font-weight: bold; -fx-font-size: 13px;" text="Valentina Mora" />
+            </VBox>
+            <VBox spacing="2" style="-fx-border-color: transparent transparent #E8D5D5 transparent; -fx-padding: 10 0;">
+                <Label style="-fx-font-size: 10px; -fx-text-fill: #8A7A72;" text="Correo electrónico" />
+                <TextField fx:id="txtCorreo" editable="false" style="-fx-background-color: transparent; -fx-text-fill: #8f294d; -fx-font-weight: bold; -fx-font-size: 13px;" text="valentina.admin@example.com" />
+            </VBox>
+            <VBox spacing="2" style="-fx-border-color: transparent transparent #E8D5D5 transparent; -fx-padding: 10 0;">
+                <Label style="-fx-font-size: 10px; -fx-text-fill: #8A7A72;" text="Número de teléfono" />
+                <TextField fx:id="txtTelefono" editable="false" style="-fx-background-color: transparent; -fx-text-fill: #8f294d; -fx-font-weight: bold; -fx-font-size: 13px;" text="+57 300 000 0000" />
+            </VBox>
+            <VBox spacing="2" style="-fx-border-color: transparent transparent #E8D5D5 transparent; -fx-padding: 10 0;">
+                <Label style="-fx-font-size: 10px; -fx-text-fill: #8A7A72;" text="Número de documento" />
+                <TextField fx:id="txtDocumento" editable="false" style="-fx-background-color: transparent; -fx-text-fill: #8f294d; -fx-font-weight: bold; -fx-font-size: 13px;" text="Sin registrar" />
+            </VBox>
+            <VBox spacing="2" style="-fx-padding: 10 0 0 0;">
+                <Label style="-fx-font-size: 10px; -fx-text-fill: #8A7A72;" text="Ciudad / País" />
+                <TextField fx:id="txtCiudad" editable="false" style="-fx-background-color: transparent; -fx-text-fill: #8f294d; -fx-font-weight: bold; -fx-font-size: 13px;" text="Bogotá, Colombia" />
+            </VBox>
+
+            <HBox fx:id="hboxBotonesEditar" alignment="CENTER_RIGHT" spacing="10" visible="false" managed="false" style="-fx-padding: 14 0 0 0;">
+                <Button fx:id="btnCancelar" onAction="#cancelarEdicion" style="-fx-background-color: white; -fx-border-color: #E8A0B5; -fx-border-radius: 8; -fx-background-radius: 8; -fx-text-fill: #8f294d; -fx-padding: 8 18; -fx-cursor: hand;" text="Cancelar" />
+                <Button fx:id="btnGuardar" onAction="#guardarPerfil" style="-fx-background-color: #F0658C; -fx-background-radius: 8; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 18; -fx-cursor: hand;" text="Guardar cambios" />
+            </HBox>
+        </VBox>
+    </VBox>
+
+    <Region prefHeight="20" />
+
+    <!-- ABAJO: ROL + CUENTA -->
+    <HBox spacing="16">
+        <VBox HBox.hgrow="ALWAYS" spacing="6" style="-fx-background-color: #FFC6AD; -fx-background-radius: 12; -fx-padding: 18;">
+            <Label fx:id="lblRolTitulo" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Administradora general · Hada Beauty" />
+            <Label style="-fx-font-size: 11px; -fx-text-fill: #8f294d;" text="Acceso al catálogo, los pedidos y la gestión de usuarios." />
+            <Label fx:id="lblCuenta" style="-fx-font-size: 11px; -fx-text-fill: #8f294d;" text="Cuenta administrativa: HB-ADM-001" />
+        </VBox>
+
+        <VBox prefWidth="360" spacing="10" style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #F0E0E0; -fx-border-radius: 12; -fx-padding: 16;">
+            <HBox alignment="CENTER_LEFT">
+                <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Información de cuenta" HBox.hgrow="ALWAYS" />
+                <Label style="-fx-background-color: #E8F5E9; -fx-text-fill: #2E7D32; -fx-background-radius: 12; -fx-padding: 4 10; -fx-font-size: 10px;" text="● Activa" />
+            </HBox>
+            <HBox><Label style="-fx-font-size: 11px; -fx-text-fill: #8A7A72;" text="Identificador" HBox.hgrow="ALWAYS" /><Label fx:id="lblIdentificador" style="-fx-font-size: 11px; -fx-font-weight: bold;" text="HB-ADM-001" /></HBox>
+            <HBox><Label style="-fx-font-size: 11px; -fx-text-fill: #8A7A72;" text="Rol asignado" HBox.hgrow="ALWAYS" /><Label fx:id="lblRol" style="-fx-font-size: 11px; -fx-font-weight: bold;" text="Administradora general" /></HBox>
+            <Label style="-fx-font-size: 10px; -fx-text-fill: #8A7A72;" text="🔒 El identificador y el rol no se editan en el perfil." />
+        </VBox>
+    </HBox>
+
+</VBox>
+</ScrollPane>

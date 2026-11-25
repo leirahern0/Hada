@@ -104,11 +104,6 @@ public class ControladoraVentana {
     }
 
     @FXML
-    private void irInicio() {
-
-    }
-
-    @FXML
     private void irPedidos() {
 
     }
@@ -119,8 +114,30 @@ public class ControladoraVentana {
     }
 
     @FXML
-    private void irMiPerfil() {
+    void irMiPerfil() {
+        try {
+            DatosAdministrador.cargar(); // Lee el txt
 
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(
+                    getClass().getResource("/vista/vistaAdmin/PerfilAdministrador.fxml"));
+            javafx.scene.Parent vista = loader.load();
+
+            ControladoraPerfilAdministrador ctrl = loader.getController();
+            ctrl.setDatos(
+                    DatosAdministrador.nombre,
+                    DatosAdministrador.correo,
+                    DatosAdministrador.telefono,
+                    DatosAdministrador.documento,
+                    DatosAdministrador.ciudad,
+                    DatosAdministrador.rol,
+                    DatosAdministrador.identificador
+            );
+
+            contenedorVistas.getChildren().clear();
+            contenedorVistas.getChildren().add(vista);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

@@ -36,6 +36,14 @@ public class Producto {
         this.etiquetas = new ArrayList<>(etiquetas);
     }
 
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public void setEtiquetas(List<String> etiquetas) {
+        this.etiquetas = etiquetas;
+    }
+
     public void agregarEtiqueta(String etiqueta) {
         etiquetas.add(etiqueta);
     }

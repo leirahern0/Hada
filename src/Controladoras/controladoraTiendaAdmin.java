@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
@@ -25,6 +26,10 @@ public class controladoraTiendaAdmin {
 
     @FXML
     private FlowPane contenedorProductos;
+    @FXML
+    private TextField txtBuscar;
+    @FXML
+    private Button btnAdmin;
 
     public void setAdmin(ControladoraVentana admin) {
         this.admin = admin;
@@ -33,6 +38,13 @@ public class controladoraTiendaAdmin {
     @FXML
     void initialize() {
         cargarProductos();
+
+        //Busca mientras la persona escribe
+        if (txtBuscar != null) {
+            txtBuscar.textProperty().addListener((obs, viejo, nuevo) -> {
+                buscarProducto(null);
+            });
+        }
     }
 
     // evita que se repitan los productos y crea un recuadro por producto
@@ -98,6 +110,43 @@ public class controladoraTiendaAdmin {
         mostrarProductos(filtrados);
     }
 
+    // Busca por nombre, código y etiquetas
+    @FXML
+    void buscarProducto(javafx.event.ActionEvent event) {
+        if (listaProductos == null || txtBuscar == null) {
+            return;
+        }
+
+        String texto = txtBuscar.getText().trim().toLowerCase();
+
+        // Si el buscador está vacío, muestra todos de nuevo
+        if (texto.isEmpty()) {
+            categoriaActual = null;
+            mostrarProductos(listaProductos);
+            return;
+        }
+
+        List<Producto> encontrados = new java.util.ArrayList<>();
+
+        for (Producto producto : listaProductos) {
+            boolean coincideNombre = producto.getNombre() != null
+                    && producto.getNombre().toLowerCase().contains(texto);
+
+            boolean coincideCodigo = producto.getCodigo() != null
+                    && producto.getCodigo().toLowerCase().contains(texto);
+
+            boolean coincideEtiqueta = producto.getEtiquetas() != null
+                    && producto.getEtiquetas().stream()
+                            .anyMatch(etiqueta -> etiqueta.toLowerCase().contains(texto));
+
+            if (coincideNombre || coincideCodigo || coincideEtiqueta) {
+                encontrados.add(producto);
+            }
+        }
+
+        mostrarProductos(encontrados);
+    }
+
     VBox crearRecuadroProducto(Producto producto) {
 
         VBox recuadro = new VBox(6);
@@ -140,7 +189,7 @@ public class controladoraTiendaAdmin {
         btnVer.setMaxWidth(Double.MAX_VALUE);
         btnVer.setStyle("-fx-background-color: #ff4f9a; -fx-text-fill: white;"
                 + "-fx-background-radius: 20; -fx-cursor: hand;");
-
+        btnVer.setOnAction(e -> verDetalles(producto));
         recuadro.getChildren().addAll(imagen, nombre, descripcion, precio, btnVer);
         return recuadro;
     }
@@ -149,6 +198,67 @@ public class controladoraTiendaAdmin {
         NumberFormat formato = NumberFormat.getInstance(Locale.forLanguageTag("es-CO"));
         formato.setMaximumFractionDigits(0);
         return formato.format(precio);
+    }
+
+    //Busca el diseño de la ficha, le pasa el producto seleccionado para que la llene y lo abre en otra ventana con la información del producto. 
+    //El try-catch evita que se cierre toda la ventana tienda cuando en caso de que la ficha no se pueda abrir.
+    private void verDetalles(Producto producto) {
+        try {
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(
+                    getClass().getResource("/vista/vistaAdmin/FichaProducto.fxml"));
+            if (loader.getLocation() == null) {
+                System.out.println("NO ENCONTRÉ EL FXML, revisa la ruta");
+                return;
+            }
+
+            javafx.scene.Parent root = loader.load();
+
+            Controladoras.ControladoraFichaProducto ficha = loader.getController();
+            ficha.setProducto(producto);
+
+            javafx.stage.Stage stage = new javafx.stage.Stage();
+            stage.setTitle("Ficha de producto - " + producto.getNombre());
+            stage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+            stage.setScene(new javafx.scene.Scene(root));
+            stage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            javafx.scene.control.Alert alerta = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
+            alerta.setTitle("Hada Beauty");
+            alerta.setHeaderText(null);
+            alerta.setContentText("No se pudo abrir la ficha: " + e.getMessage());
+            alerta.showAndWait();
+        }
+    }
+
+    @FXML
+    void abrirPerfilAdmin(javafx.event.ActionEvent event) {
+        try {
+            
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(
+                    getClass().getResource("/vista/vistaAdmin/PerfilAdministrador.fxml"));
+
+            // Si no encuentra el archivo, te avisa y no se cierra la tienda
+            if (loader.getLocation() == null) {
+                javafx.scene.control.Alert alerta = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+                alerta.setTitle("Hada Beauty");
+                alerta.setHeaderText("Perfil Administrador");
+                alerta.setContentText("Estás en la cuenta de administrador.\n\nAún no tienes creada la vista PerfilAdministrador.fxml");
+                alerta.showAndWait();
+                return;
+            }
+
+            javafx.scene.Parent root = loader.load();
+            javafx.stage.Stage stage = new javafx.stage.Stage();
+            stage.setTitle("Perfil Administrador - Hada Beauty");
+            stage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+            stage.setScene(new javafx.scene.Scene(root));
+            stage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane fitToWidth="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="Controladoras.ControladoraEditarProducto">
+<ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.ControladoraEditarProducto">
     <VBox spacing="0" style="-fx-background-color: #FFF6EC; -fx-padding: 20 24 0 24;">
 
         <!-- ENCABEZADO IGUAL A LA FOTO -->
@@ -80,7 +80,7 @@
                         <Label style="-fx-font-size: 11px; -fx-text-fill: #8A7A72;" text="Sin imagen guardada" />
                         <Label style="-fx-font-size: 10px; -fx-text-fill: #B0A29A;" text="Imagen actual del producto" />
                     </VBox>
-                    <Button fx:id="btnSeleccionarFoto" maxWidth="Infinity" prefWidth="300" style="-fx-background-color: #FFF6EC; -fx-background-radius: 6; -fx-border-color: #F2DDD0; -fx-border-radius: 6; -fx-text-fill: #7A1C33; -fx-font-size: 11px; -fx-padding: 9 10 9 10; -fx-cursor: hand;" text="Seleccionar fotografía" />
+                    <Button fx:id="btnSeleccionarFoto" maxWidth="Infinity" onAction="#cambiarFotoVistaImagen" prefWidth="300" style="-fx-background-color: #FFF6EC; -fx-background-radius: 6; -fx-border-color: #F2DDD0; -fx-border-radius: 6; -fx-text-fill: #7A1C33; -fx-font-size: 11px; -fx-padding: 9 10 9 10; -fx-cursor: hand;" text="Seleccionar fotografía" />
                     <VBox spacing="4">
                         <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #2D2D2D;" text="Cambiar imagen mediante enlace" />
                         <TextField fx:id="txtUrlImagen" promptText="Pega el nuevo enlace de imagen" style="-fx-background-color: #FFF6EC; -fx-background-radius: 6; -fx-border-color: #F2DDD0; -fx-border-radius: 6; -fx-padding: 9 10 9 10; -fx-font-size: 11px;" />
@@ -114,7 +114,7 @@
                     <Label style="-fx-font-size: 10px; -fx-text-fill: #8A7A72;" text="Separa las etiquetas con comas." />
                 </VBox>
                 <VBox alignment="BOTTOM_LEFT" spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                    <Button fx:id="btnAgregarEtiqueta" style="-fx-background-color: #F0658C; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px; -fx-padding: 9 28 9 28; -fx-cursor: hand;" text="Agregar" />
+                    <Button fx:id="btnAgregarEtiqueta" onAction="#etiquetas" style="-fx-background-color: #F0658C; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px; -fx-padding: 9 28 9 28; -fx-cursor: hand;" text="Agregar" />
                 </VBox>
             <rowConstraints>
                <RowConstraints />
@@ -124,8 +124,8 @@
 
         <!-- BOTONES FINALES - IGUAL A LA FOTO -->
         <HBox alignment="CENTER_RIGHT" spacing="10" style="-fx-background-color: white; -fx-padding: 14 18 18 18;">
-            <Button fx:id="btnCancelar" style="-fx-background-color: white; -fx-border-color: #E8A0B5; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #7A1C33; -fx-font-size: 12px; -fx-padding: 8 20 8 20; -fx-cursor: hand;" text="Cancelar" />
-            <Button fx:id="btnGuardar" style="-fx-background-color: #F0658C; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px; -fx-padding: 8 20 8 20; -fx-cursor: hand;" text="Guardar cambios" />
+            <Button fx:id="btnCancelar" onAction="#volver" style="-fx-background-color: white; -fx-border-color: #E8A0B5; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #7A1C33; -fx-font-size: 12px; -fx-padding: 8 20 8 20; -fx-cursor: hand;" text="Cancelar" />
+            <Button fx:id="btnGuardar" onAction="#guardarCambios" style="-fx-background-color: #F0658C; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px; -fx-padding: 8 20 8 20; -fx-cursor: hand;" text="Guardar cambios" />
         </HBox>
     </VBox>
 </ScrollPane>

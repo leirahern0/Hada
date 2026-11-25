@@ -105,16 +105,14 @@ public class ControladoraGestionProductos {
                     + "-fx-padding: 8 5;"
             );
 
-            // Columnas de la fila
             fila.getColumnConstraints().addAll(
-                    new javafx.scene.layout.ColumnConstraints(65),
-                    new javafx.scene.layout.ColumnConstraints(300),
-                    new javafx.scene.layout.ColumnConstraints(125),
-                    new javafx.scene.layout.ColumnConstraints(100),
-                    new javafx.scene.layout.ColumnConstraints(150)
+                    new javafx.scene.layout.ColumnConstraints(60),
+                    new javafx.scene.layout.ColumnConstraints(270),
+                    new javafx.scene.layout.ColumnConstraints(110),
+                    new javafx.scene.layout.ColumnConstraints(90),
+                    new javafx.scene.layout.ColumnConstraints(230)
             );
 
-            // Imagen
             ImageView imagen = new ImageView();
             imagen.setFitWidth(48);
             imagen.setFitHeight(48);
@@ -131,7 +129,6 @@ public class ControladoraGestionProductos {
 
             fila.add(imagen, 0, 0);
 
-            // Nombre y descripción
             VBox informacion = new VBox(4);
 
             Label nombre = new Label(producto.getNombre());
@@ -151,12 +148,10 @@ public class ControladoraGestionProductos {
             informacion.getChildren().addAll(nombre, descripcion);
             fila.add(informacion, 1, 0);
 
-            // Categoría
             Label categoria = new Label(producto.getCategoria());
             categoria.setStyle("-fx-text-fill: #713249;");
             fila.add(categoria, 2, 0);
 
-            // Precio
             Label precio = new Label("$ " + producto.getPrecio());
             precio.setStyle(
                     "-fx-text-fill: #8f294d;"
@@ -164,17 +159,53 @@ public class ControladoraGestionProductos {
             );
             fila.add(precio, 3, 0);
 
-            // Acciones (las conectaremos después eliminar y editar: pendientes)
-            Button btnEliminar = new Button("🗑 Eliminar");
+            HBox acciones = new HBox(5);
+            acciones.setAlignment(Pos.CENTER_LEFT);
 
-            btnEliminar.setStyle(
-                    "-fx-background-color: #ffc6ad;"
-                    + "-fx-text-fill: #8f294d;"
-                    + "-fx-background-radius: 8;"
+            Button btnVer = new Button("Ver detalles");
+            btnVer.setStyle(
+                    "-fx-background-color: white;"
+                    + "-fx-text-fill: #FF4F9A;"
+                    + "-fx-border-color: #FF4F9A;"
+                    + "-fx-border-radius: 15;"
+                    + "-fx-background-radius: 15;"
+                    + "-fx-font-size: 10;"
+                    + "-fx-padding: 4 8;"
                     + "-fx-cursor: hand;"
             );
+            btnVer.setOnAction(e -> verDetalles(producto));
 
-            Label acciones = new Label("—");
+            Button btnEditar = new Button("✎");
+            btnEditar.setStyle(
+                    "-fx-background-color: #FFC6AD;"
+                    + "-fx-text-fill: #8F294D;"
+                    + "-fx-background-radius: 50;"
+                    + "-fx-font-size: 14;"
+                    + "-fx-font-family: 'Segoe UI Symbol';"
+                    + "-fx-padding: 0;"
+                    + "-fx-cursor: hand;"
+                    + "-fx-pref-width: 32;"
+                    + "-fx-pref-height: 32;"
+                    + "-fx-min-width: 32;"
+                    + "-fx-min-height: 32;"
+                    + "-fx-max-width: 32;"
+                    + "-fx-max-height: 32;"
+            );
+            btnEditar.setOnAction(e -> editarProducto(producto));
+            Button btnEliminar = new Button("🗑");
+            btnEliminar.setStyle(
+                    "-fx-background-color: transparent;"
+                    + "-fx-text-fill: #8F294D;"
+                    + "-fx-font-size: 13;"
+                    + "-fx-cursor: hand;"
+                    + "-fx-pref-width: 28;"
+                    + "-fx-pref-height: 28;"
+                    + "-fx-min-width: 28;"
+                    + "-fx-min-height: 28;"
+            );
+            btnEliminar.setOnAction(e -> eliminarProducto(producto));
+
+            acciones.getChildren().addAll(btnVer, btnEditar, btnEliminar);
             fila.add(acciones, 4, 0);
 
             contenedorProductos.getChildren().add(fila);
@@ -289,7 +320,69 @@ public class ControladoraGestionProductos {
         mostrarProductos(encontrados);
     }
 
-    // Falta agregar los botones de acciones: editar o eliminar producto de la tabla
+    private void verDetalles(Producto producto) {
+        try {
+
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/vista/vistaAdmin/FichaProducto.fxml"));
+            if (loader.getLocation() == null) {
+                System.out.println("NO ENCONTRÉ EL FXML, revisa la ruta");
+                return;
+            }
+
+            javafx.scene.Parent root = loader.load();
+
+            ControladoraFichaProducto ficha = loader.getController();
+            ficha.setProducto(producto);
+
+            javafx.stage.Stage stage = new javafx.stage.Stage();
+            stage.setTitle("Ficha de producto - " + producto.getNombre());
+            stage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+            stage.setScene(new javafx.scene.Scene(root));
+            stage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            mostrarError("No se pudo abrir la ficha: " + e.getMessage());
+        }
+    }
+
+    private void editarProducto(Producto producto) {
+        try {
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(
+                    getClass().getResource("/vista/vistaAdmin/EditarProducto.fxml"));
+            javafx.scene.Parent root = loader.load();
+
+            ControladoraEditarProducto ctrl = loader.getController();
+            ctrl.setProducto(producto, () -> cargarProductos());
+
+            javafx.stage.Stage stage = new javafx.stage.Stage();
+            stage.setTitle("Editar producto - " + producto.getNombre());
+            stage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+            stage.setScene(new javafx.scene.Scene(root));
+            stage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void eliminarProducto(Producto producto) {
+        javafx.scene.control.Alert confirmar = new javafx.scene.control.Alert(
+                javafx.scene.control.Alert.AlertType.CONFIRMATION);
+        confirmar.setTitle("Hada Beauty");
+        confirmar.setHeaderText(null);
+        confirmar.setContentText("¿Eliminar " + producto.getNombre() + "?");
+
+        if (confirmar.showAndWait().get() == javafx.scene.control.ButtonType.OK) {
+            try {
+
+                productoDAO.eliminar(producto.getCodigo());
+                cargarProductos();
+            } catch (Exception e) {
+                mostrarError("No se pudo eliminar: " + e.getMessage());
+            }
+        }
+    }
+
     private void mostrarError(String mensaje) {
 
         javafx.scene.control.Alert alerta
