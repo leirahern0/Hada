@@ -13,6 +13,7 @@ import java.util.Locale;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
@@ -226,8 +227,14 @@ public class Navegador {
         try {
             Parent root = FXMLLoader.load(Navegador.class.getResource("/vista/Inicio.fxml"));
             Stage escenario = (Stage) origen.getScene().getWindow();
-            double alto = Screen.getPrimary().getVisualBounds().getHeight() * 0.90;
-            escenario.setScene(new Scene(root, 500, alto));
+            Rectangle2D pantalla = Screen.getPrimary().getVisualBounds();
+            double ancho = Math.min(520, pantalla.getWidth() * 0.94);
+            double alto = Math.min(760, pantalla.getHeight() * 0.90);
+            escenario.setMaximized(false);
+            escenario.setMinWidth(Math.min(460, pantalla.getWidth() * 0.90));
+            escenario.setMinHeight(Math.min(480, pantalla.getHeight() * 0.90));
+            escenario.setScene(new Scene(root, ancho, alto));
+            escenario.setResizable(true);
             escenario.centerOnScreen();
         } catch (Exception e) {
             e.printStackTrace();

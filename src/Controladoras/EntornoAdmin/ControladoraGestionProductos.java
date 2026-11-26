@@ -111,16 +111,16 @@ public class ControladoraGestionProductos {
             );
 
             fila.getColumnConstraints().addAll(
-                    new javafx.scene.layout.ColumnConstraints(60),
-                    new javafx.scene.layout.ColumnConstraints(270),
-                    new javafx.scene.layout.ColumnConstraints(110),
-                    new javafx.scene.layout.ColumnConstraints(90),
-                    new javafx.scene.layout.ColumnConstraints(230)
+                    columnaResponsive(8),
+                    columnaResponsive(30),
+                    columnaResponsive(12),
+                    columnaResponsive(12),
+                    columnaResponsive(38)
             );
 
             ImageView imagen = new ImageView();
-            imagen.setFitWidth(48);
-            imagen.setFitHeight(48);
+            imagen.setFitWidth(32);
+            imagen.setFitHeight(32);
             imagen.setPreserveRatio(true);
 
             File archivoImagen = new File(
@@ -135,8 +135,11 @@ public class ControladoraGestionProductos {
             fila.add(imagen, 0, 0);
 
             VBox informacion = new VBox(4);
+            informacion.setMaxWidth(Double.MAX_VALUE);
 
             Label nombre = new Label(producto.getNombre());
+            nombre.setMinWidth(0);
+            nombre.setWrapText(true);
             nombre.setStyle(
                     "-fx-font-weight: bold;"
                     + "-fx-text-fill: #8f294d;"
@@ -144,6 +147,7 @@ public class ControladoraGestionProductos {
             );
 
             Label descripcion = new Label(producto.getDescripcion());
+            descripcion.setMinWidth(0);
             descripcion.setWrapText(true);
             descripcion.setStyle(
                     "-fx-text-fill: #9b717b;"
@@ -154,6 +158,8 @@ public class ControladoraGestionProductos {
             fila.add(informacion, 1, 0);
 
             Label categoria = new Label(producto.getCategoria());
+            categoria.setMinWidth(0);
+            categoria.setWrapText(true);
             categoria.setStyle("-fx-text-fill: #713249;");
             fila.add(categoria, 2, 0);
 
@@ -166,6 +172,8 @@ public class ControladoraGestionProductos {
 
             HBox acciones = new HBox(5);
             acciones.setAlignment(Pos.CENTER_LEFT);
+            acciones.setMinWidth(0);
+            acciones.setMaxWidth(Double.MAX_VALUE);
 
             Button btnVer = new Button("Ver detalles");
             btnVer.setStyle(
@@ -219,6 +227,14 @@ public class ControladoraGestionProductos {
         lblContador.setText(
                 "Mostrando " + productos.size() + " productos"
         );
+    }
+
+    private javafx.scene.layout.ColumnConstraints columnaResponsive(double porcentaje) {
+        javafx.scene.layout.ColumnConstraints columna =
+                new javafx.scene.layout.ColumnConstraints();
+        columna.setPercentWidth(porcentaje);
+        columna.setMinWidth(0);
+        return columna;
     }
 
     public void setAdmin(ControladoraVentanaAdmin admin) {

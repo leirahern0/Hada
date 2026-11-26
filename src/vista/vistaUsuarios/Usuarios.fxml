@@ -38,8 +38,8 @@
 
                 <VBox
                     alignment="TOP_CENTER"
-                    maxWidth="900.0"
-                    prefWidth="900.0"
+                    minWidth="0"
+                    maxWidth="Infinity"
                     spacing="0">
 
                     <children>
@@ -47,8 +47,8 @@
                         <!-- ENCABEZADO -->
 
                         <HBox
+                            maxWidth="Infinity"
                             prefHeight="70.0"
-                            prefWidth="900.0"
                             style="-fx-border-color: #C5C5C5;
                                    -fx-background-color: #fff4e9;">
 
@@ -69,7 +69,7 @@
                                     prefWidth="47.0"
                                     style="-fx-background-color: #fff4e9;"/>
 
-                                <HBox prefWidth="400.0">
+                                <HBox maxWidth="Infinity" prefWidth="400.0" HBox.hgrow="ALWAYS">
 
                                     <children>
 
@@ -78,7 +78,9 @@
                                             onAction="#buscarProducto"
                                             prefHeight="30.0"
                                             prefWidth="400.0"
+                                            maxWidth="Infinity"
                                             promptText="Buscar productos"
+                                            HBox.hgrow="ALWAYS"
                                             style="-fx-border-color: #FF4F9A;
                                                    -fx-background-color: #FFF0E1;
                                                    -fx-border-radius: 30;">
@@ -218,13 +220,17 @@
                         <!-- BANNER PRINCIPAL -->
 
                         <HBox
+                            fx:id="contenedorBanner"
+                            alignment="CENTER"
+                            maxWidth="Infinity"
                             prefHeight="234.0"
-                            prefWidth="900.0"
+                            minHeight="170.0"
                             style="-fx-background-color: #FF806D;">
 
                             <children>
 
                                 <ImageView
+                                    fx:id="imagenBanner"
                                     fitHeight="234.0"
                                     fitWidth="726.0"
                                     pickOnBounds="true"
@@ -233,10 +239,6 @@
                                     <image>
                                         <Image url="@../../imagenes/Banner.png"/>
                                     </image>
-
-                                    <HBox.margin>
-                                        <Insets left="100.0"/>
-                                    </HBox.margin>
 
                                 </ImageView>
 
@@ -249,9 +251,10 @@
 
                         <AnchorPane
                             fx:id="contenedorVistas"
+                            minWidth="0"
                             prefHeight="225.0"
-                            prefWidth="900.0"
                             minHeight="225.0"
+                            maxWidth="Infinity"
                             style="-fx-background-color: #fff4e9;">
 
                             <children>
@@ -259,6 +262,7 @@
                                 <!-- TÍTULO -->
 
                                 <Label
+                                    fx:id="lblTituloCategorias"
                                     layoutX="335.0"
                                     layoutY="23.0"
                                     style="-fx-font-family: georgia;
@@ -270,6 +274,7 @@
                                 <!-- LÍNEAS DECORATIVAS -->
 
                                 <Line
+                                    fx:id="lineaCategoriasIzquierda"
                                     endX="100.0"
                                     layoutX="675.0"
                                     layoutY="41.0"
@@ -277,6 +282,7 @@
                                     stroke="#8f294d"/>
 
                                 <Line
+                                    fx:id="lineaCategoriasDerecha"
                                     endX="100.0"
                                     layoutX="224.0"
                                     layoutY="42.0"
@@ -287,6 +293,7 @@
                                 <!-- CATEGORÍA LABIOS -->
 
                                 <Button
+                                    fx:id="btnCategoriaLabios"
                                     layoutX="98.0"
                                     layoutY="80.0"
                                     onAction="#filtroLabios"
@@ -313,6 +320,7 @@
                                 <!-- CATEGORÍA ROSTRO -->
 
                                 <Button
+                                    fx:id="btnCategoriaRostro"
                                     layoutX="300.0"
                                     layoutY="80.0"
                                     onAction="#filtroRostro"
@@ -339,6 +347,7 @@
                                 <!-- CATEGORÍA OJOS -->
 
                                 <Button
+                                    fx:id="btnCategoriaOjos"
                                     layoutX="530.0"
                                     layoutY="80.0"
                                     onAction="#filtroOjos"
@@ -365,6 +374,7 @@
                                 <!-- CATEGORÍA BROCHAS -->
 
                                 <Button
+                                    fx:id="btnCategoriaBrochas"
                                     layoutX="734.0"
                                     layoutY="80.0"
                                     onAction="#filtroBrochas"
@@ -392,6 +402,7 @@
                                 <!-- NOMBRES DE CATEGORÍAS -->
 
                                 <Label
+                                    fx:id="lblCategoriaLabios"
                                     layoutX="116.0"
                                     layoutY="156.0"
                                     style="-fx-text-fill: #8f294d;
@@ -401,6 +412,7 @@
                                     text="Labios"/>
 
                                 <Label
+                                    fx:id="lblCategoriaRostro"
                                     layoutX="320.0"
                                     layoutY="156.0"
                                     style="-fx-text-fill: #8f294d;
@@ -410,6 +422,7 @@
                                     text="Rostro"/>
 
                                 <Label
+                                    fx:id="lblCategoriaOjos"
                                     layoutX="556.0"
                                     layoutY="156.0"
                                     style="-fx-text-fill: #8f294d;
@@ -419,6 +432,7 @@
                                     text="Ojos"/>
 
                                 <Label
+                                    fx:id="lblCategoriaBrochas"
                                     layoutX="720.0"
                                     layoutY="156.0"
                                     style="-fx-text-fill: #8f294d;
@@ -457,9 +471,10 @@
                         <FlowPane
                             fx:id="contenedorProductos"
                             alignment="TOP_CENTER"
+                            minWidth="0"
+                            maxWidth="Infinity"
                             hgap="12.0"
                             vgap="20.0"
-                            prefWrapLength="860.0"
                             style="-fx-background-color: #fff4e9;">
 
                             <padding>

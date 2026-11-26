@@ -17,6 +17,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Line;
 import modeloPersonas.Usuario;
 import javafx.fxml.FXML;
 import datos.CarritoDAO;
@@ -32,6 +35,20 @@ public class ControladoraUsuario implements ConUsuario {
 
     @FXML
     private Button btnCarrito;
+    @FXML
+    private HBox contenedorBanner;
+    @FXML
+    private ImageView imagenBanner;
+    @FXML
+    private AnchorPane contenedorVistas;
+    @FXML
+    private Label lblTituloCategorias, lblCategoriaLabios, lblCategoriaRostro,
+            lblCategoriaOjos, lblCategoriaBrochas;
+    @FXML
+    private Line lineaCategoriasIzquierda, lineaCategoriasDerecha;
+    @FXML
+    private Button btnCategoriaLabios, btnCategoriaRostro,
+            btnCategoriaOjos, btnCategoriaBrochas, btnVerTodo;
 
     private Usuario usuarioActual;
 
@@ -170,11 +187,62 @@ public class ControladoraUsuario implements ConUsuario {
     @FXML
     private void initialize() {
 
+        contenedorBanner.prefHeightProperty()
+                .bind(contenedorBanner.widthProperty().multiply(0.26));
+        imagenBanner.fitWidthProperty()
+                .bind(contenedorBanner.widthProperty().multiply(0.81));
+        imagenBanner.fitHeightProperty()
+                .bind(contenedorBanner.widthProperty().multiply(0.26));
+
+        contenedorVistas.widthProperty().addListener(
+                (observable, anterior, ancho) -> ajustarCategorias(ancho.doubleValue())
+        );
+        ajustarCategorias(900);
+
         System.out.println(
                 "FlowPane conectado: " + (contenedorProductos != null)
         );
 
         cargarProductos();
+    }
+
+    private void ajustarCategorias(double ancho) {
+        if (ancho <= 0) {
+            return;
+        }
+
+        double[] centros = {
+            ancho * 0.14, ancho * 0.38, ancho * 0.63, ancho * 0.86
+        };
+        Button[] botones = {
+            btnCategoriaLabios, btnCategoriaRostro,
+            btnCategoriaOjos, btnCategoriaBrochas
+        };
+        Label[] nombres = {
+            lblCategoriaLabios, lblCategoriaRostro,
+            lblCategoriaOjos, lblCategoriaBrochas
+        };
+
+        for (int i = 0; i < centros.length; i++) {
+            botones[i].setLayoutX(centros[i] - 34);
+            nombres[i].setPrefWidth(i == 3 ? 180 : 100);
+            nombres[i].setAlignment(Pos.CENTER);
+            nombres[i].setLayoutX(centros[i] - (i == 3 ? 90 : 50));
+        }
+
+        lblTituloCategorias.setPrefWidth(270);
+        lblTituloCategorias.setAlignment(Pos.CENTER);
+        lblTituloCategorias.setLayoutX((ancho - 270) / 2);
+
+        double mediaLinea = ancho * 0.09;
+        lineaCategoriasIzquierda.setStartX(-mediaLinea);
+        lineaCategoriasIzquierda.setEndX(mediaLinea);
+        lineaCategoriasIzquierda.setLayoutX(ancho * 0.25);
+        lineaCategoriasDerecha.setStartX(-mediaLinea);
+        lineaCategoriasDerecha.setEndX(mediaLinea);
+        lineaCategoriasDerecha.setLayoutX(ancho * 0.75);
+
+        btnVerTodo.setLayoutX(ancho - 157);
     }
 
     private void cargarProductos() {

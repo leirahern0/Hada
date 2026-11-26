@@ -34,16 +34,18 @@
             <Button fx:id="btnFiltroOjos" onAction="#filtroOjos" style="-fx-background-color: #fff4e9; -fx-background-radius: 18; -fx-text-fill: #8f294d;" text="Ojos" />
          <Button fx:id="btnFiltroBrochas" layoutX="184.0" layoutY="10.0" onAction="#filtroBrochas" style="-fx-background-color: #fff4e9; -fx-background-radius: 18; -fx-text-fill: #8f294d;" text="Brochas y accesorios" />
         </HBox>
-        <GridPane hgap="8" style="-fx-background-color: #fff4e9; -fx-padding: 9 8;">
+        <GridPane hgap="8" maxWidth="Infinity" style="-fx-background-color: #fff4e9; -fx-padding: 9 5;">
             <columnConstraints>
-                <ColumnConstraints percentWidth="9" /><ColumnConstraints percentWidth="38" />
-                <ColumnConstraints percentWidth="17" /><ColumnConstraints percentWidth="13" />
-                <ColumnConstraints percentWidth="23" />
+                <ColumnConstraints percentWidth="8" minWidth="0" /><ColumnConstraints percentWidth="30" minWidth="0" />
+                <ColumnConstraints percentWidth="12" minWidth="0" /><ColumnConstraints percentWidth="12" minWidth="0" />
+                <ColumnConstraints percentWidth="38" minWidth="0" />
             </columnConstraints>
             <children>
-                <Label text="Imagen" GridPane.columnIndex="0" /><Label text="Nombre / Descripción" GridPane.columnIndex="1" />
-                <Label text="Categoría" GridPane.columnIndex="2" /><Label text="Precio" GridPane.columnIndex="3" />
-                <Label text="Acciones" GridPane.columnIndex="4" />
+                <Label maxWidth="Infinity" text="Imagen" GridPane.columnIndex="0" />
+                <Label maxWidth="Infinity" text="Nombre / Descripción" wrapText="true" GridPane.columnIndex="1" />
+                <Label maxWidth="Infinity" text="Categoría" GridPane.columnIndex="2" />
+                <Label maxWidth="Infinity" text="Precio" GridPane.columnIndex="3" />
+                <Label maxWidth="Infinity" text="Acciones" GridPane.columnIndex="4" />
             </children>
          <rowConstraints>
             <RowConstraints />

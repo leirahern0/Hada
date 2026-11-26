@@ -19,7 +19,7 @@ import modeloProductos.Producto;
 
 public class ControladoraCarrito implements ConUsuario {
 
-    private static final double W_IMG = 80, W_DESC = 220, W_ENVIO = 85, W_PRECIO = 90, W_CANT = 110, W_SUB = 100;
+    private static final double W_IMG = 70, W_DESC = 210, W_ENVIO = 80, W_PRECIO = 85, W_CANT = 100, W_SUB = 90;
 
     @FXML
     private VBox raiz;

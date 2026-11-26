@@ -7,6 +7,8 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
@@ -45,16 +47,28 @@
             <ComboBox fx:id="cmbOrdenar" prefWidth="220" promptText="Ordenar por..." style="-fx-background-color: white; -fx-border-color: #F3E6DA; -fx-border-radius: 20; -fx-background-radius: 20; -fx-font-size: 12px; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
         </HBox>
 
-        <HBox alignment="CENTER_LEFT" prefHeight="44" spacing="0" style="-fx-background-color: #FDECF1; -fx-padding: 12 24 12 24; -fx-border-color: transparent transparent #F3E6DA transparent;">
-            <Label maxWidth="30" minWidth="30" prefWidth="30" text="" />
-            <Label minWidth="90" prefWidth="90" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-font-family: 'Segoe UI', Arial, sans-serif; -fx-border-color: transparent #EBD3D8 transparent transparent; -fx-border-width: 0 1 0 0; -fx-padding: 0 8 0 0;" text="Pedido" />
-            <Label minWidth="170" prefWidth="170" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-font-family: 'Segoe UI', Arial, sans-serif; -fx-border-color: transparent #EBD3D8 transparent transparent; -fx-border-width: 0 1 0 0; -fx-padding: 0 8 0 0;" text="Cliente" />
-            <Label minWidth="90" prefWidth="90" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-font-family: 'Segoe UI', Arial, sans-serif; -fx-border-color: transparent #EBD3D8 transparent transparent; -fx-border-width: 0 1 0 0; -fx-padding: 0 8 0 0;" text="Fecha" />
-            <Label minWidth="90" prefWidth="90" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-font-family: 'Segoe UI', Arial, sans-serif; -fx-border-color: transparent #EBD3D8 transparent transparent; -fx-border-width: 0 1 0 0; -fx-padding: 0 8 0 0;" text="Importe · COP" />
-            <Label minWidth="90" prefWidth="90" wrapText="true" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-font-family: 'Segoe UI', Arial, sans-serif; -fx-border-color: transparent #EBD3D8 transparent transparent; -fx-border-width: 0 1 0 0; -fx-padding: 0 8 0 0;" text="Método elegido" />
-            <Label minWidth="97" prefWidth="97" wrapText="true" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-font-family: 'Segoe UI', Arial, sans-serif; -fx-border-color: transparent #EBD3D8 transparent transparent; -fx-border-width: 0 1 0 0; -fx-padding: 0 8 0 0;" text="Dirección de entrega" />
-            <Label minWidth="112" prefWidth="112" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-font-family: 'Segoe UI', Arial, sans-serif;" text="Acciones" />
-        </HBox>
+        <GridPane alignment="CENTER_LEFT" hgap="0" style="-fx-background-color: #FDECF1; -fx-padding: 12 24 12 24; -fx-border-color: transparent transparent #F3E6DA transparent;">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="4" minWidth="0" />
+                <ColumnConstraints percentWidth="10" minWidth="0" />
+                <ColumnConstraints percentWidth="20" minWidth="0" />
+                <ColumnConstraints percentWidth="10" minWidth="0" />
+                <ColumnConstraints percentWidth="11" minWidth="0" />
+                <ColumnConstraints percentWidth="8" minWidth="0" />
+                <ColumnConstraints percentWidth="12" minWidth="0" />
+                <ColumnConstraints percentWidth="25" minWidth="0" />
+            </columnConstraints>
+            <children>
+                <Label maxWidth="Infinity" minWidth="0" text="" GridPane.columnIndex="0" />
+                <Label maxWidth="Infinity" minWidth="0" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-font-family: 'Segoe UI', Arial, sans-serif; -fx-border-color: transparent #EBD3D8 transparent transparent; -fx-border-width: 0 1 0 0; -fx-padding: 0 8 0 0;" text="Pedido" wrapText="true" GridPane.columnIndex="1" />
+                <Label maxWidth="Infinity" minWidth="0" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-font-family: 'Segoe UI', Arial, sans-serif; -fx-border-color: transparent #EBD3D8 transparent transparent; -fx-border-width: 0 1 0 0; -fx-padding: 0 8 0 0;" text="Cliente" GridPane.columnIndex="2" />
+                <Label maxWidth="Infinity" minWidth="0" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-font-family: 'Segoe UI', Arial, sans-serif; -fx-border-color: transparent #EBD3D8 transparent transparent; -fx-border-width: 0 1 0 0; -fx-padding: 0 8 0 0;" text="Fecha" wrapText="true" GridPane.columnIndex="3" />
+                <Label maxWidth="Infinity" minWidth="0" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-font-family: 'Segoe UI', Arial, sans-serif; -fx-border-color: transparent #EBD3D8 transparent transparent; -fx-border-width: 0 1 0 0; -fx-padding: 0 8 0 0;" text="Importe · COP" wrapText="true" GridPane.columnIndex="4" />
+                <Label maxWidth="Infinity" minWidth="0" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-font-family: 'Segoe UI', Arial, sans-serif; -fx-border-color: transparent #EBD3D8 transparent transparent; -fx-border-width: 0 1 0 0; -fx-padding: 0 8 0 0;" text="Método elegido" wrapText="true" GridPane.columnIndex="5" />
+                <Label maxWidth="Infinity" minWidth="0" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-font-family: 'Segoe UI', Arial, sans-serif; -fx-border-color: transparent #EBD3D8 transparent transparent; -fx-border-width: 0 1 0 0; -fx-padding: 0 8 0 0;" text="Dirección de entrega" wrapText="true" GridPane.columnIndex="6" />
+                <Label maxWidth="Infinity" minWidth="0" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-font-family: 'Segoe UI', Arial, sans-serif;" text="Acciones" wrapText="true" GridPane.columnIndex="7" />
+            </children>
+        </GridPane>
 
         <ScrollPane fitToWidth="true" hbarPolicy="NEVER" minHeight="280" prefHeight="380" style="-fx-background: white; -fx-background-color: white; -fx-border-color: transparent;" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
             <content>

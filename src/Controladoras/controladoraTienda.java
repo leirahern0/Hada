@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import modeloProductos.Producto;
 
@@ -31,6 +32,10 @@ public class controladoraTienda {
     private TextField txtBuscar;
     @FXML
     private Button btnAdmin;
+    @FXML
+    private HBox contenedorBanner;
+    @FXML
+    private ImageView imagenBanner;
 
     public void setAdmin(ControladoraVentanaAdmin admin) {
         this.admin = admin;
@@ -38,6 +43,13 @@ public class controladoraTienda {
 
     @FXML
     void initialize() {
+        contenedorBanner.prefHeightProperty()
+                .bind(contenedorBanner.widthProperty().multiply(0.26));
+        imagenBanner.fitWidthProperty()
+                .bind(contenedorBanner.widthProperty().multiply(0.81));
+        imagenBanner.fitHeightProperty()
+                .bind(contenedorBanner.widthProperty().multiply(0.26));
+
         cargarProductos();
 
         //Busca mientras la persona escribe

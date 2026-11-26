@@ -10,6 +10,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,6 +19,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.Screen;
 import Controladoras.EntornoUsuario.ControladoraUsuario;
 import Controladoras.EntornoUsuario.ControladoraUsuario;
 
@@ -290,8 +292,13 @@ public class ControladoraInicio {
 
             Stage escenario = (Stage) componente.getScene().getWindow();
 
-            // Cambiar la vista
+            // La tienda y el panel de administración ocupan el espacio disponible.
+            Rectangle2D pantalla = Screen.getPrimary().getVisualBounds();
             escenario.setScene(new Scene(root));
+            escenario.setMinWidth(Math.min(900, pantalla.getWidth() * 0.90));
+            escenario.setMinHeight(Math.min(620, pantalla.getHeight() * 0.85));
+            escenario.setResizable(true);
+            escenario.setMaximized(true);
             escenario.show();
 
         } catch (Exception e) {

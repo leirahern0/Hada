@@ -8,141 +8,71 @@
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #fff4e9;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.controladoraTienda">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #fff4e9;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.controladoraTienda">
    <center>
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background: #fff4e9; -fx-background-color: #fff4e9;" BorderPane.alignment="CENTER">
          <content>
-            <StackPane>
+            <VBox alignment="TOP_CENTER" minWidth="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #fff4e9;">
                <children>
-                  <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="900.0" prefWidth="900.0">
+                  <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="70.0" spacing="10.0" style="-fx-border-color: #C5C5C5; -fx-background-color: #fff4e9; -fx-padding: 0 20 0 10;">
                      <children>
-
-                        
-                        <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="54.0" prefWidth="900.0" spacing="10" style="-fx-border-color: #C5C5C5; -fx-background-color: #fff4e9; -fx-padding: 0 20 0 10;">
+                        <ImageView fitHeight="60.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true">
+                           <image><Image url="@../imagenes/LogoHada.png" /></image>
+                        </ImageView>
+                        <TextField fx:id="txtBuscar" minWidth="0.0" prefHeight="32.0" prefWidth="541.0" maxWidth="1.7976931348623157E308" promptText="Buscar productos" style="-fx-border-color: #FF4F9A; -fx-background-color: #FFF0E1; -fx-border-radius: 30; -fx-background-radius: 30;" HBox.hgrow="ALWAYS" />
+                        <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#buscarProducto" style="-fx-background-color: #FFC6AD; -fx-background-radius: 50; -fx-border-color: #FFC6AD; -fx-border-radius: 50; -fx-border-width: 1;">
+                           <graphic><ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true"><image><Image url="@../imagenes/search.png" /></image><effect><ColorAdjust /></effect></ImageView></graphic>
+                        </Button>
+                        <Button fx:id="btnAdmin" mnemonicParsing="false" onAction="#abrirPerfilAdmin" style="-fx-background-color: transparent;">
+                           <graphic><ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true"><image><Image url="@../imagenes/circle-user.png" /></image></ImageView></graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="contenedorBanner" alignment="CENTER" minHeight="150.0" maxWidth="1.7976931348623157E308" prefHeight="234.0" style="-fx-background-color: #FF806D;">
+                     <children>
+                        <ImageView fx:id="imagenBanner" fitHeight="234.0" fitWidth="726.0" pickOnBounds="true" preserveRatio="true">
+                           <image><Image url="@../imagenes/Banner.png" /></image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" minHeight="190.0" spacing="14.0" style="-fx-background-color: #fff4e9; -fx-padding: 14 20 12 20;">
+                     <children>
+                        <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="12.0">
                            <children>
-                              
-                              <ImageView fitHeight="70.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../imagenes/LogoHada.png" />
-                                 </image>
-                              </ImageView>
-                             
-                              <TextField fx:id="txtBuscar" prefHeight="30.0" prefWidth="541.0" promptText="Buscar productos" style="-fx-border-color: #FF4F9A; -fx-background-color: #FFF0E1; -fx-border-radius: 30;" HBox.hgrow="ALWAYS">
-                                 <HBox.margin>
-                                    <Insets top="0.0" />
-                                 </HBox.margin>
-                              </TextField>
-                              
-                              <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#buscarProducto" style="-fx-background-color: #FFC6AD; -fx-background-radius: 50; -fx-border-color: #FFC6AD; -fx-border-radius: 50; -fx-border-width: 1;">
-                                 <graphic>
-                                    <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../imagenes/search.png" />
-                                       </image>
-                                       <effect>
-                                          <ColorAdjust />
-                                       </effect>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                             
-                              <Button fx:id="btnAdmin" mnemonicParsing="false" onAction="#abrirPerfilAdmin" style="-fx-background-color: transparent;">
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../imagenes/circle-user.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
+                              <Region minWidth="0.0" prefHeight="1.0" maxHeight="1.0" style="-fx-background-color: #8f294d;" HBox.hgrow="ALWAYS" />
+                              <Label style="-fx-font-family: georgia; -fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #8F294D;" text="Explora nuestros productos" />
+                              <Region minWidth="0.0" prefHeight="1.0" maxHeight="1.0" style="-fx-background-color: #8f294d;" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
-
-                        
-                        <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #FF806D;">
+                        <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="10.0">
                            <children>
-                              <ImageView fitHeight="234.0" fitWidth="726.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../imagenes/Banner.png" />
-                                 </image>
-                                 <HBox.margin>
-                                    <Insets left="100.0" />
-                                 </HBox.margin>
-                              </ImageView>
+                              <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="2.0" HBox.hgrow="ALWAYS">
+                                 <children><Button mnemonicParsing="false" onAction="#filtroLabios" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;"><graphic><ImageView fitHeight="68.0" fitWidth="68.0" preserveRatio="true"><image><Image url="@../imagenes/Labios.png" /></image></ImageView></graphic></Button><Label style="-fx-text-fill: #8f294d; -fx-font-weight: bold; -fx-font-size: 12; -fx-font-family: arial;" text="Labios" /></children>
+                              </VBox>
+                              <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="2.0" HBox.hgrow="ALWAYS">
+                                 <children><Button mnemonicParsing="false" onAction="#filtroRostro" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;"><graphic><ImageView fitHeight="68.0" fitWidth="68.0" preserveRatio="true"><image><Image url="@../imagenes/Rostro.png" /></image></ImageView></graphic></Button><Label style="-fx-text-fill: #8f294d; -fx-font-weight: bold; -fx-font-size: 12; -fx-font-family: arial;" text="Rostro" /></children>
+                              </VBox>
+                              <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="2.0" HBox.hgrow="ALWAYS">
+                                 <children><Button mnemonicParsing="false" onAction="#filtroOjos" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;"><graphic><ImageView fitHeight="68.0" fitWidth="68.0" preserveRatio="true"><image><Image url="@../imagenes/Ojos.png" /></image></ImageView></graphic></Button><Label style="-fx-text-fill: #8f294d; -fx-font-weight: bold; -fx-font-size: 12; -fx-font-family: arial;" text="Ojos" /></children>
+                              </VBox>
+                              <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="2.0" HBox.hgrow="ALWAYS">
+                                 <children><Button mnemonicParsing="false" onAction="#filtroBrochas" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;"><graphic><ImageView fitHeight="68.0" fitWidth="68.0" preserveRatio="true"><image><Image url="@../imagenes/Brochas.png" /></image></ImageView></graphic></Button><Label wrapText="true" style="-fx-text-fill: #8f294d; -fx-font-weight: bold; -fx-font-size: 12; -fx-font-family: arial;" text="Brochas y accesorios" /></children>
+                              </VBox>
                            </children>
                         </HBox>
-                        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="190.0" prefWidth="900.0" spacing="80.0">
-                           <children>
-                              <AnchorPane prefHeight="190.0" prefWidth="900.0">
-                                 <children>
-                                    <AnchorPane prefHeight="190.0" prefWidth="900.0" style="-fx-background-color: #fff4e9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <Label layoutX="335.0" layoutY="23.0" style="-fx-font-family: georgia; -fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #8F294D;" text="Explora nuestros productos" />
-                                          <Line endX="100.0" layoutX="675.0" layoutY="41.0" startX="-100.0" stroke="#8f294d" />
-                                          <Line endX="100.0" layoutX="224.0" layoutY="42.0" startX="-100.0" stroke="#8f294d" />
-                                          <Button layoutX="98.0" layoutY="80.0" mnemonicParsing="false" onAction="#filtroLabios" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;">
-                                             <graphic>
-                                                <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../imagenes/Labios.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                          </Button>
-                                          <Button layoutX="300.0" layoutY="80.0" mnemonicParsing="false" onAction="#filtroRostro" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;">
-                                             <graphic>
-                                                <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../imagenes/Rostro.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                          </Button>
-                                          <Button layoutX="530.0" layoutY="80.0" mnemonicParsing="false" onAction="#filtroOjos" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;">
-                                             <graphic>
-                                                <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../imagenes/Ojos.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                          </Button>
-                                          <Button layoutX="734.0" layoutY="80.0" mnemonicParsing="false" onAction="#filtroBrochas" style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: transparent;">
-                                             <graphic>
-                                                <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../imagenes/Brochas.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                          </Button>
-                                          <Label layoutX="116.0" layoutY="156.0" style="-fx-text-fill: #8f294d; -fx-font-weight: bold; -fx-font-size: 12; -fx-font-family: arial;" text="Labios" />
-                                          <Label layoutX="320.0" layoutY="156.0" style="-fx-text-fill: #8f294d; -fx-font-weight: bold; -fx-font-size: 12; -fx-font-family: arial;" text="Rostro" />
-                                          <Label layoutX="556.0" layoutY="156.0" style="-fx-text-fill: #8f294d; -fx-font-weight: bold; -fx-font-size: 12; -fx-font-family: arial;" text="Ojos" />
-                                          <Label layoutX="720.0" layoutY="156.0" style="-fx-text-fill: #8f294d; -fx-font-weight: bold; -fx-font-size: 12; -fx-font-family: arial;" text="Brochas y accesorios" />
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </AnchorPane>
-                           </children>
-                        </HBox>
-                        <FlowPane fx:id="contenedorProductos" hgap="20.0" prefWrapLength="900.0" vgap="20.0">
-                           <padding>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                           </padding>
-                        </FlowPane>
                      </children>
                   </VBox>
+                  <FlowPane fx:id="contenedorProductos" alignment="TOP_CENTER" minWidth="0.0" maxWidth="1.7976931348623157E308" hgap="16.0" vgap="20.0" style="-fx-background-color: #fff4e9;">
+                     <padding><Insets bottom="20.0" left="20.0" right="20.0" top="20.0" /></padding>
+                  </FlowPane>
                </children>
-            </StackPane>
+            </VBox>
          </content>
       </ScrollPane>
    </center>

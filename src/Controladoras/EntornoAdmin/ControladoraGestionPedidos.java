@@ -29,6 +29,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -197,34 +199,44 @@ public class ControladoraGestionPedidos {
         return b.compareTo(a);
     }
 
-    private HBox crearFilaPedido(Pedido pedido) {
-        HBox fila = new HBox();
+    private GridPane crearFilaPedido(Pedido pedido) {
+        GridPane fila = new GridPane();
         fila.setAlignment(Pos.CENTER_LEFT);
-        fila.setSpacing(0);
+        fila.setHgap(0);
+        fila.getColumnConstraints().addAll(
+                columnaTabla(4), columnaTabla(10), columnaTabla(20),
+                columnaTabla(10), columnaTabla(11), columnaTabla(8),
+                columnaTabla(12), columnaTabla(25)
+        );
         fila.setStyle("-fx-background-color: white;"
                 + "-fx-border-color: #F3E6DA;"
                 + "-fx-border-width: 0 0 1 0;"
                 + "-fx-padding: 14 24 14 24;");
 
         CheckBox check = new CheckBox();
-        check.setMinWidth(30);
-        check.setPrefWidth(30);
-        check.setMaxWidth(30);
+        check.setMinWidth(0);
+        check.setPrefWidth(25);
+        check.setMaxWidth(Double.MAX_VALUE);
         check.setPadding(Insets.EMPTY);
+        fila.add(check, 0, 0);
 
         VBox colPedido = new VBox(2);
-        colPedido.setMinWidth(90);
-        colPedido.setPrefWidth(90);
+        colPedido.setMinWidth(0);
+        colPedido.setMaxWidth(Double.MAX_VALUE);
 
         // El número ya contiene "HB-", así que solo se antepone "#".
         Label lblId = new Label("#" + texto(pedido.getNumeroPedido()));
-        lblId.setStyle("-fx-font-size: 13px; -fx-font-weight: bold;"
+        lblId.setWrapText(true);
+        lblId.setStyle("-fx-font-size: 12px; -fx-font-weight: bold;"
                 + "-fx-text-fill: #7A1E3A;");
 
         Label lblCantidad =
                 new Label(pedido.cantidadProductos() + " productos");
+        lblCantidad.setWrapText(true);
+        lblCantidad.setMaxWidth(Double.MAX_VALUE);
         lblCantidad.setStyle("-fx-font-size: 11px; -fx-text-fill: #8A7A7A;");
         colPedido.getChildren().addAll(lblId, lblCantidad);
+        fila.add(colPedido, 1, 0);
 
         String nombre = pedido.getCliente() == null
                 ? "Cliente no disponible"
@@ -234,8 +246,8 @@ public class ControladoraGestionPedidos {
                 : texto(pedido.getCliente().getCorreo());
 
         HBox colCliente = new HBox(10);
-        colCliente.setMinWidth(170);
-        colCliente.setPrefWidth(170);
+        colCliente.setMinWidth(0);
+        colCliente.setMaxWidth(Double.MAX_VALUE);
         colCliente.setAlignment(Pos.CENTER_LEFT);
 
         Circle avatar = new Circle(20, Color.web("#7A1E3A"));
@@ -243,75 +255,116 @@ public class ControladoraGestionPedidos {
         iniciales.setStyle("-fx-text-fill: white; -fx-font-size: 11px;"
                 + "-fx-font-weight: bold;");
         StackPane stackAvatar = new StackPane(avatar, iniciales);
+        stackAvatar.setMinWidth(40);
+        stackAvatar.setPrefWidth(40);
 
         VBox datosCliente = new VBox(2);
-        datosCliente.setMaxWidth(120);
+        datosCliente.setMinWidth(0);
+        datosCliente.setMaxWidth(Double.MAX_VALUE);
         Label lblNombre = new Label(nombre);
+        lblNombre.setMinWidth(0);
+        lblNombre.setMaxWidth(Double.MAX_VALUE);
         lblNombre.setWrapText(true);
         lblNombre.setStyle("-fx-font-size: 13px; -fx-text-fill: #2B2B2B;");
         Label lblCorreo = new Label(correo);
+        lblCorreo.setMinWidth(0);
+        lblCorreo.setMaxWidth(Double.MAX_VALUE);
         lblCorreo.setWrapText(true);
         lblCorreo.setStyle("-fx-font-size: 11px; -fx-text-fill: #8A7A7A;");
         datosCliente.getChildren().addAll(lblNombre, lblCorreo);
         colCliente.getChildren().addAll(stackAvatar, datosCliente);
+        colCliente.widthProperty().addListener((observable, anterior, ancho) -> {
+            boolean compacto = ancho.doubleValue() < 145;
+            double tamAvatar = compacto ? 28 : 40;
+            avatar.setRadius(tamAvatar / 2);
+            stackAvatar.setMinWidth(tamAvatar);
+            stackAvatar.setPrefWidth(tamAvatar);
+            colCliente.setSpacing(compacto ? 6 : 10);
+            lblCorreo.setVisible(!compacto);
+            lblCorreo.setManaged(!compacto);
+            lblNombre.setStyle(compacto
+                    ? "-fx-font-size: 11px; -fx-text-fill: #2B2B2B;"
+                    : "-fx-font-size: 13px; -fx-text-fill: #2B2B2B;");
+        });
+        fila.add(colCliente, 2, 0);
 
         VBox colFecha = new VBox(2);
-        colFecha.setMinWidth(90);
-        colFecha.setPrefWidth(90);
+        colFecha.setMinWidth(0);
+        colFecha.setMaxWidth(Double.MAX_VALUE);
 
         if (pedido.getFecha() == null) {
-            colFecha.getChildren().add(new Label("—"));
+            Label fecha = new Label("—");
+            fecha.setMinWidth(0);
+            fecha.setMaxWidth(Double.MAX_VALUE);
+            colFecha.getChildren().add(fecha);
         } else {
             Label fecha = new Label(pedido.getFecha().format(formatoFecha));
-            fecha.setStyle("-fx-font-size: 13px; -fx-text-fill: #2B2B2B;");
+            fecha.setMinWidth(0);
+            fecha.setMaxWidth(Double.MAX_VALUE);
+            fecha.setWrapText(true);
+            fecha.setStyle("-fx-font-size: 11px; -fx-text-fill: #2B2B2B;");
             Label hora = new Label(pedido.getFecha().format(formatoHora));
+            hora.setMinWidth(0);
+            hora.setMaxWidth(Double.MAX_VALUE);
+            hora.setWrapText(true);
             hora.setStyle("-fx-font-size: 11px; -fx-text-fill: #8A7A7A;");
             colFecha.getChildren().addAll(fecha, hora);
         }
+        fila.add(colFecha, 3, 0);
 
         Label lblTotal = new Label(Navegador.precio(pedido.getTotal()));
-        lblTotal.setMinWidth(90);
-        lblTotal.setPrefWidth(90);
-        lblTotal.setStyle("-fx-font-size: 13px; -fx-text-fill: #2B2B2B;");
+        lblTotal.setMinWidth(0);
+        lblTotal.setMaxWidth(Double.MAX_VALUE);
+        lblTotal.setWrapText(true);
+        lblTotal.setStyle("-fx-font-size: 12px; -fx-text-fill: #2B2B2B;");
+        fila.add(lblTotal, 4, 0);
 
         VBox colPago = new VBox(4);
-        colPago.setMinWidth(90);
-        colPago.setPrefWidth(90);
+        colPago.setMinWidth(0);
+        colPago.setMaxWidth(Double.MAX_VALUE);
         colPago.getChildren().add(etiqueta(texto(pedido.getMetodoPago())));
+        fila.add(colPago, 5, 0);
 
         VBox colEnvio = new VBox(4);
-        colEnvio.setMinWidth(97);
-        colEnvio.setPrefWidth(97);
+        colEnvio.setMinWidth(0);
+        colEnvio.setMaxWidth(Double.MAX_VALUE);
         colEnvio.getChildren().add(
                 etiqueta(texto(pedido.getDireccionEntrega()))
         );
+        fila.add(colEnvio, 6, 0);
 
-        HBox colAcciones = new HBox(6);
-        colAcciones.setMinWidth(112);
-        colAcciones.setPrefWidth(112);
+        HBox colAcciones = new HBox(4);
+        colAcciones.setMinWidth(0);
+        colAcciones.setMaxWidth(Double.MAX_VALUE);
         colAcciones.setAlignment(Pos.CENTER_LEFT);
 
         Button btnVer = crearBotonAccion("Ver");
-        btnVer.setPrefWidth(42);
-        btnVer.setMinWidth(42);
+        btnVer.setPrefWidth(36);
+        btnVer.setMinWidth(36);
         btnVer.setOnAction(event -> verPedido(pedido));
 
         Button btnEliminar = crearBotonAccion("Eliminar");
-        btnEliminar.setPrefWidth(62);
-        btnEliminar.setMinWidth(62);
+        btnEliminar.setPrefWidth(54);
+        btnEliminar.setMinWidth(54);
         btnEliminar.setOnAction(event -> eliminarPedido(pedido));
 
         colAcciones.getChildren().addAll(btnVer, btnEliminar);
 
-        fila.getChildren().addAll(
-                check, colPedido, colCliente, colFecha,
-                lblTotal, colPago, colEnvio, colAcciones
-        );
+        fila.add(colAcciones, 7, 0);
         return fila;
+    }
+
+    private ColumnConstraints columnaTabla(double porcentaje) {
+        ColumnConstraints columna = new ColumnConstraints();
+        columna.setPercentWidth(porcentaje);
+        columna.setMinWidth(0);
+        return columna;
     }
 
     private Label etiqueta(String valor) {
         Label label = new Label(valor);
+        label.setMinWidth(0);
+        label.setMaxWidth(Double.MAX_VALUE);
         label.setWrapText(true);
         label.setStyle("-fx-font-size: 11px; -fx-text-fill: #8A7A7A;");
         return label;

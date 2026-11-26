@@ -15,26 +15,19 @@ public class Hada extends Application {
 
     public void start(Stage primaryStage) throws Exception {
 
-    // Aquí pones cuál vista vas a abrir
     String rutaFxml = "/vista/Inicio.fxml";
 
     Parent root = FXMLLoader.load(getClass().getResource(rutaFxml));
-
-    // Aquí mismo decides el ancho, sin otro método
     Rectangle2D pantalla = Screen.getPrimary().getVisualBounds();
-    double anchoVentana;
-    double altoventana= pantalla.getHeight() * 0.90;
-
-    if (rutaFxml.contains("Inicio")) {
-        anchoVentana = 500;
-    } else {
-        anchoVentana = 1140;
-    }
+    double anchoVentana = Math.min(520, pantalla.getWidth() * 0.94);
+    double altoVentana = Math.min(760, pantalla.getHeight() * 0.90);
 
     primaryStage.setTitle("Hada Beauty");
-    primaryStage.setScene(new Scene(root, anchoVentana, altoventana));
+    primaryStage.setScene(new Scene(root, anchoVentana, altoVentana));
     primaryStage.initStyle(StageStyle.DECORATED);
-    primaryStage.setResizable(false);
+    primaryStage.setMinWidth(Math.min(460, pantalla.getWidth() * 0.90));
+    primaryStage.setMinHeight(Math.min(480, pantalla.getHeight() * 0.90));
+    primaryStage.setResizable(true);
     primaryStage.centerOnScreen();
     primaryStage.show();
 }
