@@ -6,10 +6,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox fx:id="rootPedidos" spacing="20" style="-fx-background-color: #FFF6EC; -fx-font-family: 'Georgia', serif;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.EntornoAdmin.ControladoraGestionPedidos">
@@ -27,8 +28,7 @@
             <Label style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A;" text="Todos los pedidos" />
             <Label id="lblCantidadPedidos" fx:id="lblCount" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-background-color: #FDF0F2; -fx-background-radius: 20; -fx-padding: 5 12 5 12; -fx-font-family: 'Segoe UI', Arial, sans-serif;" text="0 pedidos" />
             <Region HBox.hgrow="ALWAYS" />
-            <Button onAction="#vaciarPedidos" text="Vaciar"
-                    style="-fx-background-color: white; -fx-border-color: #D94A68; -fx-border-radius: 16; -fx-background-radius: 16; -fx-text-fill: #B52F50; -fx-font-size: 11px; -fx-font-weight: bold; -fx-padding: 7 16; -fx-cursor: hand;" />
+            <Button onAction="#vaciarPedidos" style="-fx-background-color: white; -fx-border-color: #D94A68; -fx-border-radius: 16; -fx-background-radius: 16; -fx-text-fill: #B52F50; -fx-font-size: 11px; -fx-font-weight: bold; -fx-padding: 7 16; -fx-cursor: hand;" text="Vaciar" />
         </HBox>
 
         <HBox spacing="12" style="-fx-padding: 18 24 18 24;">
@@ -38,8 +38,7 @@
         <!-- FILTROS + ORDENAR -->
         <HBox alignment="CENTER_LEFT" spacing="8" style="-fx-padding: 0 24 16 24;">
 
-            <Button fx:id="btnTodos" text="Todos"
-                    style="-fx-background-color: #FDECF1; -fx-background-radius: 18; -fx-text-fill: #7A1E3A; -fx-font-size: 11px; -fx-padding: 7 16; -fx-cursor: hand;" />
+            <Button fx:id="btnTodos" style="-fx-background-color: #FDECF1; -fx-background-radius: 18; -fx-text-fill: #7A1E3A; -fx-font-size: 11px; -fx-padding: 7 16; -fx-cursor: hand;" text="Todos" />
 
             <Region HBox.hgrow="ALWAYS" />
 
@@ -49,14 +48,14 @@
 
         <GridPane alignment="CENTER_LEFT" hgap="0" style="-fx-background-color: #FDECF1; -fx-padding: 12 24 12 24; -fx-border-color: transparent transparent #F3E6DA transparent;">
             <columnConstraints>
-                <ColumnConstraints percentWidth="4" minWidth="0" />
-                <ColumnConstraints percentWidth="10" minWidth="0" />
-                <ColumnConstraints percentWidth="20" minWidth="0" />
-                <ColumnConstraints percentWidth="10" minWidth="0" />
-                <ColumnConstraints percentWidth="11" minWidth="0" />
-                <ColumnConstraints percentWidth="8" minWidth="0" />
-                <ColumnConstraints percentWidth="12" minWidth="0" />
-                <ColumnConstraints percentWidth="25" minWidth="0" />
+                <ColumnConstraints minWidth="0" percentWidth="4" />
+                <ColumnConstraints minWidth="0" percentWidth="10" />
+                <ColumnConstraints minWidth="0" percentWidth="20" />
+                <ColumnConstraints minWidth="0" percentWidth="10" />
+                <ColumnConstraints minWidth="0" percentWidth="11" />
+                <ColumnConstraints minWidth="0" percentWidth="8" />
+                <ColumnConstraints minWidth="0" percentWidth="12" />
+                <ColumnConstraints minWidth="0" percentWidth="25" />
             </columnConstraints>
             <children>
                 <Label maxWidth="Infinity" minWidth="0" text="" GridPane.columnIndex="0" />
@@ -68,15 +67,15 @@
                 <Label maxWidth="Infinity" minWidth="0" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-font-family: 'Segoe UI', Arial, sans-serif; -fx-border-color: transparent #EBD3D8 transparent transparent; -fx-border-width: 0 1 0 0; -fx-padding: 0 8 0 0;" text="Dirección de entrega" wrapText="true" GridPane.columnIndex="6" />
                 <Label maxWidth="Infinity" minWidth="0" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-font-family: 'Segoe UI', Arial, sans-serif;" text="Acciones" wrapText="true" GridPane.columnIndex="7" />
             </children>
+         <rowConstraints>
+            <RowConstraints />
+         </rowConstraints>
         </GridPane>
 
         <ScrollPane fitToWidth="true" hbarPolicy="NEVER" minHeight="280" prefHeight="380" style="-fx-background: white; -fx-background-color: white; -fx-border-color: transparent;" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
             <content>
                 <VBox fx:id="vboxPedidos" spacing="0" style="-fx-background-color: white;">
-                    <VBox fx:id="vboxVacio" alignment="CENTER" spacing="8" style="-fx-padding: 50 0 50 0;">
-                        <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A;" text="Aún no hay pedidos" />
-                        <Label style="-fx-font-size: 13px; -fx-text-fill: #8A7A7A; -fx-font-family: 'Segoe UI', Arial, sans-serif;" text="Cuando una clienta haga un pedido, aparecerá aquí automáticamente." />
-                    </VBox>
+                    <VBox fx:id="vboxVacio" alignment="CENTER" spacing="8" style="-fx-padding: 50 0 50 0;" />
                 </VBox>
             </content>
         </ScrollPane>

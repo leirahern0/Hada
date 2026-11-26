@@ -63,22 +63,30 @@ public class ControladoraGestionPedidos {
 
     @FXML
     private void initialize() {
-        cmbOrdenar.getItems().setAll(
-                "Fecha: más reciente",
-                "Fecha: más antigua",
-                "Precio: mayor a menor",
-                "Precio: menor a mayor"
-        );
-        cmbOrdenar.getSelectionModel().selectFirst();
+        
+    cmbOrdenar.getItems().setAll(
+            "Fecha: más reciente",
+            "Fecha: más antigua",
+            "Precio: mayor a menor",
+            "Precio: menor a mayor"
+    );
+    cmbOrdenar.getSelectionModel().selectFirst();
 
-        txtBuscar.textProperty().addListener(
-                (observable, anterior, nuevo) -> cargarRecuadroPedido()
-        );
-        cmbOrdenar.setOnAction(event -> cargarRecuadroPedido());
-        btnTodos.setOnAction(event -> txtBuscar.clear());
+    txtBuscar.setOnKeyPressed(event -> {
+        if (event.getCode() == javafx.scene.input.KeyCode.ENTER) {
+            cargarRecuadroPedido();
+        }
+    });
 
-        cargarPedidos();
-    }
+    cmbOrdenar.setOnAction(event -> cargarRecuadroPedido());
+
+    btnTodos.setOnAction(event -> {
+        txtBuscar.clear();
+        cargarRecuadroPedido();
+    });
+
+    cargarPedidos();
+   }
 
     private void cargarPedidos() {
         try {

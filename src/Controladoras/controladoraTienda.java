@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -43,14 +44,11 @@ public class controladoraTienda {
 
     @FXML
     void initialize() {
-        contenedorBanner.prefHeightProperty()
-                .bind(contenedorBanner.widthProperty().multiply(0.26));
-        imagenBanner.fitWidthProperty()
-                .bind(contenedorBanner.widthProperty().multiply(0.81));
-        imagenBanner.fitHeightProperty()
-                .bind(contenedorBanner.widthProperty().multiply(0.26));
 
         cargarProductos();
+        
+    txtBuscar.setOnAction(this::buscarProducto);
+        
     }
 
     // evita que se repitan los productos y crea un recuadro por producto

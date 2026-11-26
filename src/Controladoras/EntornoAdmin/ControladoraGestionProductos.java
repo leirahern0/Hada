@@ -31,25 +31,29 @@ public class ControladoraGestionProductos {
 
     @FXML
     private VBox contenedorProductos;
+
     @FXML
     private Label lblContador;
+
     @FXML
     private TextField txtBuscar;
+
     @FXML
-    private Button btnFiltroTodos, btnFiltroRostro, btnFiltroLabios, btnFiltroOjos, btnFiltroBrochas;
+    private Button btnFiltroTodos, btnFiltroRostro, btnFiltroLabios,
+            btnFiltroOjos, btnFiltroBrochas;
 
     private ControladoraVentanaAdmin admin;
 
     @FXML
     private void initialize() {
-        cargarProductos();
+        txtBuscar.setOnKeyPressed(this::buscarProducto);
 
+        cargarProductos();
         seleccionarFiltro(btnFiltroTodos);
     }
 
-    // Permite cambiar de color los botones de filtro dependiendo de cual sea seleccionado
+    // Permite cambiar de color los botones de filtro dependiendo de cuál sea seleccionado
     private void seleccionarFiltro(Button botonSeleccionado) {
-
         Button[] botones = {
             btnFiltroTodos,
             btnFiltroRostro,
@@ -59,18 +63,14 @@ public class ControladoraGestionProductos {
         };
 
         for (Button boton : botones) {
-
             if (boton == botonSeleccionado) {
-
                 boton.setStyle(
                         "-fx-background-color: #ffc6ad;"
                         + "-fx-text-fill: #8f294d;"
                         + "-fx-background-radius: 8;"
                         + "-fx-cursor: hand;"
                 );
-
             } else {
-
                 boton.setStyle(
                         "-fx-background-color: #fff4e9;"
                         + "-fx-text-fill: #8f294d;"
@@ -81,25 +81,21 @@ public class ControladoraGestionProductos {
         }
     }
 
-    // Limpia las filas anteriores para evitar duplicados, recorre los productos que recupera del archivo txt, coloca la informacion del producto por columna y actualiza el contador
+    // Carga los productos y actualiza la lista mostrada
     private void cargarProductos() {
-
         try {
             listaProductos = productoDAO.listar();
             mostrarProductos(listaProductos);
-
         } catch (Exception e) {
             mostrarError("No se pudieron cargar los productos: " + e.getMessage());
         }
     }
 
-    // Recorre la lista de los productos y construye una fila visual para cada objeto tipo producto
+    // Construye una fila visual para cada producto
     private void mostrarProductos(List<Producto> productos) {
-
         contenedorProductos.getChildren().clear();
 
         for (Producto producto : productos) {
-
             GridPane fila = new GridPane();
 
             fila.setHgap(8);
@@ -205,6 +201,7 @@ public class ControladoraGestionProductos {
                     + "-fx-max-height: 32;"
             );
             btnEditar.setOnAction(e -> editarProducto(producto));
+
             Button btnEliminar = new Button("🗑");
             btnEliminar.setStyle(
                     "-fx-background-color: transparent;"
@@ -250,7 +247,8 @@ public class ControladoraGestionProductos {
 
     @FXML
     private void vaciarPedidos() {
-        if (!Navegador.confirmar("Vaciar pedidos",
+        if (!Navegador.confirmar(
+                "Vaciar pedidos",
                 "Se eliminarán todos los pedidos registrados y sus productos "
                 + "volverán al inventario. ¿Deseas continuar?")) {
             return;
@@ -263,8 +261,12 @@ public class ControladoraGestionProductos {
                     : eliminados + (eliminados == 1
                             ? " pedido eliminado. El stock fue actualizado."
                             : " pedidos eliminados. El stock fue actualizado.");
-            Navegador.alerta("Vaciar pedidos", mensaje,
-                    javafx.scene.control.Alert.AlertType.INFORMATION);
+
+            Navegador.alerta(
+                    "Vaciar pedidos",
+                    mensaje,
+                    javafx.scene.control.Alert.AlertType.INFORMATION
+            );
         } catch (Exception e) {
             mostrarError("No se pudieron eliminar los pedidos: " + e.getMessage());
         }
@@ -272,53 +274,40 @@ public class ControladoraGestionProductos {
 
     @FXML
     private void filtroTodos() {
-
         seleccionarFiltro(btnFiltroTodos);
-
         mostrarProductos(listaProductos);
     }
 
     @FXML
     private void filtroRostro() {
-
         seleccionarFiltro(btnFiltroRostro);
-
         filtrarPorCategoria("Rostro");
     }
 
     @FXML
     private void filtroLabios() {
-
         seleccionarFiltro(btnFiltroLabios);
-
         filtrarPorCategoria("Labios");
     }
 
     @FXML
     private void filtroOjos() {
-
         seleccionarFiltro(btnFiltroOjos);
-
         filtrarPorCategoria("Ojos");
     }
 
     @FXML
     private void filtroBrochas() {
-
         seleccionarFiltro(btnFiltroBrochas);
-
         filtrarPorCategoria("Brochas y accesorios");
     }
 
     private void filtrarPorCategoria(String categoria) {
-
         List<Producto> productosFiltrados = new java.util.ArrayList<>();
 
         for (Producto producto : listaProductos) {
-
             if (producto.getCategoria() != null
                     && producto.getCategoria().equalsIgnoreCase(categoria)) {
-
                 productosFiltrados.add(producto);
             }
         }
@@ -326,20 +315,29 @@ public class ControladoraGestionProductos {
         mostrarProductos(productosFiltrados);
     }
 
-    public void agregarProducto(String nombre, String descripcion, String categoria, String precio, String urlImagen) {
-
+    public void agregarProducto(
+            String nombre,
+            String descripcion,
+            String categoria,
+            String precio,
+            String urlImagen) {
     }
 
-    // Permite buscar los productos por nombre, código
+    // Busca por nombre, código, descripción o etiqueta al presionar Enter
     @FXML
     public void buscarProducto(KeyEvent event) {
+        if (event.getCode() != javafx.scene.input.KeyCode.ENTER) {
+            return;
+        }
+
+        if (txtBuscar == null || listaProductos == null) {
+            return;
+        }
 
         String texto = txtBuscar.getText().trim().toLowerCase();
-
         List<Producto> encontrados = new java.util.ArrayList<>();
 
         for (Producto producto : listaProductos) {
-
             boolean coincideNombre = producto.getNombre() != null
                     && producto.getNombre().toLowerCase().contains(texto);
 
@@ -351,30 +349,32 @@ public class ControladoraGestionProductos {
 
             boolean coincideEtiqueta = producto.getEtiquetas() != null
                     && producto.getEtiquetas().stream()
-                            .anyMatch(etiqueta -> etiqueta.toLowerCase().contains(texto));
+                            .anyMatch(etiqueta -> etiqueta != null
+                                    && etiqueta.toLowerCase().contains(texto));
 
             if (coincideNombre || coincideCodigo
                     || coincideDescripcion || coincideEtiqueta) {
-
                 encontrados.add(producto);
             }
         }
 
         mostrarProductos(encontrados);
 
-        if (event.getCode() == javafx.scene.input.KeyCode.ENTER) {
-            if (encontrados.isEmpty() && !texto.isEmpty()) {
-                Navegador.alerta("Buscar producto",
-                        "Producto no encontrado \"" + txtBuscar.getText().trim() + "\"",
-                        javafx.scene.control.Alert.AlertType.INFORMATION);
-            }
+        if (encontrados.isEmpty() && !texto.isEmpty()) {
+            Navegador.alerta(
+                    "Buscar producto",
+                    "Producto no encontrado \"" + txtBuscar.getText().trim() + "\"",
+                    javafx.scene.control.Alert.AlertType.INFORMATION
+            );
         }
     }
 
     private void verDetalles(Producto producto) {
         try {
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(
+                    getClass().getResource("/vista/vistaAdmin/FichaProducto.fxml")
+            );
 
-            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/vista/vistaAdmin/FichaProducto.fxml"));
             if (loader.getLocation() == null) {
                 System.out.println("NO ENCONTRÉ EL FXML, revisa la ruta");
                 return;
@@ -390,7 +390,6 @@ public class ControladoraGestionProductos {
             stage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
             stage.setScene(new javafx.scene.Scene(root));
             stage.showAndWait();
-
         } catch (Exception e) {
             e.printStackTrace();
             mostrarError("No se pudo abrir la ficha: " + e.getMessage());
@@ -400,7 +399,8 @@ public class ControladoraGestionProductos {
     private void editarProducto(Producto producto) {
         try {
             javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(
-                    getClass().getResource("/vista/vistaAdmin/EditarProducto.fxml"));
+                    getClass().getResource("/vista/vistaAdmin/EditarProducto.fxml")
+            );
             javafx.scene.Parent root = loader.load();
 
             ControladoraEditarProducto ctrl = loader.getController();
@@ -417,15 +417,18 @@ public class ControladoraGestionProductos {
     }
 
     private void eliminarProducto(Producto producto) {
-        javafx.scene.control.Alert confirmar = new javafx.scene.control.Alert(
-                javafx.scene.control.Alert.AlertType.CONFIRMATION);
+        javafx.scene.control.Alert confirmar
+                = new javafx.scene.control.Alert(
+                        javafx.scene.control.Alert.AlertType.CONFIRMATION
+                );
+
         confirmar.setTitle("Hada Beauty");
         confirmar.setHeaderText(null);
         confirmar.setContentText("¿Eliminar " + producto.getNombre() + "?");
 
-        if (confirmar.showAndWait().get() == javafx.scene.control.ButtonType.OK) {
+        if (confirmar.showAndWait().get()
+                == javafx.scene.control.ButtonType.OK) {
             try {
-
                 productoDAO.eliminar(producto.getCodigo());
                 cargarProductos();
             } catch (Exception e) {
@@ -435,7 +438,6 @@ public class ControladoraGestionProductos {
     }
 
     private void mostrarError(String mensaje) {
-
         javafx.scene.control.Alert alerta
                 = new javafx.scene.control.Alert(
                         javafx.scene.control.Alert.AlertType.ERROR
