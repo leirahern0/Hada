@@ -51,13 +51,6 @@ public class controladoraTienda {
                 .bind(contenedorBanner.widthProperty().multiply(0.26));
 
         cargarProductos();
-
-        //Busca mientras la persona escribe
-        if (txtBuscar != null) {
-            txtBuscar.textProperty().addListener((obs, viejo, nuevo) -> {
-                buscarProducto(null);
-            });
-        }
     }
 
     // evita que se repitan los productos y crea un recuadro por producto
@@ -123,50 +116,41 @@ public class controladoraTienda {
         mostrarProductos(filtrados);
     }
 
-    // Busca por nombre, código y etiquetas
     @FXML
+
     void buscarProducto(javafx.event.ActionEvent event) {
+        filtrarPorTexto(txtBuscar.getText());
+    }
+
+    private void filtrarPorTexto(String texto) {
         if (listaProductos == null || txtBuscar == null) {
             return;
         }
 
-        String texto = txtBuscar.getText().trim().toLowerCase();
-
-        // Si el buscador está vacío, muestra todos de nuevo
-        if (texto.isEmpty()) {
+        if (texto == null || texto.isBlank()) {
             categoriaActual = null;
             mostrarProductos(listaProductos);
             return;
         }
 
-        List<Producto> encontrados = new java.util.ArrayList<>();
+        String t = texto.trim().toLowerCase();
+        List<Producto> resultado = new java.util.ArrayList<>();
 
-        for (Producto producto : listaProductos) {
-            boolean coincideNombre = producto.getNombre() != null
-                    && producto.getNombre().toLowerCase().contains(texto);
+        for (Producto p : listaProductos) {
+            String todo = (p.getNombre() + " " + p.getMarca() + " " + p.getDescripcion() + " "
+                    + p.getCategoria() + " " + String.join(" ", p.getEtiquetas() != null ? p.getEtiquetas() : java.util.List.of())).toLowerCase();
 
-            boolean coincideCodigo = producto.getCodigo() != null
-                    && producto.getCodigo().toLowerCase().contains(texto);
-
-            boolean coincideEtiqueta = producto.getEtiquetas() != null
-                    && producto.getEtiquetas().stream()
-                            .anyMatch(etiqueta -> etiqueta.toLowerCase().contains(texto));
-
-            if (coincideNombre || coincideCodigo || coincideEtiqueta) {
-                encontrados.add(producto);
+            if (todo.contains(t)) {
+                resultado.add(p);
             }
         }
 
-        mostrarProductos(encontrados);
+        mostrarProductos(resultado);
 
-        if (event != null && encontrados.isEmpty() && !texto.isEmpty()) {
-            javafx.scene.control.Alert alerta = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
-            alerta.setTitle("Hada Beauty");
-            alerta.setHeaderText(null);
-            alerta.setContentText("Producto \"" + txtBuscar.getText().trim() + "\" no encontrado");
-            alerta.showAndWait();
+        if (resultado.isEmpty()) {
+            Navegador.alerta("Hada Beauty", "No encontramos productos con \"" + texto.trim() + "\".",
+                    javafx.scene.control.Alert.AlertType.INFORMATION);
         }
-
     }
 
     VBox crearRecuadroProducto(Producto producto) {
