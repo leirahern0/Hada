@@ -158,6 +158,15 @@ public class controladoraTienda {
         }
 
         mostrarProductos(encontrados);
+
+        if (event != null && encontrados.isEmpty() && !texto.isEmpty()) {
+            javafx.scene.control.Alert alerta = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+            alerta.setTitle("Hada Beauty");
+            alerta.setHeaderText(null);
+            alerta.setContentText("Producto \"" + txtBuscar.getText().trim() + "\" no encontrado");
+            alerta.showAndWait();
+        }
+
     }
 
     VBox crearRecuadroProducto(Producto producto) {
@@ -248,7 +257,7 @@ public class controladoraTienda {
     @FXML
     void abrirPerfilAdmin(javafx.event.ActionEvent event) {
         try {
-            
+
             javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(
                     getClass().getResource("/vista/vistaAdmin/PerfilAdministrador.fxml"));
 
