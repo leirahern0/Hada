@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.ControladoraEditarProducto">
+<ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.EntornoAdmin.ControladoraEditarProducto">
     <VBox spacing="0" style="-fx-background-color: #FFF6EC; -fx-padding: 20 24 0 24;">
 
         <!-- ENCABEZADO IGUAL A LA FOTO -->

@@ -1,4 +1,4 @@
-package Controladoras;
+package Controladoras.EntornoAdmin;
 
 import datos.ProductoDAO;
 import javafx.scene.control.TextField;
@@ -24,9 +24,9 @@ import modeloProductos.Producto;
 
 public class ControladoraNuevoProducto {
 
-    private ControladoraVentana admin;
+    private ControladoraVentanaAdmin admin;
 
-    public void setAdmin(ControladoraVentana admin) {
+    public void setAdmin(ControladoraVentanaAdmin admin) {
         this.admin = admin;
     }
 

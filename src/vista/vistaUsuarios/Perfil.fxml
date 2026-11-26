@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background: #fff4e9; -fx-background-color: #fff4e9; -fx-border-color: transparent;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.ControladoraMiPerfil">
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background: #fff4e9; -fx-background-color: #fff4e9; -fx-border-color: transparent;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.EntornoUsuario.ControladoraMiPerfil">
    <content>
       <StackPane alignment="TOP_CENTER" style="-fx-background-color: #fff4e9;">
          <children>

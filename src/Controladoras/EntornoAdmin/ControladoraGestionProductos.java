@@ -1,5 +1,9 @@
-package Controladoras;
+package Controladoras.EntornoAdmin;
 
+import Controladoras.EntornoAdmin.ControladoraFichaProducto;
+import Controladoras.EntornoAdmin.ControladoraEditarProducto;
+import Controladoras.Navegador;
+import datos.PedidoServicio;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -22,6 +26,7 @@ import javafx.scene.layout.Priority;
 public class ControladoraGestionProductos {
 
     private ProductoDAO productoDAO = new ProductoDAO();
+    private final PedidoServicio pedidoServicio = new PedidoServicio();
     private List<Producto> listaProductos;
 
     @FXML
@@ -33,7 +38,7 @@ public class ControladoraGestionProductos {
     @FXML
     private Button btnFiltroTodos, btnFiltroRostro, btnFiltroLabios, btnFiltroOjos, btnFiltroBrochas;
 
-    private ControladoraVentana admin;
+    private ControladoraVentanaAdmin admin;
 
     @FXML
     private void initialize() {
@@ -216,7 +221,7 @@ public class ControladoraGestionProductos {
         );
     }
 
-    public void setAdmin(ControladoraVentana admin) {
+    public void setAdmin(ControladoraVentanaAdmin admin) {
         this.admin = admin;
     }
 
@@ -224,6 +229,28 @@ public class ControladoraGestionProductos {
     private void nuevoProducto() {
         if (admin != null) {
             admin.mostrarNuevoProducto();
+        }
+    }
+
+    @FXML
+    private void vaciarPedidos() {
+        if (!Navegador.confirmar("Vaciar pedidos",
+                "Se eliminarán todos los pedidos registrados y sus productos "
+                + "volverán al inventario. ¿Deseas continuar?")) {
+            return;
+        }
+
+        try {
+            int eliminados = pedidoServicio.eliminarTodosLosPedidosYDevolverStock();
+            String mensaje = eliminados == 0
+                    ? "No hay pedidos para eliminar."
+                    : eliminados + (eliminados == 1
+                            ? " pedido eliminado. El stock fue actualizado."
+                            : " pedidos eliminados. El stock fue actualizado.");
+            Navegador.alerta("Vaciar pedidos", mensaje,
+                    javafx.scene.control.Alert.AlertType.INFORMATION);
+        } catch (Exception e) {
+            mostrarError("No se pudieron eliminar los pedidos: " + e.getMessage());
         }
     }
 

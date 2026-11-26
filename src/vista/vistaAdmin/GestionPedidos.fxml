@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="rootPedidos" spacing="20" style="-fx-background-color: #FFF6EC; -fx-font-family: 'Georgia', serif;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.EntornoAdmin.ControladoraGestionPedidos">
+
+    <padding><Insets bottom="28" left="32" right="32" top="28" /></padding>
+
+    <VBox spacing="6">
+        <Label style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A;" text="Gestión de pedidos" />
+    </VBox>
+
+    <HBox spacing="16" />
+
+    <VBox spacing="0" style="-fx-background-color: white; -fx-background-radius: 16; -fx-border-color: #F3E6DA; -fx-border-radius: 16;" VBox.vgrow="ALWAYS">
+        <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 22 24 0 24;">
+            <Label style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A;" text="Todos los pedidos" />
+            <Label id="lblCantidadPedidos" fx:id="lblCount" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-background-color: #FDF0F2; -fx-background-radius: 20; -fx-padding: 5 12 5 12; -fx-font-family: 'Segoe UI', Arial, sans-serif;" text="0 pedidos" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button onAction="#vaciarPedidos" text="Vaciar"
+                    style="-fx-background-color: white; -fx-border-color: #D94A68; -fx-border-radius: 16; -fx-background-radius: 16; -fx-text-fill: #B52F50; -fx-font-size: 11px; -fx-font-weight: bold; -fx-padding: 7 16; -fx-cursor: hand;" />
+        </HBox>
+
+        <HBox spacing="12" style="-fx-padding: 18 24 18 24;">
+            <TextField fx:id="txtBuscar" promptText="🔍  Buscar por número de pedido, nombre o correo..." style="-fx-background-color: white; -fx-border-color: #F3E6DA; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 10 14 10 14; -fx-font-size: 13px; -fx-font-family: 'Segoe UI', Arial, sans-serif;" HBox.hgrow="ALWAYS" />
+        </HBox>
+
+        <!-- FILTROS + ORDENAR -->
+        <HBox alignment="CENTER_LEFT" spacing="8" style="-fx-padding: 0 24 16 24;">
+
+            <Button fx:id="btnTodos" text="Todos"
+                    style="-fx-background-color: #FDECF1; -fx-background-radius: 18; -fx-text-fill: #7A1E3A; -fx-font-size: 11px; -fx-padding: 7 16; -fx-cursor: hand;" />
+
+            <Region HBox.hgrow="ALWAYS" />
+
+            <Label style="-fx-font-size: 12px; -fx-text-fill: #8A7A7A; -fx-font-family: 'Segoe UI', Arial, sans-serif;" text="Ordenar por:" />
+            <ComboBox fx:id="cmbOrdenar" prefWidth="220" promptText="Ordenar por..." style="-fx-background-color: white; -fx-border-color: #F3E6DA; -fx-border-radius: 20; -fx-background-radius: 20; -fx-font-size: 12px; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" prefHeight="44" spacing="0" style="-fx-background-color: #FDECF1; -fx-padding: 12 24 12 24; -fx-border-color: transparent transparent #F3E6DA transparent;">
+            <Label maxWidth="30" minWidth="30" prefWidth="30" text="" />
+            <Label minWidth="90" prefWidth="90" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-font-family: 'Segoe UI', Arial, sans-serif; -fx-border-color: transparent #EBD3D8 transparent transparent; -fx-border-width: 0 1 0 0; -fx-padding: 0 8 0 0;" text="Pedido" />
+            <Label minWidth="170" prefWidth="170" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-font-family: 'Segoe UI', Arial, sans-serif; -fx-border-color: transparent #EBD3D8 transparent transparent; -fx-border-width: 0 1 0 0; -fx-padding: 0 8 0 0;" text="Cliente" />
+            <Label minWidth="90" prefWidth="90" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-font-family: 'Segoe UI', Arial, sans-serif; -fx-border-color: transparent #EBD3D8 transparent transparent; -fx-border-width: 0 1 0 0; -fx-padding: 0 8 0 0;" text="Fecha" />
+            <Label minWidth="90" prefWidth="90" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-font-family: 'Segoe UI', Arial, sans-serif; -fx-border-color: transparent #EBD3D8 transparent transparent; -fx-border-width: 0 1 0 0; -fx-padding: 0 8 0 0;" text="Importe · COP" />
+            <Label minWidth="90" prefWidth="90" wrapText="true" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-font-family: 'Segoe UI', Arial, sans-serif; -fx-border-color: transparent #EBD3D8 transparent transparent; -fx-border-width: 0 1 0 0; -fx-padding: 0 8 0 0;" text="Método elegido" />
+            <Label minWidth="97" prefWidth="97" wrapText="true" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-font-family: 'Segoe UI', Arial, sans-serif; -fx-border-color: transparent #EBD3D8 transparent transparent; -fx-border-width: 0 1 0 0; -fx-padding: 0 8 0 0;" text="Dirección de entrega" />
+            <Label minWidth="112" prefWidth="112" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A; -fx-font-family: 'Segoe UI', Arial, sans-serif;" text="Acciones" />
+        </HBox>
+
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" minHeight="280" prefHeight="380" style="-fx-background: white; -fx-background-color: white; -fx-border-color: transparent;" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
+            <content>
+                <VBox fx:id="vboxPedidos" spacing="0" style="-fx-background-color: white;">
+                    <VBox fx:id="vboxVacio" alignment="CENTER" spacing="8" style="-fx-padding: 50 0 50 0;">
+                        <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #7A1E3A;" text="Aún no hay pedidos" />
+                        <Label style="-fx-font-size: 13px; -fx-text-fill: #8A7A7A; -fx-font-family: 'Segoe UI', Arial, sans-serif;" text="Cuando una clienta haga un pedido, aparecerá aquí automáticamente." />
+                    </VBox>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </VBox>
+</VBox>

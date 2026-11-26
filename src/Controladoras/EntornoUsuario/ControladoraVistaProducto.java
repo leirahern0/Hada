@@ -1,5 +1,7 @@
-package Controladoras;
+package Controladoras.EntornoUsuario;
 
+import Controladoras.EntornoUsuario.ConUsuario;
+import Controladoras.Navegador;
 import datos.CarritoDAO;
 import java.io.File;
 import javafx.animation.PauseTransition;
@@ -132,6 +134,8 @@ public class ControladoraVistaProducto implements ConUsuario {
         }
         try {
             carritoDAO.guardar(usuario, carrito);
+            Navegador.actualizarContadorCarrito(
+                    usuario, carrito.getProductos().size());
         } catch (Exception e) {
             e.printStackTrace();
             Navegador.alerta("Error", "No se pudo guardar el carrito.", Alert.AlertType.ERROR);

@@ -1,3 +1,7 @@
 vale@26.com|BRO-001
 vale@26.com|LAB-003
 vale@26.com|OJO-002
+paula123@gmail.com|LAB-001
+paula123@gmail.com|OJO-001
+paula123@gmail.com|LAB-001
+paula123@gmail.com|LAB-001

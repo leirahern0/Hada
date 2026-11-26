@@ -11,13 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<!-- PLANTILLA COMPACTA PARA VENTANA 900x700 - SOLO CENTER -->
-
-<VBox fx:id="raiz" prefWidth="900.0" spacing="10.0" style="-fx-background-color: #FFF4E9;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.ControladoraVistaProducto">
+<VBox fx:id="raiz" prefWidth="900.0" spacing="10.0" style="-fx-background-color: #FFF4E9;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.EntornoUsuario.ControladoraVistaProducto">
    <padding><Insets bottom="12.0" left="20.0" right="20.0" top="12.0" /></padding>
    <children>
-
-      <!-- MIGAS -->
       <HBox spacing="6.0">
          <children>
             <Label fx:id="lblRutaProducto" style="-fx-font-weight: bold;" text="&lt; Volver" textFill="#F93A8A">
@@ -25,16 +21,12 @@
             </Label>
          </children>
       </HBox>
-
-      <!-- PRODUCTO -->
       <GridPane hgap="20.0">
          <columnConstraints>
             <ColumnConstraints percentWidth="48.0" />
             <ColumnConstraints percentWidth="52.0" />
          </columnConstraints>
          <children>
-
-            <!-- IZQUIERDA -->
             <VBox spacing="10.0" GridPane.columnIndex="0">
                <children>
                   <HBox alignment="CENTER" style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #F2C4C4; -fx-border-radius: 14; -fx-padding: 12;">
@@ -51,8 +43,6 @@
                   </HBox>
                </children>
             </VBox>
-
-            <!-- DERECHA -->
             <VBox spacing="9.0" GridPane.columnIndex="1">
                <children>
                   <Label id="lblCategoriaGrande" fx:id="lblCategoria" style="-fx-font-weight: bold;" text="Rostro" textFill="#F93A8A">
@@ -69,8 +59,6 @@
                         </Label>
                      </children>
                   </HBox>
-
-                  <!-- CANTIDAD -->
                   <HBox alignment="CENTER" maxWidth="280.0" spacing="8.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: #F2C4C4; -fx-border-radius: 20; -fx-padding: 5 12 5 12;">
                      <children>
                         <Label style="-fx-font-weight: bold;" text="Cantidad" textFill="#6B1A3A">
@@ -86,7 +74,6 @@
 
                   <Button fx:id="btnCarrito" maxWidth="Infinity" onAction="#agregarCarrito" prefHeight="38.0" style="-fx-background-color: #F93A8A; -fx-text-fill: white; -fx-background-radius: 20; -fx-font-weight: bold; -fx-font-size: 13;" text="Agregar al carrito 🛒" />
 
-                  <!-- 3 TARJETAS -->
                   <HBox spacing="8.0">
                      <children>
                         <VBox prefWidth="128.0" spacing="2.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #F2C4C4; -fx-border-radius: 10; -fx-padding: 7;">
@@ -109,8 +96,6 @@
                         </VBox>
                      </children>
                   </HBox>
-
-                  <!-- DESCRIPCION -->
                   <VBox spacing="5.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #F2C4C4; -fx-border-radius: 10; -fx-padding: 10;">
                      <children>
                         <Label style="-fx-font-weight: bold;" text="Descripción" textFill="#6B1A3A">

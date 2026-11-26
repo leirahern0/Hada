@@ -11,18 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<!--
-  EDITAR PERFIL (usuario) - se pega en el center de la ventana del usuario.
-
-  fx:id que la controladora debe declarar (@FXML):
-    lblIniciales, lblNombreResumen, lblCorreoResumen,
-    txtNombre, txtCorreo (solo lectura), txtTelefono, txtDireccion,
-    pwdActual, pwdNueva, pwdConfirmar
-
-  Métodos que la controladora debe tener (@FXML):
-    volver, guardarCambios
--->
-<ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background: #fff4e9; -fx-background-color: #fff4e9; -fx-border-color: transparent;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.ControladoraEditarPerfil">
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background: #fff4e9; -fx-background-color: #fff4e9; -fx-border-color: transparent;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.EntornoUsuario.ControladoraEditarPerfil">
    <content>
       <StackPane alignment="TOP_CENTER" style="-fx-background-color: #fff4e9;">
          <children>

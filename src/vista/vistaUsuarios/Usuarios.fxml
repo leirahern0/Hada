@@ -24,7 +24,7 @@
     style="-fx-background-color: #fff4e9;"
     xmlns="http://javafx.com/javafx/25"
     xmlns:fx="http://javafx.com/fxml/1"
-    fx:controller="Controladoras.ControladoraUsuario">
+    fx:controller="Controladoras.EntornoUsuario.ControladoraUsuario">
 
     <center>
 
@@ -186,6 +186,7 @@
                                 <!-- CARRITO -->
 
                                 <Button
+                                    fx:id="btnCarrito"
                                     mnemonicParsing="false"
                                     onAction="#abrirCarrito"
                                     style="-fx-background-color: transparent;">

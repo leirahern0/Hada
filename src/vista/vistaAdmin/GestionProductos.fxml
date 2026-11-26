@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="665" prefWidth="865" spacing="14" style="-fx-background-color: #fff4e9;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.ControladoraGestionProductos">
+<VBox prefHeight="665" prefWidth="865" spacing="14" style="-fx-background-color: #fff4e9;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.EntornoAdmin.ControladoraGestionProductos">
     <padding><Insets bottom="18" left="25" right="25" top="20" /></padding>
     <HBox alignment="CENTER_LEFT" spacing="12">
         <VBox spacing="3">
@@ -20,6 +20,7 @@
             <Label style="-fx-font-size: 12; -fx-text-fill: #ff806d;" text="Administra el catálogo de tu tienda" />
         </VBox>
         <Region HBox.hgrow="ALWAYS" />
+        <Button onAction="#vaciarPedidos" style="-fx-background-color: white; -fx-border-color: #d94a68; -fx-border-radius: 9; -fx-background-radius: 9; -fx-padding: 10 16; -fx-text-fill: #b52f50; -fx-font-weight: bold; -fx-cursor: hand;" text="Vaciar" />
         <Button onAction="#nuevoProducto" style="-fx-background-color: #ff4f9a; -fx-background-radius: 9; -fx-padding: 10 16; -fx-text-fill: white; -fx-font-weight: bold;" text="＋  Nuevo producto" />
     </HBox>
 

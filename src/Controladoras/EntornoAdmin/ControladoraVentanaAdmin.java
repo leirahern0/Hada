@@ -1,5 +1,10 @@
-package Controladoras;
+package Controladoras.EntornoAdmin;
 
+import datos.DatosAdministrador;
+import Controladoras.EntornoAdmin.ControladoraPerfilAdministrador;
+import Controladoras.EntornoAdmin.ControladoraNuevoProducto;
+import Controladoras.EntornoAdmin.ControladoraGestionProductos;
+import Controladoras.controladoraTienda;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,12 +24,20 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-public class ControladoraVentana {
+public class ControladoraVentanaAdmin {
 
     @FXML
     private Label lblAdmin;
     @FXML
     private Button btnCerrarSesion;
+    @FXML
+    private Button btnProductos;
+    @FXML
+    private Button btnPedidos;
+    @FXML
+    private Button btnMiPerfil;
+    @FXML
+    private Button btnTienda;
     @FXML
     private StackPane contenedorVistas;
 
@@ -76,6 +89,7 @@ public class ControladoraVentana {
         Object controlador = cargarVista("vistaAdmin/GestionProductos.fxml");
         if (controlador instanceof ControladoraGestionProductos gestion) {
             gestion.setAdmin(this);
+            marcarSeccionActiva(btnProductos);
         }
     }
 
@@ -83,13 +97,15 @@ public class ControladoraVentana {
         Object controlador = cargarVista("vistaAdmin/AgregarProducto.fxml");
         if (controlador instanceof ControladoraNuevoProducto nuevo) {
             nuevo.setAdmin(this);
+            marcarSeccionActiva(btnProductos);
         }
     }
 
     public void mostrarTienda() {
-        Object controlador = cargarVista("vistaAdmin/tiendaAdmin.fxml");
-        if (controlador instanceof controladoraTiendaAdmin tienda) {
+        Object controlador = cargarVista("tienda.fxml");
+        if (controlador instanceof controladoraTienda tienda) {
             tienda.setAdmin(this);
+            marcarSeccionActiva(btnTienda);
         }
     }
 
@@ -105,7 +121,10 @@ public class ControladoraVentana {
 
     @FXML
     private void irPedidos() {
-
+        Object controlador = cargarVista("vistaAdmin/GestionPedidos.fxml");
+        if (controlador instanceof ControladoraGestionPedidos) {
+            marcarSeccionActiva(btnPedidos);
+        }
     }
 
     @FXML
@@ -135,6 +154,7 @@ public class ControladoraVentana {
 
             contenedorVistas.getChildren().clear();
             contenedorVistas.getChildren().add(vista);
+            marcarSeccionActiva(btnMiPerfil);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -143,6 +163,31 @@ public class ControladoraVentana {
     @FXML
     private void verTienda() {
         mostrarTienda();
+    }
+
+    private void marcarSeccionActiva(Button activa) {
+        Button[] botones = {btnProductos, btnPedidos, btnMiPerfil, btnTienda};
+
+        for (Button boton : botones) {
+            if (boton == null) {
+                continue;
+            }
+
+            boolean seleccionada = boton == activa;
+            String fondo = seleccionada ? "#ffffff" : "transparent";
+            String grosor = seleccionada ? "bold" : "normal";
+
+            boton.setStyle(
+                    "-fx-background-color: " + fondo + ";"
+                    + "-fx-background-radius: 10;"
+                    + "-fx-font-family: Arial;"
+                    + "-fx-font-size: 12px;"
+                    + "-fx-font-weight: " + grosor + ";"
+                    + "-fx-text-fill: #8f294d;"
+                    + "-fx-padding: 10 12;"
+                    + "-fx-cursor: hand;"
+            );
+        }
     }
 
     @FXML

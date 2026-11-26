@@ -1,4 +1,4 @@
-package Controladoras;
+package Controladoras.EntornoGeneral;
 
 import datos.UsuarioDAO;
 import modeloPersonas.Usuario;
@@ -18,7 +18,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import Controladoras.ControladoraUsuario;
+import Controladoras.EntornoUsuario.ControladoraUsuario;
+import Controladoras.EntornoUsuario.ControladoraUsuario;
 
 public class ControladoraInicio {
 

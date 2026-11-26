@@ -1,5 +1,6 @@
 package Controladoras;
 
+import Controladoras.EntornoAdmin.ControladoraVentanaAdmin;
 import datos.ProductoDAO;
 import java.io.File;
 import java.text.NumberFormat;
@@ -16,10 +17,10 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import modeloProductos.Producto;
 
-public class controladoraTiendaAdmin {
+public class controladoraTienda {
 
     private ProductoDAO productoDAO = new ProductoDAO();
-    private ControladoraVentana admin;
+    private ControladoraVentanaAdmin admin;
 
     private List<Producto> listaProductos;
     private String categoriaActual = null;
@@ -31,7 +32,7 @@ public class controladoraTiendaAdmin {
     @FXML
     private Button btnAdmin;
 
-    public void setAdmin(ControladoraVentana admin) {
+    public void setAdmin(ControladoraVentanaAdmin admin) {
         this.admin = admin;
     }
 
@@ -213,7 +214,7 @@ public class controladoraTiendaAdmin {
 
             javafx.scene.Parent root = loader.load();
 
-            Controladoras.ControladoraFichaProducto ficha = loader.getController();
+            Controladoras.EntornoAdmin.ControladoraFichaProducto ficha = loader.getController();
             ficha.setProducto(producto);
 
             javafx.stage.Stage stage = new javafx.stage.Stage();

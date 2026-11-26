@@ -4,60 +4,48 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="720.0" prefWidth="1080.0"
-            style="-fx-background-color: #fff4e9;"
-            stylesheets="@../Admin.css"
-            xmlns="http://javafx.com/javafx/25"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="Controladoras.ControladoraVentana">
-
-    <!-- Barra lateral fija, basada en la vista de referencia -->
+<BorderPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #fff4e9;" stylesheets="@../Admin.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.EntornoAdmin.ControladoraVentanaAdmin">
     <left>
         <VBox prefWidth="220.0" spacing="6.0" style="-fx-background-color: #ffdec9;">
             <padding>
-                <Insets bottom="16.0" left="14.0" right="14.0" top="18.0"/>
+                <Insets bottom="16.0" left="14.0" right="14.0" top="18.0" />
             </padding>
             <children>
-                <HBox alignment="CENTER_LEFT" spacing="8.0">
-                    <children>
-                        <Label text="✦" style="-fx-font-size: 22.0; -fx-text-fill: #8f294d;"/>
-                        <VBox spacing="0.0">
-                            <Label text="Hada Beauty" style="-fx-font-family: Georgia; -fx-font-size: 17.0; -fx-font-weight: bold; -fx-text-fill: #8f294d;"/>
-                            <Label text="Panel de administración" style="-fx-font-family: Arial; -fx-font-size: 10.0; -fx-text-fill: #ff806d;"/>
-                        </VBox>
-                    </children>
-                </HBox>
-                <Separator style="-fx-background-color: #ffc6ad;"/>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../imagenes/LogoHada.png" />
+               </image>
+            </ImageView>
+                <Separator style="-fx-background-color: #ffc6ad;" />
                
-                <Button text="📦  Productos" onAction="#irProductos" maxWidth="Infinity" alignment="CENTER_LEFT" style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-font-family: Arial; -fx-font-size: 12.0; -fx-font-weight: bold; -fx-text-fill: #8f294d; -fx-padding: 10 12; -fx-cursor: hand;"/>
-                <Button text="🛒  Pedidos" onAction="#irPedidos" maxWidth="Infinity" alignment="CENTER_LEFT" style="-fx-background-color: transparent; -fx-font-family: Arial; -fx-font-size: 12.0; -fx-text-fill: #8f294d; -fx-padding: 10 12; -fx-cursor: hand;"/>
-                <Button text="👥  Usuarios" onAction="#irUsuarios" maxWidth="Infinity" alignment="CENTER_LEFT" style="-fx-background-color: transparent; -fx-font-family: Arial; -fx-font-size: 12.0; -fx-text-fill: #8f294d; -fx-padding: 10 12; -fx-cursor: hand;"/>
-                <Button text="👤  Mi perfil" onAction="#irMiPerfil" maxWidth="Infinity" alignment="CENTER_LEFT" style="-fx-background-color: transparent; -fx-font-family: Arial; -fx-font-size: 12.0; -fx-text-fill: #8f294d; -fx-padding: 10 12; -fx-cursor: hand;"/>
-                <Button text="🏪  Ver tienda" onAction="#verTienda" maxWidth="Infinity" alignment="CENTER_LEFT" style="-fx-background-color: transparent; -fx-font-family: Arial; -fx-font-size: 12.0; -fx-text-fill: #8f294d; -fx-padding: 10 12; -fx-cursor: hand;"/>
-                <Region VBox.vgrow="ALWAYS"/>
-                <Separator style="-fx-background-color: #ffc6ad;"/>
+                <Button fx:id="btnProductos" alignment="CENTER_LEFT" maxWidth="Infinity" onAction="#irProductos" style="-fx-background-color: transparent; -fx-background-radius: 10; -fx-font-family: Arial; -fx-font-size: 12.0; -fx-text-fill: #8f294d; -fx-padding: 10 12; -fx-cursor: hand;" text="📦  Productos" />
+                <Button fx:id="btnPedidos" alignment="CENTER_LEFT" maxWidth="Infinity" onAction="#irPedidos" style="-fx-background-color: transparent; -fx-background-radius: 10; -fx-font-family: Arial; -fx-font-size: 12.0; -fx-text-fill: #8f294d; -fx-padding: 10 12; -fx-cursor: hand;" text="🛒  Pedidos" />
+                <Button fx:id="btnMiPerfil" alignment="CENTER_LEFT" maxWidth="Infinity" onAction="#irMiPerfil" style="-fx-background-color: transparent; -fx-background-radius: 10; -fx-font-family: Arial; -fx-font-size: 12.0; -fx-text-fill: #8f294d; -fx-padding: 10 12; -fx-cursor: hand;" text="👤  Mi perfil" />
+                <Button fx:id="btnTienda" alignment="CENTER_LEFT" maxWidth="Infinity" onAction="#verTienda" style="-fx-background-color: transparent; -fx-background-radius: 10; -fx-font-family: Arial; -fx-font-size: 12.0; -fx-text-fill: #8f294d; -fx-padding: 10 12; -fx-cursor: hand;" text="🏪  Ver tienda" />
+                <Region VBox.vgrow="ALWAYS" />
+                <Separator style="-fx-background-color: #ffc6ad;" />
                 <HBox alignment="CENTER_LEFT" spacing="8.0" style="-fx-background-color: #fff4e9; -fx-background-radius: 10; -fx-padding: 8;">
                     <children>
-                        <Label text="👤" style="-fx-font-size: 18.0;"/>
+                        <Label style="-fx-font-size: 18.0;" text="👤" />
                         <VBox spacing="0.0">
-                            <Label text="Admin" style="-fx-font-family: Arial; -fx-font-size: 11.0; -fx-font-weight: bold; -fx-text-fill: #8f294d;"/>
-                            <Label text="Administradora" style="-fx-font-family: Arial; -fx-font-size: 9.0; -fx-text-fill: #ff806d;"/>
+                            <Label style="-fx-font-family: Arial; -fx-font-size: 11.0; -fx-font-weight: bold; -fx-text-fill: #8f294d;" text="Admin" />
+                            <Label style="-fx-font-family: Arial; -fx-font-size: 9.0; -fx-text-fill: #ff806d;" text="Administradora" />
                         </VBox>
                     </children>
                 </HBox>
-                <Button text="↪  Cerrar sesión" onAction="#cerrarSesion" maxWidth="Infinity" alignment="CENTER_LEFT" style="-fx-background-color: transparent; -fx-font-family: Arial; -fx-font-size: 11.0; -fx-text-fill: #8f294d; -fx-cursor: hand;"/>
+                <Button alignment="CENTER_LEFT" maxWidth="Infinity" onAction="#cerrarSesion" style="-fx-background-color: transparent; -fx-font-family: Arial; -fx-font-size: 11.0; -fx-text-fill: #8f294d; -fx-cursor: hand;" text="↪  Cerrar sesión" />
             </children>
         </VBox>
     </left>
-
-    <!-- Todas las vistas variables se cargan aquí; la barra lateral permanece fija -->
     <center>
-        <StackPane fx:id="contenedorVistas" style="-fx-background-color: #fff4e9;"/>
+        <StackPane fx:id="contenedorVistas" style="-fx-background-color: #fff4e9;" />
     </center>
 </BorderPane>

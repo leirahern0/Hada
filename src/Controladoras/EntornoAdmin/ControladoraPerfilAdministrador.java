@@ -1,5 +1,6 @@
-package Controladoras;
+package Controladoras.EntornoAdmin;
 
+import datos.DatosAdministrador;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;

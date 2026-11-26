@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="rootPopup" prefWidth="720" prefHeight="560" spacing="16"
+      style="-fx-background-color: #FFF6EC; -fx-font-family: 'Segoe UI', Arial, sans-serif;"
+      xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="Controladoras.EntornoAdmin.ControladoraFichaPedido">
+    <padding>
+        <Insets top="18" right="18" bottom="18" left="18" />
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="12"
+          style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 14;">
+        <VBox spacing="4" HBox.hgrow="ALWAYS">
+            <Label text="HADA BEAUTY · DETALLE DEL PEDIDO"
+                   style="-fx-font-size: 10px; -fx-text-fill: #8A7A7A;" />
+            <Label fx:id="lblNumeroPedido" text="Pedido #—"
+                   style="-fx-font-size: 23px; -fx-font-weight: bold; -fx-text-fill: #9B1B4A;" />
+            <Label fx:id="lblSubtitulo" text="—"
+                   style="-fx-font-size: 11px; -fx-text-fill: #8A7A7A;" />
+        </VBox>
+        <VBox alignment="CENTER_RIGHT" spacing="3">
+            <Label fx:id="lblImporteTopTitulo" text="Total del pedido"
+                   style="-fx-font-size: 11px; -fx-text-fill: #8A7A7A;" />
+            <Label fx:id="lblImporteTop" text="COP $ 0"
+                   style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #9B1B4A;" />
+        </VBox>
+        <Button fx:id="btnCerrar" onAction="#cerrar" text="✕"
+                prefWidth="34" prefHeight="34"
+                style="-fx-background-color: #FDE8EC; -fx-text-fill: #9B1B4A; -fx-background-radius: 9; -fx-cursor: hand;" />
+    </HBox>
+
+    <HBox spacing="16">
+        <VBox spacing="10" HBox.hgrow="ALWAYS"
+              style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 16;">
+            <Label text="Cliente"
+                   style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #9B1B4A;" />
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label fx:id="lblAvatarCliente" text="—" alignment="CENTER"
+                       minWidth="38" prefWidth="38" minHeight="38" prefHeight="38"
+                       style="-fx-background-color: #FFC9A8; -fx-background-radius: 19; -fx-text-fill: #7A1E3A; -fx-font-weight: bold;" />
+                <VBox spacing="3">
+                    <Label fx:id="lblNombreCliente" text="—"
+                           wrapText="true" maxWidth="240"
+                           style="-fx-font-size: 12px; -fx-font-weight: bold;" />
+                    <Label fx:id="lblEmailCliente" text="—" wrapText="true" maxWidth="240"
+                           style="-fx-font-size: 10px; -fx-text-fill: #8A7A7A;" />
+                </VBox>
+            </HBox>
+            <Label fx:id="lblTelefono" text="Teléfono: —"
+                   style="-fx-font-size: 10px; -fx-text-fill: #5A3A44;" />
+        </VBox>
+
+        <VBox spacing="10" HBox.hgrow="ALWAYS"
+              style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 16;">
+            <Label text="Dirección de entrega"
+                   style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #9B1B4A;" />
+            <Label fx:id="lblDireccion" text="—" wrapText="true"
+                   style="-fx-font-size: 11px; -fx-text-fill: #5A3A44;" />
+        </VBox>
+    </HBox>
+
+    <VBox spacing="0" VBox.vgrow="ALWAYS"
+          style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #F3E6DA; -fx-border-radius: 12;">
+        <HBox alignment="CENTER_LEFT" spacing="8" style="-fx-padding: 12 14 10 14;">
+            <Label text="Productos del pedido"
+                   style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #9B1B4A;"
+                   HBox.hgrow="ALWAYS" />
+            <Label fx:id="lblCountProductos" text="0 productos"
+                   style="-fx-background-color: #FDECF1; -fx-text-fill: #9B1B4A; -fx-background-radius: 16; -fx-padding: 5 10; -fx-font-size: 10px;" />
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="8" style="-fx-background-color: #FFF1E6; -fx-padding: 10 14;">
+            <Label text="Producto" prefWidth="165" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                   style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #9B1B4A;" />
+            <Label text="Precio" prefWidth="75" alignment="CENTER"
+                   style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #9B1B4A;" />
+            <Label text="Cant." prefWidth="40" alignment="CENTER"
+                   style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #9B1B4A;" />
+            <Label text="Total" prefWidth="85" alignment="CENTER_RIGHT"
+                   style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #9B1B4A;" />
+        </HBox>
+
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                    prefHeight="190" minHeight="100" VBox.vgrow="ALWAYS"
+                    style="-fx-background-color: white; -fx-background: white; -fx-border-color: transparent;">
+            <content>
+                <VBox fx:id="vboxProductos" spacing="0" style="-fx-background-color: white;">
+                    <VBox fx:id="vboxVacioProductos" alignment="CENTER" spacing="5"
+                          style="-fx-padding: 24 0;">
+                        <Label text="Aún no hay productos en este pedido"
+                               style="-fx-font-size: 12px; -fx-text-fill: #8A7A7A;" />
+                    </VBox>
+                </VBox>
+            </content>
+        </ScrollPane>
+
+        <HBox alignment="CENTER_RIGHT" spacing="10"
+              style="-fx-padding: 12 14; -fx-border-color: #F3E6DA transparent transparent transparent;">
+            <Region HBox.hgrow="ALWAYS" />
+            <Label text="Total del pedido"
+                   style="-fx-font-size: 12px; -fx-text-fill: #8A7A7A;" />
+            <Label fx:id="lblTotalPedido" text="COP $ 0"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #9B1B4A;" />
+        </HBox>
+    </VBox>
+
+    <HBox alignment="CENTER_RIGHT" style="-fx-padding: 0 2 2 2;">
+        <Button onAction="#eliminarPedido" text="Eliminar pedido"
+                style="-fx-background-color: #9B1B4A; -fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 9 18; -fx-cursor: hand;" />
+    </HBox>
+</VBox>

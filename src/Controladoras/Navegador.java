@@ -1,8 +1,14 @@
 package Controladoras;
 
+import Controladoras.EntornoUsuario.ControladoraVistaProducto;
+import Controladoras.EntornoUsuario.ConUsuario;
 import datos.CarritoDAO;
 import java.io.File;
 import java.text.NumberFormat;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -27,6 +33,18 @@ import javafx.stage.Stage;
 
 public class Navegador {
 
+    private static final List<BadgeCarrito> badgesCarrito = new ArrayList<>();
+
+    private static final class BadgeCarrito {
+        private final String correo;
+        private final WeakReference<Label> etiqueta;
+
+        private BadgeCarrito(String correo, Label etiqueta) {
+            this.correo = correo;
+            this.etiqueta = new WeakReference<>(etiqueta);
+        }
+    }
+
     public static final String INICIO = "/vista/vistaUsuarios/Usuarios.fxml";
     public static final String FAVORITOS = "/vista/vistaUsuarios/Favoritos.fxml";
     public static final String CARRITO = "/vista/vistaUsuarios/Carrito.fxml";
@@ -34,7 +52,7 @@ public class Navegador {
     public static final String PERFIL = "/vista/vistaUsuarios/Perfil.fxml";
     public static final String MIS_PEDIDOS = "/vista/vistaUsuarios/MisPedidos.fxml";
     public static final String EDITAR_PERFIL = "/vista/vistaUsuarios/EditarPerfil.fxml";
-    public static final String VISTA_PRODUCTO = "/vista/VistaProducto.fxml";
+    public static final String VISTA_PRODUCTO = "/vista/vistaUsuarios/VistaProducto.fxml";
     public static String textoBusqueda = null;   // guarda lo buscado desde otras ventanas
 
     public static void ir(String fxml, Node origen, Usuario usuario) {
@@ -100,6 +118,55 @@ public class Navegador {
         return b;
     }
 
+    private static String correoClave(Usuario usuario) {
+        return usuario == null || usuario.getCorreo() == null
+                ? "" : usuario.getCorreo().trim().toLowerCase(Locale.ROOT);
+    }
+
+    private static Label crearBadgeCarrito(Usuario usuario, int unidades) {
+        Label badge = new Label(String.valueOf(unidades));
+        badge.setStyle("-fx-background-color: #ff4f9a; -fx-text-fill: white; -fx-font-size: 9; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 0 5 0 5;");
+        badge.setMouseTransparent(true);
+        badge.setMinSize(Label.USE_PREF_SIZE, Label.USE_PREF_SIZE);
+        badgesCarrito.add(new BadgeCarrito(correoClave(usuario), badge));
+        return badge;
+    }
+
+    /** Actualiza el contador visible en todos los encabezados actualmente creados para la cuenta. */
+    public static void actualizarContadorCarrito(Usuario usuario, int unidades) {
+        String correo = correoClave(usuario);
+        Iterator<BadgeCarrito> iterador = badgesCarrito.iterator();
+        while (iterador.hasNext()) {
+            BadgeCarrito item = iterador.next();
+            Label etiqueta = item.etiqueta.get();
+            if (etiqueta == null) {
+                iterador.remove();
+            } else if (item.correo.equals(correo)) {
+                etiqueta.setText(String.valueOf(Math.max(0, unidades)));
+            }
+        }
+    }
+
+    /** Coloca el contador sobre el gráfico del botón de carrito existente en una vista. */
+    public static void agregarContadorCarrito(Button botonCarrito, Usuario usuario, int unidades) {
+        if (botonCarrito == null || usuario == null) {
+            return;
+        }
+        actualizarContadorCarrito(usuario, unidades);
+        Node grafico = botonCarrito.getGraphic();
+        botonCarrito.setGraphic(null);
+        StackPane iconoConContador = new StackPane();
+        if (grafico != null) {
+            iconoConContador.getChildren().add(grafico);
+        }
+        Label badge = crearBadgeCarrito(usuario, unidades);
+        iconoConContador.getChildren().add(badge);
+        StackPane.setAlignment(badge, Pos.TOP_RIGHT);
+        badge.setTranslateX(4);
+        badge.setTranslateY(-3);
+        botonCarrito.setGraphic(iconoConContador);
+    }
+
     public static HBox encabezado(Usuario u) {
         HBox barra = new HBox(10);
         barra.setAlignment(Pos.CENTER_LEFT);
@@ -124,10 +191,8 @@ public class Navegador {
             unidades = new CarritoDAO().cargar(u).getProductos().size();
         } catch (Exception ignorada) {
         }
-
-        Label badge = new Label(String.valueOf(unidades));
-        badge.setStyle("-fx-background-color: #ff4f9a; -fx-text-fill: white; -fx-font-size: 9; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 0 5 0 5;");
-        badge.setMouseTransparent(true);
+        actualizarContadorCarrito(u, unidades);
+        Label badge = crearBadgeCarrito(u, unidades);
         StackPane carrito = new StackPane(boton("/imagenes/shopping-cart.png", 22, () -> ir(CARRITO, barra, u)), badge);
         StackPane.setAlignment(badge, Pos.TOP_RIGHT);
 
@@ -151,6 +216,8 @@ public class Navegador {
             alerta("Error", "No se pudo abrir el producto: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
+    
+    
 
     public static void cerrarSesion(Node origen) {
         if (!confirmar("Cerrar sesión", "¿Estás segura que deseas salir de tu cuenta de Hada Beauty?")) {

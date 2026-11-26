@@ -1,4 +1,4 @@
-package Controladoras;
+package Controladoras.EntornoAdmin;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

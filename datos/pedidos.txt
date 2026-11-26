@@ -1,3 +1,2 @@
-
 HB-0001|leirahern0@gmail.com|ROS-001|2026-11-24T02:46:32.254047900|42900.0|Nequi|En espera de pago|En espera de empaque|barrio san francisco, calle 77#3-121, Monteria
 HB-0002|leirahern0@gmail.com|ROS-001,LAB-003,BRO-001,OJO-001,LAB-001|2026-11-24T05:05:51.398572900|163700.0|Nequi|En espera de pago|En espera de empaque|barrio san francisco calle 77 #3-121, Monteria

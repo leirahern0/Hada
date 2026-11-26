@@ -8,18 +8,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<!--
-  MIS PEDIDOS (usuario) - se pega en el center de la ventana del usuario.
-
-  fx:id que la controladora debe declarar (@FXML):
-    btnTabPedidos, btnTabHistorial   (para cambiar el color de la pestaña activa)
-    contenedorPedidos                (VBox VACÍO: aquí se agregan por código las tarjetas de pedido)
-    panelVacio                       (se muestra cuando no hay pedidos que listar)
-
-  Métodos que la controladora debe tener (@FXML):
-    volver, verPedidosActivos, verHistorial, explorarProductos
--->
-<ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background: #fff4e9; -fx-background-color: #fff4e9; -fx-border-color: transparent;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.ControladoraMisPedidos">
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background: #fff4e9; -fx-background-color: #fff4e9; -fx-border-color: transparent;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.EntornoUsuario.ControladoraMisPedidos">
    <content>
       <StackPane alignment="TOP_CENTER" style="-fx-background-color: #fff4e9;">
          <children>

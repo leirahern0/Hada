@@ -1,5 +1,7 @@
-package Controladoras;
+package Controladoras.EntornoUsuario;
 
+import Controladoras.EntornoUsuario.ConUsuario;
+import Controladoras.Navegador;
 import datos.ProductoDAO;
 import modeloProductos.Producto;
 import java.io.File;
@@ -28,6 +30,9 @@ import javafx.scene.control.TextField;
 
 public class ControladoraUsuario implements ConUsuario {
 
+    @FXML
+    private Button btnCarrito;
+
     private Usuario usuarioActual;
 
     @Override
@@ -41,6 +46,8 @@ public class ControladoraUsuario implements ConUsuario {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Navegador.agregarContadorCarrito(
+                btnCarrito, usuario, carrito.getProductos().size());
 
         // Redibuja las tarjetas para que los corazones salgan rellenos donde corresponda
         if (listaProductos != null) {
@@ -140,6 +147,8 @@ public class ControladoraUsuario implements ConUsuario {
             carrito.agregarUnidad(producto);
             try {
                 carritoDAO.guardar(usuarioActual, carrito);
+                Navegador.actualizarContadorCarrito(
+                        usuarioActual, carrito.getProductos().size());
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

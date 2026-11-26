@@ -1,6 +1,6 @@
-Base de maquillaje|ROS-001|42900.0|FIT ME|100|prod_1795070406564.jpg|Base líquida para unificar el tono de la piel|Rostro|true|rostro,base,liquido,diario|0.0|
+Base de maquillaje|ROS-001|42900.0|FIT ME|101|prod_1795070406564.jpg|Base líquida para unificar el tono de la piel|Rostro|true|rostro,base,liquido,diario|0.0|
 Labial líquido latte|LAB-001|18000.0|Samy|100|prod_1795070619453.jpg|Labial líquido y cremoso|Labios|true|cremoso,labial,diario,labios|0.0|
-Paleta de sombras|OJO-001|59900.0|Moccallush|100|prod_1795070864808.jpg|Paleta de sombras con tonos versátiles para crear looks naturales o intensos en cualquier ocasión.|Ojos|true|sombras,ojos,maquillaje,pigmentacion,maquillaje de ojos|0.0|
+Paleta de sombras|OJO-001|59900.0|Moccallush|101|prod_1795070864808.jpg|Paleta de sombras con tonos versátiles para crear looks naturales o intensos en cualquier ocasión.|Ojos|true|sombras,ojos,maquillaje,pigmentacion,maquillaje de ojos|0.0|
 Lip gloss|LAB-002|15000.0|Anyeluz|100|prod_1795071023929.jpg|Brillo labial que aporta un acabado luminoso y un aspecto jugoso a los labios.|Labios|true|gloss,labios,brillo labial,maquillaje,acabado brillante,labios luminosos|0.0|
 Marcara de pestañas alargadora|OJO-002|19000.0|ESIKA|100|prod_1795071139242.jpg|Ayuda a alargar y definir las pestañas para conseguir una mirada más expresiva.|Ojos|true|pestañas,máscara,rímel,ojos,alargamiento,maquillaje de ojos|0.0|
 Iluminador compacto sublime|ROS-003|25000.0|Trendy|100|prod_1795071276484.jpg|Iluminador que aporta destellos de luz y resalta los puntos del rostro.|Rostro|true|iluminador,rostro,brillo,luminosidad,maquillaje,efecto glow|0.0|

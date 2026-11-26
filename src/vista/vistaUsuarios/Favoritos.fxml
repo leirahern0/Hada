@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane fitToWidth="true" hbarPolicy="NEVER" stylesheets="@../Tienda.css" style="-fx-background: #fff4e9; -fx-background-color: #fff4e9; -fx-border-color: transparent;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.ControladoraFavoritos">
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" stylesheets="@../Tienda.css" style="-fx-background: #fff4e9; -fx-background-color: #fff4e9; -fx-border-color: transparent;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controladoras.EntornoUsuario.ControladoraFavoritos">
     <content>
         <StackPane alignment="TOP_CENTER" style="-fx-background-color: #fff4e9;">
             <children>
