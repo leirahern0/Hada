@@ -230,8 +230,8 @@ public class ControladoraGestionProductos {
     }
 
     private javafx.scene.layout.ColumnConstraints columnaResponsive(double porcentaje) {
-        javafx.scene.layout.ColumnConstraints columna =
-                new javafx.scene.layout.ColumnConstraints();
+        javafx.scene.layout.ColumnConstraints columna
+                = new javafx.scene.layout.ColumnConstraints();
         columna.setPercentWidth(porcentaje);
         columna.setMinWidth(0);
         return columna;
@@ -361,6 +361,14 @@ public class ControladoraGestionProductos {
         }
 
         mostrarProductos(encontrados);
+
+        if (event.getCode() == javafx.scene.input.KeyCode.ENTER) {
+            if (encontrados.isEmpty() && !texto.isEmpty()) {
+                Navegador.alerta("Buscar producto",
+                        "Producto no encontrado \"" + txtBuscar.getText().trim() + "\"",
+                        javafx.scene.control.Alert.AlertType.INFORMATION);
+            }
+        }
     }
 
     private void verDetalles(Producto producto) {
